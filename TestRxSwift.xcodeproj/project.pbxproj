@@ -15,6 +15,7 @@
 		3F1D65331FDFDBA800495602 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F1D65311FDFDBA800495602 /* LaunchScreen.storyboard */; };
 		3F1D653E1FDFDBA800495602 /* TestRxSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1D653D1FDFDBA800495602 /* TestRxSwiftTests.swift */; };
 		3F1D65491FDFDBA900495602 /* TestRxSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1D65481FDFDBA900495602 /* TestRxSwiftUITests.swift */; };
+		3FA6F70C1FE018A4000FA4CA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA6F70B1FE018A4000FA4CA /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		3F1D65441FDFDBA900495602 /* TestRxSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestRxSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F1D65481FDFDBA900495602 /* TestRxSwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRxSwiftUITests.swift; sourceTree = "<group>"; };
 		3F1D654A1FDFDBA900495602 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3FA6F70B1FE018A4000FA4CA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		6DFD5D414A68184D9001B405 /* Pods-TestRxSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestRxSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestRxSwift/Pods-TestRxSwift.release.xcconfig"; sourceTree = "<group>"; };
 		9F80CCECDF2ED3F1C139A9FD /* Pods_TestRxSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestRxSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2A0A2921E2490AD1B83F36E /* Pods-TestRxSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestRxSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestRxSwift/Pods-TestRxSwift.debug.xcconfig"; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 			children = (
 				3F1D65281FDFDBA800495602 /* AppDelegate.swift */,
 				3F1D652A1FDFDBA800495602 /* ViewController.swift */,
+				3FA6F70B1FE018A4000FA4CA /* LoginViewController.swift */,
 				3F1D652C1FDFDBA800495602 /* Main.storyboard */,
 				3F1D652F1FDFDBA800495602 /* Assets.xcassets */,
 				3F1D65311FDFDBA800495602 /* LaunchScreen.storyboard */,
@@ -342,6 +345,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FA6F70C1FE018A4000FA4CA /* LoginViewController.swift in Sources */,
 				3F1D652B1FDFDBA800495602 /* ViewController.swift in Sources */,
 				3F1D65291FDFDBA800495602 /* AppDelegate.swift in Sources */,
 			);
