@@ -49,6 +49,7 @@
 		3F1D65441FDFDBA900495602 /* TestRxSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestRxSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F1D65481FDFDBA900495602 /* TestRxSwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRxSwiftUITests.swift; sourceTree = "<group>"; };
 		3F1D654A1FDFDBA900495602 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F337CBF1FE1023C00BD3133 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		3FA6F70B1FE018A4000FA4CA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		6DFD5D414A68184D9001B405 /* Pods-TestRxSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestRxSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestRxSwift/Pods-TestRxSwift.release.xcconfig"; sourceTree = "<group>"; };
 		9F80CCECDF2ED3F1C139A9FD /* Pods_TestRxSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestRxSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -84,6 +85,7 @@
 		3F1D651C1FDFDBA800495602 = {
 			isa = PBXGroup;
 			children = (
+				3F337CBF1FE1023C00BD3133 /* MyPlayground.playground */,
 				3F1D65271FDFDBA800495602 /* TestRxSwift */,
 				3F1D653C1FDFDBA800495602 /* TestRxSwiftTests */,
 				3F1D65471FDFDBA900495602 /* TestRxSwiftUITests */,
