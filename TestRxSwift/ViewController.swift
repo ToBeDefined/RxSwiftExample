@@ -103,9 +103,12 @@ extension ViewController {
             }
         }
     }
+    
     func test() {
         testObservable()
+//        testSingle()
     }
+    
 }
 
 extension ViewController {
@@ -134,8 +137,10 @@ extension ViewController {
                     }
                     // 测试多个事件
                     observer.onNext(1234)
-                    observer.onNext(jsonObj)
+//                    observer.onNext(jsonObj)
                     observer.onCompleted()
+//                    // onCompleted之后不运行
+//                    observer.onNext(2222222)
                 })
                 task.resume()
                 return Disposables.create {
@@ -143,6 +148,10 @@ extension ViewController {
                 }
             }
         }
+        
+        
+        
+// MARK: Observable
         
         getObservable(with: githubStr).subscribe(onNext: { (jsonObj) in
             print("Get JSON success")
@@ -165,7 +174,12 @@ extension ViewController {
             print("completed")
         }).disposed(by: disposeBag)
         
+        
+        
+// MARK: asSingle
+        
 //        getObservable(with: githubStr).asSingle().subscribe(onSuccess: { (jsonObj) in
+//            // 1*onNext + 1*onCompleted
 //            print("Get JSON success")
 //            if jsonObj is Int {
 //                print(jsonObj)
@@ -178,10 +192,46 @@ extension ViewController {
 //                let jsonStr = String.init(data: jsonData, encoding: String.Encoding.utf8)
 //                print(jsonStr ?? "")
 //            }
-//        }, onError: nil).disposed(by: disposeBag)
+//        }, onError: { (error) in
+//            // n*onNext + 1*onCompleted || onError
+//            if let error = error as? TError {
+//                error.printLog()
+//            } else {
+//                print(error.localizedDescription)
+//            }
+//        }).disposed(by: disposeBag)
+        
+        
+        
+// MARK: asMaybe
+        
+//        getObservable(with: githubStr).asMaybe().subscribe(onSuccess: { (jsonObj) in
+//            // 1*onNext + 1*onCompleted
+//            print("Get JSON success")
+//            if jsonObj is Int {
+//                print(jsonObj)
+//                return
+//            }
+//            guard JSONSerialization.isValidJSONObject(jsonObj) else { return }
+//            if let jsonData = try? JSONSerialization.data(withJSONObject: jsonObj, options: .prettyPrinted) {
+//                let jsonStr = String.init(data: jsonData, encoding: String.Encoding.utf8)
+//                print(jsonStr ?? "")
+//            }
+//        }, onError: { (error) in
+//            // n*onNext + 1*onCompleted || onError
+//            if let error = error as? TError {
+//                error.printLog()
+//            } else {
+//                print(error.localizedDescription)
+//            }
+//        }, onCompleted: {
+//            // 1*onCompleted
+//            print("completed")
+//        }).disposed(by: disposeBag)
 
     }
     
+// MARK: Single
     func testSingle() {
         func getRepo(_ repo: String) -> Single<[String: Any]> {
             return Single<[String: Any]>.create { (single) -> Disposable in
@@ -204,6 +254,8 @@ extension ViewController {
                             return
                     }
                     single(.success(result))
+                    // 只会运行第一个single
+                    single(.success(["1":2]))
                 })
                 task.resume()
                 return Disposables.create {
