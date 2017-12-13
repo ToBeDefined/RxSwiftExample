@@ -3,7 +3,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 import PlaygroundSupport
-import XCPlayground
 
 PlaygroundPage.current.needsIndefiniteExecution = true
 
