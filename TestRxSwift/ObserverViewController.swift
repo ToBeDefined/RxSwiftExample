@@ -85,22 +85,24 @@ extension ObserverViewController {
     
     // MARK: theGeneralPractice
     @IBAction func theGeneralPractice() {
-        getObservable(with: "https://api.github.com/").subscribe(onNext: { (jsonObj) in
-            print("Get JSON success")
-            guard JSONSerialization.isValidJSONObject(jsonObj) else { return }
-            if let jsonData = try? JSONSerialization.data(withJSONObject: jsonObj, options: .prettyPrinted) {
-                let jsonStr = String.init(data: jsonData, encoding: String.Encoding.utf8)
-                print(jsonStr ?? "")
-            }
-        }, onError: { (error) in
-            if let error = error as? TError {
-                error.printLog()
-            } else {
-                print(error.localizedDescription)
-            }
-        }, onCompleted: {
-            print("completed")
-        }).disposed(by: disposeBag)
+        getObservable(with: "https://api.github.com/")
+            .subscribe(onNext: { (jsonObj) in
+                print("Get JSON success")
+                guard JSONSerialization.isValidJSONObject(jsonObj) else { return }
+                if let jsonData = try? JSONSerialization.data(withJSONObject: jsonObj, options: .prettyPrinted) {
+                    let jsonStr = String.init(data: jsonData, encoding: String.Encoding.utf8)
+                    print(jsonStr ?? "")
+                }
+            }, onError: { (error) in
+                if let error = error as? TError {
+                    error.printLog()
+                } else {
+                    print(error.localizedDescription)
+                }
+            }, onCompleted: {
+                print("completed")
+            })
+            .disposed(by: disposeBag)
     }
     
     // MARK: CreateObserver
@@ -124,7 +126,9 @@ extension ObserverViewController {
                 print("completed")
             }
         }
-        getObservable(with: "https://api.github.com/").subscribe(observer).disposed(by: disposeBag)
+        getObservable(with: "https://api.github.com/")
+            .subscribe(observer)
+            .disposed(by: disposeBag)
     }
     
     // MARK: CreateImageViewBinderObserver
@@ -133,8 +137,14 @@ extension ObserverViewController {
             imageView.image = image
         }
         
-        getImage().asDriver(onErrorJustReturn: #imageLiteral(resourceName: "placeholderImg")).drive(observer).disposed(by: disposeBag)
-        // getImage().observeOn(MainScheduler.instance).bind(to: observer).disposed(by: disposeBag)
+        getImage()
+            .asDriver(onErrorJustReturn: #imageLiteral(resourceName: "placeholderImg"))
+            .drive(observer)
+            .disposed(by: disposeBag)
+        // getImage()
+        //     .observeOn(MainScheduler.instance)
+        //     .bind(to: observer)
+        //     .disposed(by: disposeBag)
     }
 }
 

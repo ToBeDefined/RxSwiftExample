@@ -42,7 +42,7 @@ extension Observer_ObservableViewController {
                         return
                     }
                     observer.onError(TError.init(errorCode: 10, errorString: "UNKNOW ERROR", errorData: data))
-            }
+                }
             )
             return Disposables.create {
                 SDWebImageDownloader.shared().cancel(downloadToken)
@@ -57,9 +57,11 @@ extension Observer_ObservableViewController {
     @IBAction func testAsyncSubject() {
         let subject = AsyncSubject<String>()
         
-        subject.subscribe({ (e) in
-            print("Subscription: 1 Event:", e)
-        }).disposed(by: disposeBag)
+        subject
+            .subscribe({ (e) in
+                print("Subscription: 1 Event:", e)
+            })
+            .disposed(by: disposeBag)
         // 1
         subject.onNext("🐶")
         subject.onNext("🐱")
@@ -70,19 +72,22 @@ extension Observer_ObservableViewController {
     
     // MARK: PublishSubject
     @IBAction func testPublishSubject() {
-        let disposeBag = DisposeBag()
         let subject = PublishSubject<String>()
         
-        subject.subscribe({ (e) in
-            print("Subscription: 1 Event:", e)
-        }).disposed(by: disposeBag)
+        subject
+            .subscribe({ (e) in
+                print("Subscription: 1 Event:", e)
+            })
+            .disposed(by: disposeBag)
         
         subject.onNext("🐶")
         subject.onNext("🐱")
         
-        subject.subscribe({ (e) in
-            print("Subscription: 2 Event:", e)
-        }).disposed(by: disposeBag)
+        subject
+            .subscribe({ (e) in
+                print("Subscription: 2 Event:", e)
+            })
+            .disposed(by: disposeBag)
         
         subject.onNext("🅰️")
         subject.onNext("🅱️")
@@ -209,9 +214,13 @@ extension Observer_ObservableViewController {
         }
         
         
-        observable.bind(to: controlProperty).disposed(by: disposeBag)
+        observable
+            .bind(to: controlProperty)
+            .disposed(by: disposeBag)
         
-        controlProperty.bind(to: observer).disposed(by: disposeBag)
+        controlProperty
+            .bind(to: observer)
+            .disposed(by: disposeBag)
     }
 }
 
