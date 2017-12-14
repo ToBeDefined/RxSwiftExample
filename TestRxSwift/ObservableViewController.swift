@@ -1,124 +1,37 @@
-//
-//  ViewController.swift
+
+//  ObservableViewController.swift
 //  TestRxSwift
 //
 //  Created by 邵伟男 on 2017/12/12.
 //  Copyright © 2017年 邵伟男. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import RxSwift
 import RxCocoa
+import SDWebImage
 
-
-
-class ViewController: UIViewController {
-    let _val: String = ""
-    let val: String = "1"
-    @IBOutlet weak var textField: UITextField!
-    @IBOutlet weak var textField2: UITextField!
-    
-    var subscription:Disposable?
+class ObservableViewController: UIViewController {
     private let disposeBag = DisposeBag()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-// MARK: 3
-        class TestClass: NSObject {
-            @objc var name: String?
-        }
-        func creatMyObservable(_ obj: AnyObject) -> Observable<String?> {
-            return Observable.create({ (obs) -> Disposable in
-                obs.onNext(obj.description)
-                obs.onCompleted()
-                return Disposables.create()
-            })
-        }
-        _ = creatMyObservable(TestClass()).subscribe({ (event) in
-            switch event{
-            case .next(let e):
-                print(e ?? "NULL")
-            case .completed:
-                print("Completed")
-            case .error(let error):
-                print(error)
-            }
-        })
-        
-    }
-    
-    @IBAction func beginBtnClicked(_ sender: UIButton) {
-        self.subscription?.dispose()
-// MARK: 1
-//        self.subscription = self.textField.rx.text.map({$0}).subscribe { event in
-//            switch event {
-//            case .next(let str):
-//                print(str ?? "")
-//            default:
-//                break
-//            }
-//        }
-        
-// MARK: 2
-        if let t1 = self.textField, let t2 = self.textField2 {
-            let o1 = t1.rx.text.map({ ($0 ?? "") })
-            let o2 = t2.rx.text.map({ ($0 ?? "") }).filter({ $0.count >= 3})
-            self.subscription = Observable.combineLatest(o1, o2, resultSelector: { (os1, os2) -> (String, Int, Int) in
-                return ("F: " + os1 + "  S: " + os2, os1.count, os2.count)
-            }).subscribe({ e in
-                switch e {
-                case .next(let el):
-                    print(el)
-                default:
-                    break
-                }
-            })
-        }
-    }
-    
-    @IBAction func cancelBtnClicked(_ sender: UIButton) {
-        self.subscription?.dispose()
-    }
     
     @IBAction func runTestClicked(_ sender: UIButton) {
-        self.test()
-    }
-}
-
-
-extension ViewController {
-    typealias JSON = Any
-    
-    struct TError: Error {
-        var errorCode: Int = 0
-        var errorString: String = ""
-        var errorData: Any?
-        
-        func printLog() {
-            print(errorCode)
-            print(errorString)
-            if let data = errorData as? Data {
-                let str = String.init(data: data, encoding: String.Encoding.utf8)
-                print(str ?? "NULL Error Data")
-            }
-        }
-    }
-    
-    func test() {
         testObservable()
 //        testSingle()
+//        testDriver()
+//        testControlEvent()
     }
-    
 }
 
-extension ViewController {
+extension ObservableViewController {
     func testObservable() {
         let baiduStr = "http://www.baidu.com/"
         let githubStr = "https://api.github.com/"
         
         func getObservable(with url: String) -> Observable<JSON> {
             return Observable<JSON>.create { (observer) -> Disposable in
-                guard let url = URL.init(string: githubStr) else {
+                guard let url = URL.init(string: url) else {
                     let err = TError.init(errorCode: 10, errorString: "url error", errorData: nil)
                     observer.onError(err)
                     return Disposables.create()
@@ -136,11 +49,12 @@ extension ViewController {
                         return
                     }
                     // 测试多个事件
-                    observer.onNext(1234)
-//                    observer.onNext(jsonObj)
+//                    observer.onNext(1234)
+                    observer.onNext(jsonObj)
                     observer.onCompleted()
-//                    // onCompleted之后不运行
-//                    observer.onNext(2222222)
+                    // onCompleted之后不运行
+                    observer.onNext(2222222)
+                    observer.onCompleted()
                 })
                 task.resume()
                 return Disposables.create {
@@ -272,6 +186,66 @@ extension ViewController {
                 return
             }
             err.printLog()
+        }).disposed(by: disposeBag)
+    }
+    
+    func testDriver() {
+        let imageView = UIImageView.init(frame: CGRect.init(x: 100, y: 100, width: 100, height: 100))
+        self.view.addSubview(imageView)
+        func getImage() -> Observable<UIImage> {
+            return Observable<UIImage>.create { (observer) -> Disposable in
+                let downloadToken = SDWebImageDownloader.shared().downloadImage(
+                    with: URL.init(string: "https://avatars1.githubusercontent.com/u/11990850"),
+                    options: SDWebImageDownloaderOptions.highPriority,
+                    progress: nil,
+                    completed: { (image, data, error, finished) in
+                        if let img = image {
+                            observer.onNext(img)
+                            observer.onCompleted()
+                            return
+                        }
+                        if let err = error {
+                            observer.onError(err)
+                            return
+                        }
+                        observer.onError(TError.init(errorCode: 10, errorString: "UNKNOW ERROR", errorData: data))
+                    }
+                )
+                return Disposables.create {
+                    SDWebImageDownloader.shared().cancel(downloadToken)
+                }
+            }
+        }
+        
+        
+        getImage().asDriver(onErrorJustReturn: #imageLiteral(resourceName: "placeholderImg"))
+            .drive(imageView.rx.image)
+            .disposed(by: disposeBag)
+    }
+    
+    func testControlEvent() {
+        let btn = UIButton.init(frame: CGRect.init(x: 100, y: 250, width: 200, height: 60))
+        btn.backgroundColor = UIColor.brown
+        btn.setTitle("Control Event", for: UIControlState.normal)
+        self.view.addSubview(btn)
+        
+        // extension Reactive where Base: UIButton {
+        //
+        //     /// Reactive wrapper for `TouchUpInside` control event.
+        //     public var tap: ControlEvent<Void> {
+        //         return controlEvent(.touchUpInside)
+        //     }
+        // }
+        btn.rx.tap.subscribe(onNext: { [weak self] in
+            let ac = UIAlertController.init(title: "TEST TAP(touchUpInside)", message: "testControlEvent", preferredStyle: UIAlertControllerStyle.alert)
+            ac.addAction(UIAlertAction.init(title: "确定", style: UIAlertActionStyle.cancel, handler: nil))
+            self?.present(ac, animated: true, completion: nil)
+        }).disposed(by: disposeBag)
+        
+        btn.rx.controlEvent(UIControlEvents.touchDragExit).subscribe(onNext: { [weak self] in
+            let ac = UIAlertController.init(title: "TEST touchDragExit", message: "testControlEvent", preferredStyle: UIAlertControllerStyle.alert)
+            ac.addAction(UIAlertAction.init(title: "确定", style: UIAlertActionStyle.cancel, handler: nil))
+            self?.present(ac, animated: true, completion: nil)
         }).disposed(by: disposeBag)
     }
 }
