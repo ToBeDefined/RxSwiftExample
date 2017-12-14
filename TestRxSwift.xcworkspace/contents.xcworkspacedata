@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workspace
    version = "1.0">
+   <Group
+      location = "group:RxSwiftStudy"
+      name = "RxSwiftStudy">
+      <FileRef
+         location = "group:1. Observable - &#x53ef;&#x88ab;&#x76d1;&#x542c;&#x7684;&#x5e8f;&#x5217;.md">
+      </FileRef>
+      <FileRef
+         location = "group:2. Observer - &#x89c2;&#x5bdf;&#x8005;.md">
+      </FileRef>
+      <FileRef
+         location = "group:3. Observable &amp; Observer &#x65e2;&#x662f;&#x53ef;&#x88ab;&#x76d1;&#x542c;&#x7684;&#x5e8f;&#x5217;&#x4e5f;&#x662f;&#x89c2;&#x5bdf;&#x8005;.md">
+      </FileRef>
+   </Group>
    <FileRef
       location = "group:TestRxSwift.xcodeproj">
    </FileRef>

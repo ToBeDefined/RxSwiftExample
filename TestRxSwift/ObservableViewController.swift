@@ -18,7 +18,7 @@ class ObservableViewController: UIViewController {
     let githubStr = "https://api.github.com/"
 }
 
-// MARK: getObservable(with:) -> Observable<JSON>
+// MARK: getObservable(with:) -> Observable<JSON> & getCompletable() -> Completable
 extension ObservableViewController {
     func getObservable(with url: String) -> Observable<JSON> {
         return Observable<JSON>.create { (observer) -> Disposable in
@@ -46,6 +46,26 @@ extension ObservableViewController {
                 // onCompleted之后不运行
                 observer.onNext(2222222)
                 observer.onCompleted()
+            })
+            task.resume()
+            return Disposables.create {
+                task.cancel()
+            }
+        }
+    }
+    
+    func getCompletable() -> Completable {
+        return Completable.create { (completable) -> Disposable in
+            guard let url = URL.init(string: "http://www.baidu.com/") else {
+                completable(.error(TError.init(errorCode: 10, errorString: "url error", errorData: nil)))
+                return Disposables.create()
+            }
+            let task = URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+                if let errInfo = error {
+                    completable(.error(errInfo))
+                } else {
+                    completable(.completed)
+                }
             })
             task.resume()
             return Disposables.create {
@@ -104,6 +124,19 @@ extension ObservableViewController {
             } else {
                 print(error.localizedDescription)
             }
+        }).disposed(by: disposeBag)
+    }
+    
+    // MARK: Completable
+    @IBAction func testCompletable() {
+        getCompletable().subscribe(onCompleted: {
+            print("Completable onCompleted")
+        }, onError: { (error) in
+            if let err = error as? TError {
+                err.printLog()
+                return
+            }
+            print(error.localizedDescription)
         }).disposed(by: disposeBag)
     }
     
