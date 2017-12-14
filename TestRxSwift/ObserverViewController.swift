@@ -16,16 +16,15 @@ class ObserverViewController: UIViewController {
     private let disposeBag = DisposeBag()
     
     lazy var imageView: UIImageView = {
-        let iv = UIImageView()
-        iv.frame = CGRect.init(x: 100, y: 250, width: 100, height: 100)
-        self.view.addSubview(iv)
-        return iv
+        let imgView = UIImageView()
+        imgView.frame = CGRect.init(x: 100, y: 250, width: 100, height: 100)
+        self.view.addSubview(imgView)
+        return imgView
     }()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
+}
+
+// MARK: `getObservable(with:) -> Observable<JSON>` & `getImage() -> Observable<UIImage>`
+extension ObserverViewController {
     func getObservable(with url: String) -> Observable<JSON> {
         return Observable<JSON>.create { (observer) -> Disposable in
             guard let url = URL.init(string: url) else {
@@ -79,14 +78,13 @@ class ObserverViewController: UIViewController {
             }
         }
     }
-    
-    @IBAction func runTestClicked(_ sender: UIButton) {
-        testCreateImageViewObserver()
-    }
 }
 
+// MARK: Test
 extension ObserverViewController {
-    func theGeneralPractice() {
+    
+    // MARK: theGeneralPractice
+    @IBAction func theGeneralPractice() {
         getObservable(with: "https://api.github.com/").subscribe(onNext: { (jsonObj) in
             print("Get JSON success")
             guard JSONSerialization.isValidJSONObject(jsonObj) else { return }
@@ -105,7 +103,8 @@ extension ObserverViewController {
         }).disposed(by: disposeBag)
     }
     
-    func testCreateObserver() {
+    // MARK: CreateObserver
+    @IBAction func testCreateObserver() {
         let observer: AnyObserver<JSON>  = AnyObserver.init { (event) in
             switch event {
             case .next(let jsonObj):
@@ -128,14 +127,14 @@ extension ObserverViewController {
         getObservable(with: "https://api.github.com/").subscribe(observer).disposed(by: disposeBag)
     }
     
-    func testCreateImageViewObserver() {
+    // MARK: CreateImageViewBinderObserver
+    @IBAction func testCreateImageViewBinderObserver() {
         let observer: Binder<UIImage> = Binder.init(imageView) { (imageView, image) in
             imageView.image = image
         }
         
         getImage().asDriver(onErrorJustReturn: #imageLiteral(resourceName: "placeholderImg")).drive(observer).disposed(by: disposeBag)
-//        getImage().observeOn(MainScheduler.instance).bind(to: observer).disposed(by: disposeBag)
-//        getImage().bind(to: observer).disposed(by: disposeBag)
+        // getImage().observeOn(MainScheduler.instance).bind(to: observer).disposed(by: disposeBag)
     }
 }
 

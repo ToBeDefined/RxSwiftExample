@@ -71,13 +71,12 @@
 		3F1D65271FDFDBA800495602 /* TestRxSwift */ = {
 			isa = PBXGroup;
 			children = (
+				3FA9A1471FE2B0CD0009B80B /* Other */,
 				3F9A2E9C1FE24E2100086EFA /* Support */,
+				3F1D652C1FDFDBA800495602 /* Main.storyboard */,
 				3F1D652A1FDFDBA800495602 /* ObservableViewController.swift */,
 				3F9A2E981FE24A1D00086EFA /* ObserverViewController.swift */,
 				3F07B3941FE279A4001F4E7F /* Observer&ObservableViewController.swift */,
-				3F1D652F1FDFDBA800495602 /* Assets.xcassets */,
-				3F1D65311FDFDBA800495602 /* LaunchScreen.storyboard */,
-				3F1D65341FDFDBA800495602 /* Info.plist */,
 			);
 			path = TestRxSwift;
 			sourceTree = "<group>";
@@ -85,12 +84,21 @@
 		3F9A2E9C1FE24E2100086EFA /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				3F1D652C1FDFDBA800495602 /* Main.storyboard */,
 				3FA6F70B1FE018A4000FA4CA /* LoginViewController.swift */,
 				3F1D65281FDFDBA800495602 /* AppDelegate.swift */,
 				3F9A2E9A1FE24E0100086EFA /* CommonType.swift */,
 			);
 			path = Support;
+			sourceTree = "<group>";
+		};
+		3FA9A1471FE2B0CD0009B80B /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				3F1D65341FDFDBA800495602 /* Info.plist */,
+				3F1D65311FDFDBA800495602 /* LaunchScreen.storyboard */,
+				3F1D652F1FDFDBA800495602 /* Assets.xcassets */,
+			);
+			path = Other;
 			sourceTree = "<group>";
 		};
 		C7AFFC27CB5EBEDF05BC4551 /* Pods */ = {
@@ -389,7 +397,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TS9WTSBK78;
 				GCC_PREFIX_HEADER = "";
-				INFOPLIST_FILE = TestRxSwift/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/TestRxSwift/Other/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = tech.tbd.TestRxSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -406,7 +414,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TS9WTSBK78;
 				GCC_PREFIX_HEADER = "";
-				INFOPLIST_FILE = TestRxSwift/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/TestRxSwift/Other/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = tech.tbd.TestRxSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";

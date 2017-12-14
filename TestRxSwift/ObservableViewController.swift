@@ -14,59 +14,51 @@ import SDWebImage
 
 class ObservableViewController: UIViewController {
     private let disposeBag = DisposeBag()
-    
-    
-    @IBAction func runTestClicked(_ sender: UIButton) {
-        testObservable()
-//        testSingle()
-//        testDriver()
-//        testControlEvent()
+    let baiduStr = "http://www.baidu.com/"
+    let githubStr = "https://api.github.com/"
+}
+
+// MARK: getObservable(with:) -> Observable<JSON>
+extension ObservableViewController {
+    func getObservable(with url: String) -> Observable<JSON> {
+        return Observable<JSON>.create { (observer) -> Disposable in
+            guard let url = URL.init(string: url) else {
+                let err = TError.init(errorCode: 10, errorString: "url error", errorData: nil)
+                observer.onError(err)
+                return Disposables.create()
+            }
+            let request = URLRequest.init(url: url)
+            let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
+                if let err = error {
+                    observer.onError(err)
+                    return
+                }
+                
+                guard let jsonData = data, let jsonObj = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableLeaves) else {
+                    let err = TError.init(errorCode: 11, errorString: "json error", errorData: data)
+                    observer.onError(err)
+                    return
+                }
+                // 测试多个事件
+                //                    observer.onNext(1234)
+                observer.onNext(jsonObj)
+                observer.onCompleted()
+                // onCompleted之后不运行
+                observer.onNext(2222222)
+                observer.onCompleted()
+            })
+            task.resume()
+            return Disposables.create {
+                task.cancel()
+            }
+        }
     }
 }
 
+// MARK: Test
 extension ObservableViewController {
-    func testObservable() {
-        let baiduStr = "http://www.baidu.com/"
-        let githubStr = "https://api.github.com/"
-        
-        func getObservable(with url: String) -> Observable<JSON> {
-            return Observable<JSON>.create { (observer) -> Disposable in
-                guard let url = URL.init(string: url) else {
-                    let err = TError.init(errorCode: 10, errorString: "url error", errorData: nil)
-                    observer.onError(err)
-                    return Disposables.create()
-                }
-                let request = URLRequest.init(url: url)
-                let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
-                    if let err = error {
-                        observer.onError(err)
-                        return
-                    }
-                    
-                    guard let jsonData = data, let jsonObj = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableLeaves) else {
-                        let err = TError.init(errorCode: 11, errorString: "json error", errorData: data)
-                        observer.onError(err)
-                        return
-                    }
-                    // 测试多个事件
-//                    observer.onNext(1234)
-                    observer.onNext(jsonObj)
-                    observer.onCompleted()
-                    // onCompleted之后不运行
-                    observer.onNext(2222222)
-                    observer.onCompleted()
-                })
-                task.resume()
-                return Disposables.create {
-                    task.cancel()
-                }
-            }
-        }
-        
-        
-        
-// MARK: Observable
-        
+    // MARK: Observable
+    @IBAction func testObservable() {
         getObservable(with: githubStr).subscribe(onNext: { (jsonObj) in
             print("Get JSON success")
             if jsonObj is Int {
@@ -87,66 +79,63 @@ extension ObservableViewController {
         }, onCompleted: {
             print("completed")
         }).disposed(by: disposeBag)
+    }
         
-        
-        
-// MARK: asSingle
-        
-//        getObservable(with: githubStr).asSingle().subscribe(onSuccess: { (jsonObj) in
-//            // 1*onNext + 1*onCompleted
-//            print("Get JSON success")
-//            if jsonObj is Int {
-//                print(jsonObj)
-//                return
-//            }
-//            guard JSONSerialization.isValidJSONObject(jsonObj) else {
-//                return
-//            }
-//            if let jsonData = try? JSONSerialization.data(withJSONObject: jsonObj, options: .prettyPrinted) {
-//                let jsonStr = String.init(data: jsonData, encoding: String.Encoding.utf8)
-//                print(jsonStr ?? "")
-//            }
-//        }, onError: { (error) in
-//            // n*onNext + 1*onCompleted || onError
-//            if let error = error as? TError {
-//                error.printLog()
-//            } else {
-//                print(error.localizedDescription)
-//            }
-//        }).disposed(by: disposeBag)
-        
-        
-        
-// MARK: asMaybe
-        
-//        getObservable(with: githubStr).asMaybe().subscribe(onSuccess: { (jsonObj) in
-//            // 1*onNext + 1*onCompleted
-//            print("Get JSON success")
-//            if jsonObj is Int {
-//                print(jsonObj)
-//                return
-//            }
-//            guard JSONSerialization.isValidJSONObject(jsonObj) else { return }
-//            if let jsonData = try? JSONSerialization.data(withJSONObject: jsonObj, options: .prettyPrinted) {
-//                let jsonStr = String.init(data: jsonData, encoding: String.Encoding.utf8)
-//                print(jsonStr ?? "")
-//            }
-//        }, onError: { (error) in
-//            // n*onNext + 1*onCompleted || onError
-//            if let error = error as? TError {
-//                error.printLog()
-//            } else {
-//                print(error.localizedDescription)
-//            }
-//        }, onCompleted: {
-//            // 1*onCompleted
-//            print("completed")
-//        }).disposed(by: disposeBag)
-
+    // MARK: asSingle
+    @IBAction func testObservableAsSingle() {
+        getObservable(with: githubStr).asSingle().subscribe(onSuccess: { (jsonObj) in
+            // 1*onNext + 1*onCompleted
+            print("Get JSON success")
+            if jsonObj is Int {
+                print(jsonObj)
+                return
+            }
+            guard JSONSerialization.isValidJSONObject(jsonObj) else {
+                return
+            }
+            if let jsonData = try? JSONSerialization.data(withJSONObject: jsonObj, options: .prettyPrinted) {
+                let jsonStr = String.init(data: jsonData, encoding: String.Encoding.utf8)
+                print(jsonStr ?? "")
+            }
+        }, onError: { (error) in
+            // n*onNext + 1*onCompleted || onError
+            if let error = error as? TError {
+                error.printLog()
+            } else {
+                print(error.localizedDescription)
+            }
+        }).disposed(by: disposeBag)
     }
     
-// MARK: Single
-    func testSingle() {
+    // MARK: asMaybe
+    @IBAction func testObservableAsMaybe() {
+        getObservable(with: githubStr).asMaybe().subscribe(onSuccess: { (jsonObj) in
+            // 1*onNext + 1*onCompleted
+            print("Get JSON success")
+            if jsonObj is Int {
+                print(jsonObj)
+                return
+            }
+            guard JSONSerialization.isValidJSONObject(jsonObj) else { return }
+            if let jsonData = try? JSONSerialization.data(withJSONObject: jsonObj, options: .prettyPrinted) {
+                let jsonStr = String.init(data: jsonData, encoding: String.Encoding.utf8)
+                print(jsonStr ?? "")
+            }
+        }, onError: { (error) in
+            // n*onNext + 1*onCompleted || onError
+            if let error = error as? TError {
+                error.printLog()
+            } else {
+                print(error.localizedDescription)
+            }
+        }, onCompleted: {
+            // 1*onCompleted
+            print("completed")
+        }).disposed(by: disposeBag)
+    }
+    
+    // MARK: Single
+    @IBAction func testSingle() {
         func getRepo(_ repo: String) -> Single<[String: Any]> {
             return Single<[String: Any]>.create { (single) -> Disposable in
                 guard let url = URL.init(string: "https://api.github.com/repos/\(repo)") else {
@@ -189,7 +178,8 @@ extension ObservableViewController {
         }).disposed(by: disposeBag)
     }
     
-    func testDriver() {
+    // MARK: Driver
+    @IBAction func testDriver() {
         let imageView = UIImageView.init(frame: CGRect.init(x: 100, y: 100, width: 100, height: 100))
         self.view.addSubview(imageView)
         func getImage() -> Observable<UIImage> {
@@ -223,7 +213,8 @@ extension ObservableViewController {
             .disposed(by: disposeBag)
     }
     
-    func testControlEvent() {
+    // MARK: ControlEvent
+    @IBAction func testControlEvent() {
         let btn = UIButton.init(frame: CGRect.init(x: 100, y: 250, width: 200, height: 60))
         btn.backgroundColor = UIColor.brown
         btn.setTitle("Control Event", for: UIControlState.normal)
