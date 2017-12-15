@@ -23,9 +23,8 @@ class ObserverViewController: TViewController {
     }()
 }
 
-// MARK: getObservable(with:) -> Observable<JSON>
-// MARK: getImage() -> Observable<UIImage>
 extension ObserverViewController {
+    // MARK: getObservable(with:) -> Observable<JSON>
     func getObservable(with url: String) -> Observable<JSON> {
         return Observable<JSON>.create { (observer) -> Disposable in
             guard let url = URL.init(string: url) else {
@@ -55,6 +54,7 @@ extension ObserverViewController {
         }
     }
     
+    // MARK: getImage() -> Observable<UIImage>
     func getImage() -> Observable<UIImage> {
         return Observable<UIImage>.create { (observer) -> Disposable in
             let downloadToken = SDWebImageDownloader.shared().downloadImage(

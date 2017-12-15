@@ -11,11 +11,11 @@ import RxSwift
 import RxCocoa
 
 class DisposableViewController: TViewController {
-    let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
 }
 
-// MARK: getObservable(with:) -> Observable<JSON>
 extension DisposableViewController {
+    // MARK: getObservable(with:) -> Observable<JSON>
     func getObservable() -> Observable<JSON> {
         return Observable<JSON>.create { (observer) -> Disposable in
             guard let url = URL.init(string: "https://api.github.com/") else {
@@ -46,6 +46,7 @@ extension DisposableViewController {
     }
 }
 
+// MARK: Test
 extension DisposableViewController {
     
     // MARK: DisposeTime

@@ -23,8 +23,8 @@ class Observer_ObservableViewController: TViewController {
     }()
 }
 
-// MARK: getImage() -> Observable<UIImage>
 extension Observer_ObservableViewController {
+    // MARK: getImage() -> Observable<UIImage>
     func getImage() -> Observable<UIImage> {
         return Observable<UIImage>.create { (observer) -> Disposable in
             let downloadToken = SDWebImageDownloader.shared().downloadImage(

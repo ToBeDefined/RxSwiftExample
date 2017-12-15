@@ -506,16 +506,22 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="gw1-c5-DKU"/>
                                 </constraints>
-                                <state key="normal" title="Test DisposeTime">
+                                <state key="normal" title="Test subscribeOn">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="testSubscribeOn" destination="D9Q-gO-99J" eventType="touchUpInside" id="hgp-O5-dDQ"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rY5-Sr-GVv">
                                 <rect key="frame" x="30" y="130" width="315" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Test Dispose">
+                                <state key="normal" title="Test observeOn">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="testObserveOn" destination="D9Q-gO-99J" eventType="touchUpInside" id="0Mc-TO-lf8"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="geJ-Q6-qEt">
                                 <rect key="frame" x="30" y="180" width="315" height="30"/>

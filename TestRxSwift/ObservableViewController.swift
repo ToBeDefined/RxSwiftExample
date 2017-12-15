@@ -34,10 +34,8 @@ class ObservableViewController: TViewController {
     }()
 }
 
-// MARK: getObservable(with:) -> Observable<JSON>
-// MARK: getRepo(_:) -> Single<[String: Any]>
-// MARK: getCompletable() -> Completable
 extension ObservableViewController {
+    // MARK: getObservable(with:) -> Observable<JSON>
     func getObservable(with url: String) -> Observable<JSON> {
         return Observable<JSON>.create { (observer) -> Disposable in
             guard let url = URL.init(string: url) else {
@@ -72,6 +70,7 @@ extension ObservableViewController {
         }
     }
     
+    // MARK: getRepo(_:) -> Single<[String: Any]>
     func getRepo(_ repo: String) -> Single<[String: Any]> {
         return Single<[String: Any]>.create { (single) -> Disposable in
             guard let url = URL.init(string: "https://api.github.com/repos/\(repo)") else {
@@ -103,6 +102,7 @@ extension ObservableViewController {
         }
     }
     
+    // MARK: getCompletable() -> Completable
     func getCompletable() -> Completable {
         return Completable.create { (completable) -> Disposable in
             guard let url = URL.init(string: "http://www.baidu.com/") else {
