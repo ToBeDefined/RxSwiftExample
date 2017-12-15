@@ -9,18 +9,23 @@
 /* Begin PBXBuildFile section */
 		25573FB7793B7D374DB1FA6E /* Pods_TestRxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F80CCECDF2ED3F1C139A9FD /* Pods_TestRxSwift.framework */; };
 		3F07B3951FE279A4001F4E7F /* Observer&ObservableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F07B3941FE279A4001F4E7F /* Observer&ObservableViewController.swift */; };
+		3F07B3981FE364A0001F4E7F /* DisposableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F07B3971FE364A0001F4E7F /* DisposableViewController.swift */; };
+		3F0B8D5F1FE39A6E00A2CBD6 /* SchedulersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0B8D5E1FE39A6E00A2CBD6 /* SchedulersViewController.swift */; };
 		3F1D65291FDFDBA800495602 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1D65281FDFDBA800495602 /* AppDelegate.swift */; };
 		3F1D652B1FDFDBA800495602 /* ObservableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1D652A1FDFDBA800495602 /* ObservableViewController.swift */; };
 		3F1D652E1FDFDBA800495602 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F1D652C1FDFDBA800495602 /* Main.storyboard */; };
 		3F1D65301FDFDBA800495602 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F1D652F1FDFDBA800495602 /* Assets.xcassets */; };
 		3F1D65331FDFDBA800495602 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F1D65311FDFDBA800495602 /* LaunchScreen.storyboard */; };
 		3F9A2E991FE24A1D00086EFA /* ObserverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9A2E981FE24A1D00086EFA /* ObserverViewController.swift */; };
-		3F9A2E9B1FE24E0100086EFA /* CommonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9A2E9A1FE24E0100086EFA /* CommonType.swift */; };
+		3F9A2E9B1FE24E0100086EFA /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9A2E9A1FE24E0100086EFA /* Common.swift */; };
 		3FA6F70C1FE018A4000FA4CA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA6F70B1FE018A4000FA4CA /* LoginViewController.swift */; };
+		3FA84D111FE37C9A00F2CE74 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA84D101FE37C9A00F2CE74 /* MainTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3F07B3941FE279A4001F4E7F /* Observer&ObservableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observer&ObservableViewController.swift"; sourceTree = "<group>"; };
+		3F07B3971FE364A0001F4E7F /* DisposableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisposableViewController.swift; sourceTree = "<group>"; };
+		3F0B8D5E1FE39A6E00A2CBD6 /* SchedulersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulersViewController.swift; sourceTree = "<group>"; };
 		3F1D65251FDFDBA800495602 /* TestRxSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestRxSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F1D65281FDFDBA800495602 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F1D652A1FDFDBA800495602 /* ObservableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableViewController.swift; sourceTree = "<group>"; };
@@ -30,8 +35,9 @@
 		3F1D65341FDFDBA800495602 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F337CBF1FE1023C00BD3133 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		3F9A2E981FE24A1D00086EFA /* ObserverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserverViewController.swift; sourceTree = "<group>"; };
-		3F9A2E9A1FE24E0100086EFA /* CommonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonType.swift; sourceTree = "<group>"; };
+		3F9A2E9A1FE24E0100086EFA /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		3FA6F70B1FE018A4000FA4CA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		3FA84D101FE37C9A00F2CE74 /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		6DFD5D414A68184D9001B405 /* Pods-TestRxSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestRxSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestRxSwift/Pods-TestRxSwift.release.xcconfig"; sourceTree = "<group>"; };
 		9F80CCECDF2ED3F1C139A9FD /* Pods_TestRxSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestRxSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2A0A2921E2490AD1B83F36E /* Pods-TestRxSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestRxSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestRxSwift/Pods-TestRxSwift.debug.xcconfig"; sourceTree = "<group>"; };
@@ -74,9 +80,12 @@
 				3FA9A1471FE2B0CD0009B80B /* Other */,
 				3F9A2E9C1FE24E2100086EFA /* Support */,
 				3F1D652C1FDFDBA800495602 /* Main.storyboard */,
+				3FA84D101FE37C9A00F2CE74 /* MainTableViewController.swift */,
 				3F1D652A1FDFDBA800495602 /* ObservableViewController.swift */,
 				3F9A2E981FE24A1D00086EFA /* ObserverViewController.swift */,
 				3F07B3941FE279A4001F4E7F /* Observer&ObservableViewController.swift */,
+				3F07B3971FE364A0001F4E7F /* DisposableViewController.swift */,
+				3F0B8D5E1FE39A6E00A2CBD6 /* SchedulersViewController.swift */,
 			);
 			path = TestRxSwift;
 			sourceTree = "<group>";
@@ -86,7 +95,7 @@
 			children = (
 				3FA6F70B1FE018A4000FA4CA /* LoginViewController.swift */,
 				3F1D65281FDFDBA800495602 /* AppDelegate.swift */,
-				3F9A2E9A1FE24E0100086EFA /* CommonType.swift */,
+				3F9A2E9A1FE24E0100086EFA /* Common.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -204,7 +213,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		78BE7012443804339AF039A4 /* [CP] Embed Pods Frameworks */ = {
@@ -252,11 +261,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F07B3951FE279A4001F4E7F /* Observer&ObservableViewController.swift in Sources */,
-				3F9A2E9B1FE24E0100086EFA /* CommonType.swift in Sources */,
+				3F9A2E9B1FE24E0100086EFA /* Common.swift in Sources */,
 				3F1D65291FDFDBA800495602 /* AppDelegate.swift in Sources */,
 				3FA6F70C1FE018A4000FA4CA /* LoginViewController.swift in Sources */,
+				3F0B8D5F1FE39A6E00A2CBD6 /* SchedulersViewController.swift in Sources */,
+				3FA84D111FE37C9A00F2CE74 /* MainTableViewController.swift in Sources */,
 				3F1D652B1FDFDBA800495602 /* ObservableViewController.swift in Sources */,
 				3F9A2E991FE24A1D00086EFA /* ObserverViewController.swift in Sources */,
+				3F07B3981FE364A0001F4E7F /* DisposableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

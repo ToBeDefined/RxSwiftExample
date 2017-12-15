@@ -12,7 +12,7 @@ import RxSwift
 import RxCocoa
 import SDWebImage
 
-class ObservableViewController: UIViewController {
+class ObservableViewController: TViewController {
     private let disposeBag = DisposeBag()
     
     let baiduStr = "http://www.baidu.com/"

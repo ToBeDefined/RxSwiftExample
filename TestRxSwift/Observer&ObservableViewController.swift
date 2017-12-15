@@ -12,7 +12,7 @@ import RxSwift
 import RxCocoa
 import SDWebImage
 
-class Observer_ObservableViewController: UIViewController {
+class Observer_ObservableViewController: TViewController {
     private let disposeBag = DisposeBag()
     
     lazy var imageView: UIImageView = {

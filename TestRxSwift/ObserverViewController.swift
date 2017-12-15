@@ -12,7 +12,7 @@ import RxSwift
 import RxCocoa
 import SDWebImage
 
-class ObserverViewController: UIViewController {
+class ObserverViewController: TViewController {
     private let disposeBag = DisposeBag()
     
     lazy var imageView: UIImageView = {
@@ -23,7 +23,8 @@ class ObserverViewController: UIViewController {
     }()
 }
 
-// MARK: `getObservable(with:) -> Observable<JSON>` & `getImage() -> Observable<UIImage>`
+// MARK: getObservable(with:) -> Observable<JSON>
+// MARK: getImage() -> Observable<UIImage>
 extension ObserverViewController {
     func getObservable(with url: String) -> Observable<JSON> {
         return Observable<JSON>.create { (observer) -> Disposable in

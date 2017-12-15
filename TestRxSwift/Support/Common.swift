@@ -28,3 +28,10 @@ struct TError: Error {
         }
     }
 }
+
+class TViewController: UIViewController {
+    deinit {
+        print("Deinit:" + self.debugDescription)
+    }
+}
+
