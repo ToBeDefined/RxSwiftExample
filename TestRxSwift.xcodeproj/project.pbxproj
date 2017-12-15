@@ -20,6 +20,7 @@
 		3F9A2E9B1FE24E0100086EFA /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9A2E9A1FE24E0100086EFA /* Common.swift */; };
 		3FA6F70C1FE018A4000FA4CA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA6F70B1FE018A4000FA4CA /* LoginViewController.swift */; };
 		3FA84D111FE37C9A00F2CE74 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA84D101FE37C9A00F2CE74 /* MainTableViewController.swift */; };
+		3FDA1F811FE3BF1900451C48 /* ErrorHandlingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDA1F801FE3BF1900451C48 /* ErrorHandlingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		3F9A2E9A1FE24E0100086EFA /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		3FA6F70B1FE018A4000FA4CA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3FA84D101FE37C9A00F2CE74 /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
+		3FDA1F801FE3BF1900451C48 /* ErrorHandlingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandlingViewController.swift; sourceTree = "<group>"; };
 		6DFD5D414A68184D9001B405 /* Pods-TestRxSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestRxSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestRxSwift/Pods-TestRxSwift.release.xcconfig"; sourceTree = "<group>"; };
 		9F80CCECDF2ED3F1C139A9FD /* Pods_TestRxSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestRxSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2A0A2921E2490AD1B83F36E /* Pods-TestRxSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestRxSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestRxSwift/Pods-TestRxSwift.debug.xcconfig"; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 				3F07B3941FE279A4001F4E7F /* Observer&ObservableViewController.swift */,
 				3F07B3971FE364A0001F4E7F /* DisposableViewController.swift */,
 				3F0B8D5E1FE39A6E00A2CBD6 /* SchedulersViewController.swift */,
+				3FDA1F801FE3BF1900451C48 /* ErrorHandlingViewController.swift */,
 			);
 			path = TestRxSwift;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 				3F9A2E9B1FE24E0100086EFA /* Common.swift in Sources */,
 				3F1D65291FDFDBA800495602 /* AppDelegate.swift in Sources */,
 				3FA6F70C1FE018A4000FA4CA /* LoginViewController.swift in Sources */,
+				3FDA1F811FE3BF1900451C48 /* ErrorHandlingViewController.swift in Sources */,
 				3F0B8D5F1FE39A6E00A2CBD6 /* SchedulersViewController.swift in Sources */,
 				3FA84D111FE37C9A00F2CE74 /* MainTableViewController.swift in Sources */,
 				3F1D652B1FDFDBA800495602 /* ObservableViewController.swift in Sources */,

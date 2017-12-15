@@ -19,6 +19,9 @@
       <FileRef
          location = "group:5. Schedulers - &#x8c03;&#x5ea6;&#x5668;.md">
       </FileRef>
+      <FileRef
+         location = "group:6. Error Handling - &#x9519;&#x8bef;&#x5904;&#x7406;.md">
+      </FileRef>
    </Group>
    <FileRef
       location = "group:TestRxSwift.xcodeproj">
