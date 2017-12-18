@@ -145,7 +145,6 @@ class ErrorHandlingViewController: TViewController {
             })
             .disposed(by: disposeBag)
     }
-    
 }
 
 extension ErrorHandlingViewController {
