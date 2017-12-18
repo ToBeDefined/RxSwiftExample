@@ -135,11 +135,7 @@ class Observer_ObservableViewController: TViewController {
             .subscribe(onNext: { (image) in
                 model.value = Model.init(text: image.description, image: image)
             }, onError: { (err) in
-                if let err = err as? TError {
-                    err.printLog()
-                    return
-                }
-                print(err.localizedDescription)
+                err.printLog()
             })
             .disposed(by: disposeBag)
     }

@@ -31,11 +31,7 @@ class ObserverViewController: TViewController {
                     print(jsonStr ?? "")
                 }
             }, onError: { (error) in
-                if let error = error as? TError {
-                    error.printLog()
-                } else {
-                    print(error.localizedDescription)
-                }
+                error.printLog()
             }, onCompleted: {
                 print("completed")
             })
@@ -54,11 +50,7 @@ class ObserverViewController: TViewController {
                     print(jsonStr ?? "")
                 }
             case .error(let error):
-                if let err = error as? TError {
-                    err.printLog()
-                } else {
-                    print(error.localizedDescription)
-                }
+                error.printLog()
             case .completed:
                 print("completed")
             }

@@ -46,11 +46,7 @@ class ObservableViewController: TViewController {
                     print(jsonStr ?? "")
                 }
             }, onError: { (error) in
-                if let error = error as? TError {
-                    error.printLog()
-                } else {
-                    print(error.localizedDescription)
-                }
+                error.printLog()
             }, onCompleted: {
                 print("completed")
             })
@@ -62,11 +58,7 @@ class ObservableViewController: TViewController {
         getRepo("ReactiveX/RxSwift")
             .subscribe(onSuccess: { (dict) in
                 print(dict)
-            }, onError: { (error) in
-                guard let err = error as? TError else {
-                    print(error.localizedDescription)
-                    return
-                }
+            }, onError: { (err) in
                 err.printLog()
             })
             .disposed(by: disposeBag)
@@ -92,11 +84,7 @@ class ObservableViewController: TViewController {
                 }
             }, onError: { (error) in
                 // n*onNext + 1*onCompleted || onError
-                if let error = error as? TError {
-                    error.printLog()
-                } else {
-                    print(error.localizedDescription)
-                }
+                error.printLog()
             })
             .disposed(by: disposeBag)
     }
@@ -107,11 +95,7 @@ class ObservableViewController: TViewController {
             .subscribe(onCompleted: {
                 print("Completable onCompleted")
             }, onError: { (error) in
-                if let err = error as? TError {
-                    err.printLog()
-                    return
-                }
-                print(error.localizedDescription)
+                error.printLog()
             })
             .disposed(by: disposeBag)
     }
@@ -122,11 +106,7 @@ class ObservableViewController: TViewController {
             .subscribe(onSuccess: { (data) in
                 print(data.debugDescription)
             }, onError: { (err) in
-                if let err = err as? TError {
-                    err.printLog()
-                    return
-                }
-                print(err.localizedDescription)
+                err.printLog()
             }, onCompleted: {
                 print("Completed With No Data")
             })
@@ -151,11 +131,7 @@ class ObservableViewController: TViewController {
                 }
             }, onError: { (error) in
                 // n*onNext + 1*onCompleted || onError
-                if let error = error as? TError {
-                    error.printLog()
-                } else {
-                    print(error.localizedDescription)
-                }
+                error.printLog()
             }, onCompleted: {
                 // 1*onCompleted
                 print("completed")

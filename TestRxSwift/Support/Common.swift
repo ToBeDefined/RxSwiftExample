@@ -18,13 +18,19 @@ struct TError: Error {
     var errorCode: Int = 0
     var errorString: String = ""
     var errorData: Any?
-    
+}
+
+extension Error {
     func printLog() {
-        print(errorCode)
-        print(errorString)
-        if let data = errorData as? Data {
-            let str = String.init(data: data, encoding: String.Encoding.utf8)
-            print(str ?? "NULL Error Data")
+        if let err = self as? TError {
+            print(err.errorCode)
+            print(err.errorString)
+            if let data = err.errorData as? Data {
+                let str = String.init(data: data, encoding: String.Encoding.utf8)
+                print(str ?? "NULL Error Data")
+            }
+        } else {
+            print(self.localizedDescription)
         }
     }
 }

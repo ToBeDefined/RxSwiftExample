@@ -575,7 +575,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ym5-gh-fG5">
                                 <rect key="frame" x="30" y="330" width="315" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Test Observable asMaybe">
+                                <state key="normal" title="Test In Previous Way">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
@@ -592,25 +592,18 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="df0-K5-d0i">
                                 <rect key="frame" x="30" y="380" width="315" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Test Observable asDriver">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Guu-ff-0Dk">
-                                <rect key="frame" x="30" y="430" width="315" height="30"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Test ControlEvent">
+                                <state key="normal" title="Test ResultModel">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aik-Wn-MTc">
                                 <rect key="frame" x="30" y="230" width="315" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Test catchError">
+                                <state key="normal" title="Test catchErrorJustReturn">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="testCatchError" destination="det-VL-XQw" eventType="touchUpInside" id="9fR-8m-TcQ"/>
+                                    <action selector="testCatchErrorJustReturn" destination="det-VL-XQw" eventType="touchUpInside" id="Kyk-Fy-PQh"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TPP-rN-X1p">
@@ -619,6 +612,9 @@
                                 <state key="normal" title="Test catchError">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="testCatchError" destination="det-VL-XQw" eventType="touchUpInside" id="rrC-Bk-emU"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -629,14 +625,11 @@
                             <constraint firstItem="aik-Wn-MTc" firstAttribute="leading" secondItem="VdK-bP-2Fs" secondAttribute="leading" id="6F8-7q-keI"/>
                             <constraint firstItem="df0-K5-d0i" firstAttribute="height" secondItem="Ym5-gh-fG5" secondAttribute="height" id="9bO-cg-Si3"/>
                             <constraint firstItem="df0-K5-d0i" firstAttribute="leading" secondItem="Ym5-gh-fG5" secondAttribute="leading" id="HDp-vO-un9"/>
-                            <constraint firstItem="Guu-ff-0Dk" firstAttribute="top" secondItem="df0-K5-d0i" secondAttribute="bottom" constant="20" id="HWS-Kh-KHl"/>
                             <constraint firstItem="Zfv-g5-BW4" firstAttribute="top" secondItem="ZMr-l0-D3o" secondAttribute="bottom" constant="20" id="Ibi-rQ-WX6"/>
                             <constraint firstItem="TPP-rN-X1p" firstAttribute="trailing" secondItem="aik-Wn-MTc" secondAttribute="trailing" id="IpO-Xe-nlf"/>
                             <constraint firstItem="TPP-rN-X1p" firstAttribute="height" secondItem="aik-Wn-MTc" secondAttribute="height" id="LcZ-R5-Rv3"/>
                             <constraint firstItem="aik-Wn-MTc" firstAttribute="height" secondItem="VdK-bP-2Fs" secondAttribute="height" id="Pjo-Xs-aN4"/>
                             <constraint firstItem="Ym5-gh-fG5" firstAttribute="top" secondItem="TPP-rN-X1p" secondAttribute="bottom" constant="20" id="UMM-LY-Lxw"/>
-                            <constraint firstItem="Guu-ff-0Dk" firstAttribute="leading" secondItem="df0-K5-d0i" secondAttribute="leading" id="XYK-zz-V4i"/>
-                            <constraint firstItem="Guu-ff-0Dk" firstAttribute="height" secondItem="df0-K5-d0i" secondAttribute="height" id="dtg-AS-3Jf"/>
                             <constraint firstItem="Ym5-gh-fG5" firstAttribute="trailing" secondItem="TPP-rN-X1p" secondAttribute="trailing" id="gX6-Op-R6O"/>
                             <constraint firstItem="ZMr-l0-D3o" firstAttribute="top" secondItem="1kr-HG-E5M" secondAttribute="top" constant="60" id="hf4-Do-s7o"/>
                             <constraint firstItem="VdK-bP-2Fs" firstAttribute="top" secondItem="Zfv-g5-BW4" secondAttribute="bottom" constant="20" id="isQ-SW-NUB"/>
@@ -649,7 +642,6 @@
                             <constraint firstItem="aik-Wn-MTc" firstAttribute="top" secondItem="VdK-bP-2Fs" secondAttribute="bottom" constant="20" id="t09-6q-gYP"/>
                             <constraint firstItem="aik-Wn-MTc" firstAttribute="trailing" secondItem="VdK-bP-2Fs" secondAttribute="trailing" id="tTa-sa-so3"/>
                             <constraint firstItem="1kr-HG-E5M" firstAttribute="trailing" secondItem="ZMr-l0-D3o" secondAttribute="trailing" constant="30" id="tWa-Ov-oah"/>
-                            <constraint firstItem="Guu-ff-0Dk" firstAttribute="trailing" secondItem="df0-K5-d0i" secondAttribute="trailing" id="u4f-XP-Dh3"/>
                             <constraint firstItem="ZMr-l0-D3o" firstAttribute="leading" secondItem="1kr-HG-E5M" secondAttribute="leading" constant="30" id="uru-LL-I0R"/>
                             <constraint firstItem="Ym5-gh-fG5" firstAttribute="height" secondItem="TPP-rN-X1p" secondAttribute="height" id="wTU-Vq-AKq"/>
                             <constraint firstItem="VdK-bP-2Fs" firstAttribute="height" secondItem="Zfv-g5-BW4" secondAttribute="height" id="wkY-Aw-URl"/>
@@ -657,6 +649,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1kr-HG-E5M"/>
                     </view>
+                    <connections>
+                        <outlet property="testInPreviousWayButton" destination="Ym5-gh-fG5" id="l4x-s2-tXo"/>
+                        <outlet property="testResultModelButton" destination="df0-K5-d0i" id="tyS-rK-Yln"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="csO-RM-DZ7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
