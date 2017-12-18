@@ -35,3 +35,9 @@ class TViewController: UIViewController {
     }
 }
 
+class TTableViewController: UITableViewController {
+    deinit {
+        print("Deinit:" + self.debugDescription)
+    }
+}
+

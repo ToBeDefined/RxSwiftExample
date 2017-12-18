@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import SDWebImage
 
-class SchedulersViewController: UIViewController {
+class SchedulersViewController: TViewController {
     private let disposeBag = DisposeBag()
 }
 

@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-class MainTableViewController: UITableViewController {
+class MainTableViewController: TTableViewController {
     private let disposeBag = DisposeBag()
     let data: Variable<[UIViewController.Type]> = Variable([])
     

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ErrorHandlingViewController: UIViewController {
+class ErrorHandlingViewController: TViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
