@@ -13,8 +13,6 @@ import RxCocoa
 import SDWebImage
 
 class ObservableViewController: TViewController {
-    private let disposeBag = DisposeBag()
-    
     let baiduStr = "http://www.baidu.com/"
     let githubStr = "https://api.github.com/"
     
@@ -32,6 +30,197 @@ class ObservableViewController: TViewController {
         self.view.addSubview(btn)
         return btn
     }()
+    
+    // MARK: Observable
+    @IBAction func testObservable() {
+        getObservable(with: githubStr)
+            .subscribe(onNext: { (jsonObj) in
+                print("Get JSON success")
+                if jsonObj is Int {
+                    print(jsonObj)
+                    return
+                }
+                guard JSONSerialization.isValidJSONObject(jsonObj) else { return }
+                if let jsonData = try? JSONSerialization.data(withJSONObject: jsonObj, options: .prettyPrinted) {
+                    let jsonStr = String.init(data: jsonData, encoding: String.Encoding.utf8)
+                    print(jsonStr ?? "")
+                }
+            }, onError: { (error) in
+                if let error = error as? TError {
+                    error.printLog()
+                } else {
+                    print(error.localizedDescription)
+                }
+            }, onCompleted: {
+                print("completed")
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    // MARK: Single
+    @IBAction func testSingle() {
+        getRepo("ReactiveX/RxSwift")
+            .subscribe(onSuccess: { (dict) in
+                print(dict)
+            }, onError: { (error) in
+                guard let err = error as? TError else {
+                    print(error.localizedDescription)
+                    return
+                }
+                err.printLog()
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    // MARK: asSingle
+    @IBAction func testObservableAsSingle() {
+        getObservable(with: githubStr)
+            .asSingle()
+            .subscribe(onSuccess: { (jsonObj) in
+                // 1*onNext + 1*onCompleted
+                print("Get JSON success")
+                if jsonObj is Int {
+                    print(jsonObj)
+                    return
+                }
+                guard JSONSerialization.isValidJSONObject(jsonObj) else {
+                    return
+                }
+                if let jsonData = try? JSONSerialization.data(withJSONObject: jsonObj, options: .prettyPrinted) {
+                    let jsonStr = String.init(data: jsonData, encoding: String.Encoding.utf8)
+                    print(jsonStr ?? "")
+                }
+            }, onError: { (error) in
+                // n*onNext + 1*onCompleted || onError
+                if let error = error as? TError {
+                    error.printLog()
+                } else {
+                    print(error.localizedDescription)
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    // MARK: Completable
+    @IBAction func testCompletable() {
+        getCompletable()
+            .subscribe(onCompleted: {
+                print("Completable onCompleted")
+            }, onError: { (error) in
+                if let err = error as? TError {
+                    err.printLog()
+                    return
+                }
+                print(error.localizedDescription)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    // MARK: Maybe
+    @IBAction func testMaybe() {
+        getMaybe()
+            .subscribe(onSuccess: { (data) in
+                print(data.debugDescription)
+            }, onError: { (err) in
+                if let err = err as? TError {
+                    err.printLog()
+                    return
+                }
+                print(err.localizedDescription)
+            }, onCompleted: {
+                print("Completed With No Data")
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    // MARK: asMaybe
+    @IBAction func testObservableAsMaybe() {
+        getObservable(with: githubStr)
+            .asMaybe()
+            .subscribe(onSuccess: { (jsonObj) in
+                // 1*onNext + 1*onCompleted
+                print("Get JSON success")
+                if jsonObj is Int {
+                    print(jsonObj)
+                    return
+                }
+                guard JSONSerialization.isValidJSONObject(jsonObj) else { return }
+                if let jsonData = try? JSONSerialization.data(withJSONObject: jsonObj, options: .prettyPrinted) {
+                    let jsonStr = String.init(data: jsonData, encoding: String.Encoding.utf8)
+                    print(jsonStr ?? "")
+                }
+            }, onError: { (error) in
+                // n*onNext + 1*onCompleted || onError
+                if let error = error as? TError {
+                    error.printLog()
+                } else {
+                    print(error.localizedDescription)
+                }
+            }, onCompleted: {
+                // 1*onCompleted
+                print("completed")
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    // MARK: Driver
+    @IBAction func testObservableAsDriver() {
+        func getImage() -> Observable<UIImage> {
+            return Observable<UIImage>.create { (observer) -> Disposable in
+                let downloadToken = SDWebImageDownloader.shared().downloadImage(
+                    with: URL.init(string: "https://avatars1.githubusercontent.com/u/11990850"),
+                    options: SDWebImageDownloaderOptions.highPriority,
+                    progress: nil,
+                    completed: { (image, data, error, finished) in
+                        if let img = image {
+                            observer.onNext(img)
+                            observer.onCompleted()
+                            return
+                        }
+                        if let err = error {
+                            observer.onError(err)
+                            return
+                        }
+                        observer.onError(TError.init(errorCode: 10, errorString: "UNKNOW ERROR", errorData: data))
+                }
+                )
+                return Disposables.create {
+                    SDWebImageDownloader.shared().cancel(downloadToken)
+                }
+            }
+        }
+        
+        getImage()
+            .asDriver(onErrorJustReturn: #imageLiteral(resourceName: "placeholderImg"))
+            .drive(self.imageView.rx.image)
+            .disposed(by: disposeBag)
+    }
+    
+    // MARK: ControlEvent
+    @IBAction func testControlEvent() {
+        // extension Reactive where Base: UIButton {
+        //
+        //     /// Reactive wrapper for `TouchUpInside` control event.
+        //     public var tap: ControlEvent<Void> {
+        //         return controlEvent(.touchUpInside)
+        //     }
+        // }
+        self.btn.rx.tap
+            .subscribe(onNext: { [weak self] in
+                let ac = UIAlertController.init(title: "TEST TAP(touchUpInside)", message: "testControlEvent", preferredStyle: UIAlertControllerStyle.alert)
+                ac.addAction(UIAlertAction.init(title: "确定", style: UIAlertActionStyle.cancel, handler: nil))
+                self?.present(ac, animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
+        
+        self.btn.rx.controlEvent(UIControlEvents.touchDragExit)
+            .subscribe(onNext: { [weak self] in
+                let ac = UIAlertController.init(title: "TEST touchDragExit", message: "testControlEvent", preferredStyle: UIAlertControllerStyle.alert)
+                ac.addAction(UIAlertAction.init(title: "确定", style: UIAlertActionStyle.cancel, handler: nil))
+                self?.present(ac, animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
+    }
 }
 
 extension ObservableViewController {
@@ -146,200 +335,6 @@ extension ObservableViewController {
                 task.cancel()
             }
         }
-    }
-}
-
-// MARK: Test
-extension ObservableViewController {
-    // MARK: Observable
-    @IBAction func testObservable() {
-        getObservable(with: githubStr)
-            .subscribe(onNext: { (jsonObj) in
-                print("Get JSON success")
-                if jsonObj is Int {
-                    print(jsonObj)
-                    return
-                }
-                guard JSONSerialization.isValidJSONObject(jsonObj) else { return }
-                if let jsonData = try? JSONSerialization.data(withJSONObject: jsonObj, options: .prettyPrinted) {
-                    let jsonStr = String.init(data: jsonData, encoding: String.Encoding.utf8)
-                    print(jsonStr ?? "")
-                }
-            }, onError: { (error) in
-                if let error = error as? TError {
-                    error.printLog()
-                } else {
-                    print(error.localizedDescription)
-                }
-            }, onCompleted: {
-                print("completed")
-            })
-            .disposed(by: disposeBag)
-    }
-    
-    // MARK: Single
-    @IBAction func testSingle() {
-        getRepo("ReactiveX/RxSwift")
-            .subscribe(onSuccess: { (dict) in
-                print(dict)
-            }, onError: { (error) in
-                guard let err = error as? TError else {
-                    print(error.localizedDescription)
-                    return
-                }
-                err.printLog()
-            })
-            .disposed(by: disposeBag)
-    }
-        
-    // MARK: asSingle
-    @IBAction func testObservableAsSingle() {
-        getObservable(with: githubStr)
-            .asSingle()
-            .subscribe(onSuccess: { (jsonObj) in
-                // 1*onNext + 1*onCompleted
-                print("Get JSON success")
-                if jsonObj is Int {
-                    print(jsonObj)
-                    return
-                }
-                guard JSONSerialization.isValidJSONObject(jsonObj) else {
-                    return
-                }
-                if let jsonData = try? JSONSerialization.data(withJSONObject: jsonObj, options: .prettyPrinted) {
-                    let jsonStr = String.init(data: jsonData, encoding: String.Encoding.utf8)
-                    print(jsonStr ?? "")
-                }
-            }, onError: { (error) in
-                // n*onNext + 1*onCompleted || onError
-                if let error = error as? TError {
-                    error.printLog()
-                } else {
-                    print(error.localizedDescription)
-                }
-            })
-            .disposed(by: disposeBag)
-    }
-    
-    // MARK: Completable
-    @IBAction func testCompletable() {
-        getCompletable()
-            .subscribe(onCompleted: {
-                print("Completable onCompleted")
-            }, onError: { (error) in
-                if let err = error as? TError {
-                    err.printLog()
-                    return
-                }
-                print(error.localizedDescription)
-            })
-            .disposed(by: disposeBag)
-    }
-    
-    // MARK: Maybe
-    @IBAction func testMaybe() {
-        getMaybe()
-            .subscribe(onSuccess: { (data) in
-                print(data.debugDescription)
-            }, onError: { (err) in
-                if let err = err as? TError {
-                    err.printLog()
-                    return
-                }
-                print(err.localizedDescription)
-            }, onCompleted: {
-                print("Completed With No Data")
-            })
-            .disposed(by: disposeBag)
-    }
-    
-    // MARK: asMaybe
-    @IBAction func testObservableAsMaybe() {
-        getObservable(with: githubStr)
-            .asMaybe()
-            .subscribe(onSuccess: { (jsonObj) in
-                // 1*onNext + 1*onCompleted
-                print("Get JSON success")
-                if jsonObj is Int {
-                    print(jsonObj)
-                    return
-                }
-                guard JSONSerialization.isValidJSONObject(jsonObj) else { return }
-                if let jsonData = try? JSONSerialization.data(withJSONObject: jsonObj, options: .prettyPrinted) {
-                    let jsonStr = String.init(data: jsonData, encoding: String.Encoding.utf8)
-                    print(jsonStr ?? "")
-                }
-            }, onError: { (error) in
-                // n*onNext + 1*onCompleted || onError
-                if let error = error as? TError {
-                    error.printLog()
-                } else {
-                    print(error.localizedDescription)
-                }
-            }, onCompleted: {
-                // 1*onCompleted
-                print("completed")
-            })
-            .disposed(by: disposeBag)
-    }
-    
-    // MARK: Driver
-    @IBAction func testObservableAsDriver() {
-        func getImage() -> Observable<UIImage> {
-            return Observable<UIImage>.create { (observer) -> Disposable in
-                let downloadToken = SDWebImageDownloader.shared().downloadImage(
-                    with: URL.init(string: "https://avatars1.githubusercontent.com/u/11990850"),
-                    options: SDWebImageDownloaderOptions.highPriority,
-                    progress: nil,
-                    completed: { (image, data, error, finished) in
-                        if let img = image {
-                            observer.onNext(img)
-                            observer.onCompleted()
-                            return
-                        }
-                        if let err = error {
-                            observer.onError(err)
-                            return
-                        }
-                        observer.onError(TError.init(errorCode: 10, errorString: "UNKNOW ERROR", errorData: data))
-                    }
-                )
-                return Disposables.create {
-                    SDWebImageDownloader.shared().cancel(downloadToken)
-                }
-            }
-        }
-        
-        getImage()
-            .asDriver(onErrorJustReturn: #imageLiteral(resourceName: "placeholderImg"))
-            .drive(self.imageView.rx.image)
-            .disposed(by: disposeBag)
-    }
-    
-    // MARK: ControlEvent
-    @IBAction func testControlEvent() {
-        // extension Reactive where Base: UIButton {
-        //
-        //     /// Reactive wrapper for `TouchUpInside` control event.
-        //     public var tap: ControlEvent<Void> {
-        //         return controlEvent(.touchUpInside)
-        //     }
-        // }
-        self.btn.rx.tap
-            .subscribe(onNext: { [weak self] in
-                let ac = UIAlertController.init(title: "TEST TAP(touchUpInside)", message: "testControlEvent", preferredStyle: UIAlertControllerStyle.alert)
-                ac.addAction(UIAlertAction.init(title: "确定", style: UIAlertActionStyle.cancel, handler: nil))
-                self?.present(ac, animated: true, completion: nil)
-            })
-            .disposed(by: disposeBag)
-        
-        self.btn.rx.controlEvent(UIControlEvents.touchDragExit)
-            .subscribe(onNext: { [weak self] in
-                let ac = UIAlertController.init(title: "TEST touchDragExit", message: "testControlEvent", preferredStyle: UIAlertControllerStyle.alert)
-                ac.addAction(UIAlertAction.init(title: "确定", style: UIAlertActionStyle.cancel, handler: nil))
-                self?.present(ac, animated: true, completion: nil)
-            })
-            .disposed(by: disposeBag)
     }
 }
 

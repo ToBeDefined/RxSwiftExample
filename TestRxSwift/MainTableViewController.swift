@@ -12,7 +12,6 @@ import RxCocoa
 import RxDataSources
 
 class MainTableViewController: TTableViewController {
-    private let disposeBag = DisposeBag()
     let data: Variable<[UIViewController.Type]> = Variable([])
     
     override func viewDidLoad() {

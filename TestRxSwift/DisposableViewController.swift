@@ -11,43 +11,6 @@ import RxSwift
 import RxCocoa
 
 class DisposableViewController: TViewController {
-    private let disposeBag = DisposeBag()
-}
-
-extension DisposableViewController {
-    // MARK: getObservable(with:) -> Observable<JSON>
-    func getObservable() -> Observable<JSON> {
-        return Observable<JSON>.create { (observer) -> Disposable in
-            guard let url = URL.init(string: "https://api.github.com/") else {
-                let err = TError.init(errorCode: 10, errorString: "url error", errorData: nil)
-                observer.onError(err)
-                return Disposables.create()
-            }
-            let request = URLRequest.init(url: url)
-            let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
-                if let err = error {
-                    observer.onError(err)
-                    return
-                }
-                
-                guard let jsonData = data, let jsonObj = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableLeaves) else {
-                    let err = TError.init(errorCode: 11, errorString: "json error", errorData: data)
-                    observer.onError(err)
-                    return
-                }
-                observer.onNext(jsonObj)
-                observer.onCompleted()
-            })
-            task.resume()
-            return Disposables.create {
-                task.cancel()
-            }
-        }
-    }
-}
-
-// MARK: Test
-extension DisposableViewController {
     
     // MARK: DisposeTime
     @IBAction func testDisposeTime() {
@@ -181,6 +144,38 @@ extension DisposableViewController {
                 .subscribe({ (e) in
                     print("Observable \(i): " + e.debugDescription)
                 })
+        }
+    }
+}
+
+extension DisposableViewController {
+    // MARK: getObservable(with:) -> Observable<JSON>
+    func getObservable() -> Observable<JSON> {
+        return Observable<JSON>.create { (observer) -> Disposable in
+            guard let url = URL.init(string: "https://api.github.com/") else {
+                let err = TError.init(errorCode: 10, errorString: "url error", errorData: nil)
+                observer.onError(err)
+                return Disposables.create()
+            }
+            let request = URLRequest.init(url: url)
+            let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
+                if let err = error {
+                    observer.onError(err)
+                    return
+                }
+                
+                guard let jsonData = data, let jsonObj = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableLeaves) else {
+                    let err = TError.init(errorCode: 11, errorString: "json error", errorData: data)
+                    observer.onError(err)
+                    return
+                }
+                observer.onNext(jsonObj)
+                observer.onCompleted()
+            })
+            task.resume()
+            return Disposables.create {
+                task.cancel()
+            }
         }
     }
 }

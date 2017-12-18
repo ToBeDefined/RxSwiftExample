@@ -555,21 +555,21 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Atw-AA-to0"/>
                                 </constraints>
-                                <state key="normal" title="Test Observable">
+                                <state key="normal" title="Test retry">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="testObservable" destination="BYZ-38-t0r" eventType="touchUpInside" id="Fov-ve-faS"/>
+                                    <action selector="testRetry" destination="det-VL-XQw" eventType="touchUpInside" id="a9r-Ht-9Sg"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VdK-bP-2Fs">
                                 <rect key="frame" x="30" y="180" width="315" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Test Observable asSingle">
+                                <state key="normal" title="Test retryWhen And MaxRetry">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="testObservableAsSingle" destination="BYZ-38-t0r" eventType="touchUpInside" id="d93-qB-N7s"/>
+                                    <action selector="testRetryWhenAndMaxRetry" destination="det-VL-XQw" eventType="touchUpInside" id="3jj-UM-XFG"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ym5-gh-fG5">
@@ -578,18 +578,15 @@
                                 <state key="normal" title="Test Observable asMaybe">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <connections>
-                                    <action selector="testObservableAsMaybe" destination="BYZ-38-t0r" eventType="touchUpInside" id="Vrt-3N-AxC"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zfv-g5-BW4">
                                 <rect key="frame" x="30" y="130" width="315" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Test Single">
+                                <state key="normal" title="Test retryWhen">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="testSingle" destination="BYZ-38-t0r" eventType="touchUpInside" id="QAv-Xe-dt8"/>
+                                    <action selector="testRetryWhen" destination="det-VL-XQw" eventType="touchUpInside" id="uYl-6F-cxE"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="df0-K5-d0i">
@@ -598,9 +595,6 @@
                                 <state key="normal" title="Test Observable asDriver">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <connections>
-                                    <action selector="testObservableAsDriver" destination="BYZ-38-t0r" eventType="touchUpInside" id="CyJ-qV-mSr"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Guu-ff-0Dk">
                                 <rect key="frame" x="30" y="430" width="315" height="30"/>
@@ -608,29 +602,23 @@
                                 <state key="normal" title="Test ControlEvent">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <connections>
-                                    <action selector="testControlEvent" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZO8-6n-Ilj"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aik-Wn-MTc">
                                 <rect key="frame" x="30" y="230" width="315" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Test Completable">
+                                <state key="normal" title="Test catchError">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="testCompletable" destination="BYZ-38-t0r" eventType="touchUpInside" id="VRv-h9-SiM"/>
+                                    <action selector="testCatchError" destination="det-VL-XQw" eventType="touchUpInside" id="9fR-8m-TcQ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TPP-rN-X1p">
                                 <rect key="frame" x="30" y="280" width="315" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Test Maybe">
+                                <state key="normal" title="Test catchError">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <connections>
-                                    <action selector="testMaybe" destination="BYZ-38-t0r" eventType="touchUpInside" id="wn3-b3-ER3"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

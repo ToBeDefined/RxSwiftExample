@@ -13,46 +13,13 @@ import RxCocoa
 import SDWebImage
 
 class Observer_ObservableViewController: TViewController {
-    private let disposeBag = DisposeBag()
-    
     lazy var imageView: UIImageView = {
         let imgView = UIImageView()
         imgView.frame = CGRect.init(x: 100, y: 250, width: 100, height: 100)
         self.view.addSubview(imgView)
         return imgView
     }()
-}
-
-extension Observer_ObservableViewController {
-    // MARK: getImage() -> Observable<UIImage>
-    func getImage() -> Observable<UIImage> {
-        return Observable<UIImage>.create { (observer) -> Disposable in
-            let downloadToken = SDWebImageDownloader.shared().downloadImage(
-                with: URL.init(string: "https://avatars1.githubusercontent.com/u/11990850"),
-                options: SDWebImageDownloaderOptions.highPriority,
-                progress: nil,
-                completed: { (image, data, error, finished) in
-                    if let img = image {
-                        observer.onNext(img)
-                        observer.onCompleted()
-                        return
-                    }
-                    if let err = error {
-                        observer.onError(err)
-                        return
-                    }
-                    observer.onError(TError.init(errorCode: 10, errorString: "UNKNOW ERROR", errorData: data))
-                }
-            )
-            return Disposables.create {
-                SDWebImageDownloader.shared().cancel(downloadToken)
-            }
-        }
-    }
-}
-
-// MARK: Test
-extension Observer_ObservableViewController {
+    
     // MARK: AsyncSubject
     @IBAction func testAsyncSubject() {
         let subject = AsyncSubject<String>()
@@ -221,6 +188,34 @@ extension Observer_ObservableViewController {
         controlProperty
             .bind(to: observer)
             .disposed(by: disposeBag)
+    }
+}
+
+extension Observer_ObservableViewController {
+    // MARK: getImage() -> Observable<UIImage>
+    func getImage() -> Observable<UIImage> {
+        return Observable<UIImage>.create { (observer) -> Disposable in
+            let downloadToken = SDWebImageDownloader.shared().downloadImage(
+                with: URL.init(string: "https://avatars1.githubusercontent.com/u/11990850"),
+                options: SDWebImageDownloaderOptions.highPriority,
+                progress: nil,
+                completed: { (image, data, error, finished) in
+                    if let img = image {
+                        observer.onNext(img)
+                        observer.onCompleted()
+                        return
+                    }
+                    if let err = error {
+                        observer.onError(err)
+                        return
+                    }
+                    observer.onError(TError.init(errorCode: 10, errorString: "UNKNOW ERROR", errorData: data))
+                }
+            )
+            return Disposables.create {
+                SDWebImageDownloader.shared().cancel(downloadToken)
+            }
+        }
     }
 }
 

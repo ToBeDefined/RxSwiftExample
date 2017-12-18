@@ -12,7 +12,25 @@ import RxCocoa
 import SDWebImage
 
 class SchedulersViewController: TViewController {
-    private let disposeBag = DisposeBag()
+    // MARK: subscribeOn
+    @IBAction func testSubscribeOn() {
+        let subscribeQueue = DispatchQueue.init(label: "ink.tbd.test.subscribeQueue")
+        getObservable()
+            // 数据序列的构建函数在哪个Scheduler上运行
+            .subscribeOn(ConcurrentDispatchQueueScheduler.init(queue: subscribeQueue))
+            .subscribe(getObserver())
+            .disposed(by: disposeBag)
+    }
+    
+    // MARK: observeOn
+    @IBAction func testObserveOn() {
+        let observeQueue = DispatchQueue.init(label: "ink.tbd.test.observeQueue")
+        getObservable()
+            // 在哪个Scheduler监听这个数据序列
+            .observeOn(ConcurrentDispatchQueueScheduler.init(queue: observeQueue))
+            .subscribe(getObserver())
+            .disposed(by: disposeBag)
+    }
 }
 
 extension SchedulersViewController {
@@ -47,30 +65,6 @@ extension SchedulersViewController {
         })
     }
 }
-
-// MARK: Test
-extension SchedulersViewController {
-    // MARK: subscribeOn
-    @IBAction func testSubscribeOn() {
-        let subscribeQueue = DispatchQueue.init(label: "ink.tbd.test.subscribeQueue")
-        getObservable()
-            // 数据序列的构建函数在哪个Scheduler上运行
-            .subscribeOn(ConcurrentDispatchQueueScheduler.init(queue: subscribeQueue))
-            .subscribe(getObserver())
-            .disposed(by: disposeBag)
-    }
-    
-    // MARK: observeOn
-    @IBAction func testObserveOn() {
-        let observeQueue = DispatchQueue.init(label: "ink.tbd.test.observeQueue")
-        getObservable()
-            // 在哪个Scheduler监听这个数据序列
-            .observeOn(ConcurrentDispatchQueueScheduler.init(queue: observeQueue))
-            .subscribe(getObserver())
-            .disposed(by: disposeBag)
-    }
-}
-
 
 
 

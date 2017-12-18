@@ -13,76 +13,12 @@ import RxCocoa
 import SDWebImage
 
 class ObserverViewController: TViewController {
-    private let disposeBag = DisposeBag()
-    
     lazy var imageView: UIImageView = {
         let imgView = UIImageView()
         imgView.frame = CGRect.init(x: 100, y: 250, width: 100, height: 100)
         self.view.addSubview(imgView)
         return imgView
     }()
-}
-
-extension ObserverViewController {
-    // MARK: getObservable(with:) -> Observable<JSON>
-    func getObservable(with url: String) -> Observable<JSON> {
-        return Observable<JSON>.create { (observer) -> Disposable in
-            guard let url = URL.init(string: url) else {
-                let err = TError.init(errorCode: 10, errorString: "url error", errorData: nil)
-                observer.onError(err)
-                return Disposables.create()
-            }
-            let request = URLRequest.init(url: url)
-            let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
-                if let err = error {
-                    observer.onError(err)
-                    return
-                }
-                
-                guard let jsonData = data, let jsonObj = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableLeaves) else {
-                    let err = TError.init(errorCode: 11, errorString: "json error", errorData: data)
-                    observer.onError(err)
-                    return
-                }
-                observer.onNext(jsonObj)
-                observer.onCompleted()
-            })
-            task.resume()
-            return Disposables.create {
-                task.cancel()
-            }
-        }
-    }
-    
-    // MARK: getImage() -> Observable<UIImage>
-    func getImage() -> Observable<UIImage> {
-        return Observable<UIImage>.create { (observer) -> Disposable in
-            let downloadToken = SDWebImageDownloader.shared().downloadImage(
-                with: URL.init(string: "https://avatars1.githubusercontent.com/u/11990850"),
-                options: SDWebImageDownloaderOptions.highPriority,
-                progress: nil,
-                completed: { (image, data, error, finished) in
-                    if let img = image {
-                        observer.onNext(img)
-                        observer.onCompleted()
-                        return
-                    }
-                    if let err = error {
-                        observer.onError(err)
-                        return
-                    }
-                    observer.onError(TError.init(errorCode: 10, errorString: "UNKNOW ERROR", errorData: data))
-                }
-            )
-            return Disposables.create {
-                SDWebImageDownloader.shared().cancel(downloadToken)
-            }
-        }
-    }
-}
-
-// MARK: Test
-extension ObserverViewController {
     
     // MARK: theGeneralPractice
     @IBAction func theGeneralPractice() {
@@ -146,6 +82,64 @@ extension ObserverViewController {
         //     .observeOn(MainScheduler.instance)
         //     .bind(to: observer)
         //     .disposed(by: disposeBag)
+    }
+}
+
+extension ObserverViewController {
+    // MARK: getObservable(with:) -> Observable<JSON>
+    func getObservable(with url: String) -> Observable<JSON> {
+        return Observable<JSON>.create { (observer) -> Disposable in
+            guard let url = URL.init(string: url) else {
+                let err = TError.init(errorCode: 10, errorString: "url error", errorData: nil)
+                observer.onError(err)
+                return Disposables.create()
+            }
+            let request = URLRequest.init(url: url)
+            let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
+                if let err = error {
+                    observer.onError(err)
+                    return
+                }
+                
+                guard let jsonData = data, let jsonObj = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableLeaves) else {
+                    let err = TError.init(errorCode: 11, errorString: "json error", errorData: data)
+                    observer.onError(err)
+                    return
+                }
+                observer.onNext(jsonObj)
+                observer.onCompleted()
+            })
+            task.resume()
+            return Disposables.create {
+                task.cancel()
+            }
+        }
+    }
+    
+    // MARK: getImage() -> Observable<UIImage>
+    func getImage() -> Observable<UIImage> {
+        return Observable<UIImage>.create { (observer) -> Disposable in
+            let downloadToken = SDWebImageDownloader.shared().downloadImage(
+                with: URL.init(string: "https://avatars1.githubusercontent.com/u/11990850"),
+                options: SDWebImageDownloaderOptions.highPriority,
+                progress: nil,
+                completed: { (image, data, error, finished) in
+                    if let img = image {
+                        observer.onNext(img)
+                        observer.onCompleted()
+                        return
+                    }
+                    if let err = error {
+                        observer.onError(err)
+                        return
+                    }
+                    observer.onError(TError.init(errorCode: 10, errorString: "UNKNOW ERROR", errorData: data))
+                }
+            )
+            return Disposables.create {
+                SDWebImageDownloader.shared().cancel(downloadToken)
+            }
+        }
     }
 }
 

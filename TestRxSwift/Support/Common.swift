@@ -30,12 +30,14 @@ struct TError: Error {
 }
 
 class TViewController: UIViewController {
+    let disposeBag = DisposeBag()
     deinit {
         print("Deinit:" + self.debugDescription)
     }
 }
 
 class TTableViewController: UITableViewController {
+    let disposeBag = DisposeBag()
     deinit {
         print("Deinit:" + self.debugDescription)
     }
