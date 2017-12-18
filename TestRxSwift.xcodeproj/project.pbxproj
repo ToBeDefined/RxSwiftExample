@@ -19,8 +19,8 @@
 		3F9A2E991FE24A1D00086EFA /* ObserverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9A2E981FE24A1D00086EFA /* ObserverViewController.swift */; };
 		3F9A2E9B1FE24E0100086EFA /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9A2E9A1FE24E0100086EFA /* Common.swift */; };
 		3FA6F70C1FE018A4000FA4CA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA6F70B1FE018A4000FA4CA /* LoginViewController.swift */; };
-		3FA84D111FE37C9A00F2CE74 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA84D101FE37C9A00F2CE74 /* MainTableViewController.swift */; };
 		3FDA1F811FE3BF1900451C48 /* ErrorHandlingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDA1F801FE3BF1900451C48 /* ErrorHandlingViewController.swift */; };
+		3FE504D91FE76B7D001B9F2C /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE504D81FE76B7D001B9F2C /* MainTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,8 +38,8 @@
 		3F9A2E981FE24A1D00086EFA /* ObserverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserverViewController.swift; sourceTree = "<group>"; };
 		3F9A2E9A1FE24E0100086EFA /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		3FA6F70B1FE018A4000FA4CA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		3FA84D101FE37C9A00F2CE74 /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		3FDA1F801FE3BF1900451C48 /* ErrorHandlingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandlingViewController.swift; sourceTree = "<group>"; };
+		3FE504D81FE76B7D001B9F2C /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		6DFD5D414A68184D9001B405 /* Pods-TestRxSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestRxSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestRxSwift/Pods-TestRxSwift.release.xcconfig"; sourceTree = "<group>"; };
 		9F80CCECDF2ED3F1C139A9FD /* Pods_TestRxSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestRxSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2A0A2921E2490AD1B83F36E /* Pods-TestRxSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestRxSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestRxSwift/Pods-TestRxSwift.debug.xcconfig"; sourceTree = "<group>"; };
@@ -82,7 +82,7 @@
 				3FA9A1471FE2B0CD0009B80B /* Other */,
 				3F9A2E9C1FE24E2100086EFA /* Support */,
 				3F1D652C1FDFDBA800495602 /* Main.storyboard */,
-				3FA84D101FE37C9A00F2CE74 /* MainTableViewController.swift */,
+				3FE504D81FE76B7D001B9F2C /* MainTableViewController.swift */,
 				3F1D652A1FDFDBA800495602 /* ObservableViewController.swift */,
 				3F9A2E981FE24A1D00086EFA /* ObserverViewController.swift */,
 				3F07B3941FE279A4001F4E7F /* Observer&ObservableViewController.swift */,
@@ -226,13 +226,17 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-TestRxSwift/Pods-TestRxSwift-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 			);
@@ -263,13 +267,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FE504D91FE76B7D001B9F2C /* MainTableViewController.swift in Sources */,
 				3F07B3951FE279A4001F4E7F /* Observer&ObservableViewController.swift in Sources */,
 				3F9A2E9B1FE24E0100086EFA /* Common.swift in Sources */,
 				3F1D65291FDFDBA800495602 /* AppDelegate.swift in Sources */,
 				3FA6F70C1FE018A4000FA4CA /* LoginViewController.swift in Sources */,
 				3FDA1F811FE3BF1900451C48 /* ErrorHandlingViewController.swift in Sources */,
 				3F0B8D5F1FE39A6E00A2CBD6 /* SchedulersViewController.swift in Sources */,
-				3FA84D111FE37C9A00F2CE74 /* MainTableViewController.swift in Sources */,
 				3F1D652B1FDFDBA800495602 /* ObservableViewController.swift in Sources */,
 				3F9A2E991FE24A1D00086EFA /* ObserverViewController.swift in Sources */,
 				3F07B3981FE364A0001F4E7F /* DisposableViewController.swift in Sources */,
