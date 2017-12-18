@@ -16,9 +16,9 @@
 		3F1D652E1FDFDBA800495602 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F1D652C1FDFDBA800495602 /* Main.storyboard */; };
 		3F1D65301FDFDBA800495602 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F1D652F1FDFDBA800495602 /* Assets.xcassets */; };
 		3F1D65331FDFDBA800495602 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F1D65311FDFDBA800495602 /* LaunchScreen.storyboard */; };
+		3F44B3581FE823330078C163 /* OperatorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F44B3571FE823330078C163 /* OperatorTableViewController.swift */; };
 		3F9A2E991FE24A1D00086EFA /* ObserverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9A2E981FE24A1D00086EFA /* ObserverViewController.swift */; };
 		3F9A2E9B1FE24E0100086EFA /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9A2E9A1FE24E0100086EFA /* Common.swift */; };
-		3FA6F70C1FE018A4000FA4CA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA6F70B1FE018A4000FA4CA /* LoginViewController.swift */; };
 		3FDA1F811FE3BF1900451C48 /* ErrorHandlingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDA1F801FE3BF1900451C48 /* ErrorHandlingViewController.swift */; };
 		3FE504D91FE76B7D001B9F2C /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE504D81FE76B7D001B9F2C /* MainTableViewController.swift */; };
 /* End PBXBuildFile section */
@@ -35,9 +35,9 @@
 		3F1D65321FDFDBA800495602 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3F1D65341FDFDBA800495602 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F337CBF1FE1023C00BD3133 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		3F44B3571FE823330078C163 /* OperatorTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperatorTableViewController.swift; sourceTree = "<group>"; };
 		3F9A2E981FE24A1D00086EFA /* ObserverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserverViewController.swift; sourceTree = "<group>"; };
 		3F9A2E9A1FE24E0100086EFA /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
-		3FA6F70B1FE018A4000FA4CA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3FDA1F801FE3BF1900451C48 /* ErrorHandlingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandlingViewController.swift; sourceTree = "<group>"; };
 		3FE504D81FE76B7D001B9F2C /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		6DFD5D414A68184D9001B405 /* Pods-TestRxSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestRxSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestRxSwift/Pods-TestRxSwift.release.xcconfig"; sourceTree = "<group>"; };
@@ -89,6 +89,7 @@
 				3F07B3971FE364A0001F4E7F /* DisposableViewController.swift */,
 				3F0B8D5E1FE39A6E00A2CBD6 /* SchedulersViewController.swift */,
 				3FDA1F801FE3BF1900451C48 /* ErrorHandlingViewController.swift */,
+				3F44B3571FE823330078C163 /* OperatorTableViewController.swift */,
 			);
 			path = TestRxSwift;
 			sourceTree = "<group>";
@@ -96,7 +97,6 @@
 		3F9A2E9C1FE24E2100086EFA /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				3FA6F70B1FE018A4000FA4CA /* LoginViewController.swift */,
 				3F1D65281FDFDBA800495602 /* AppDelegate.swift */,
 				3F9A2E9A1FE24E0100086EFA /* Common.swift */,
 			);
@@ -271,11 +271,11 @@
 				3F07B3951FE279A4001F4E7F /* Observer&ObservableViewController.swift in Sources */,
 				3F9A2E9B1FE24E0100086EFA /* Common.swift in Sources */,
 				3F1D65291FDFDBA800495602 /* AppDelegate.swift in Sources */,
-				3FA6F70C1FE018A4000FA4CA /* LoginViewController.swift in Sources */,
 				3FDA1F811FE3BF1900451C48 /* ErrorHandlingViewController.swift in Sources */,
 				3F0B8D5F1FE39A6E00A2CBD6 /* SchedulersViewController.swift in Sources */,
 				3F1D652B1FDFDBA800495602 /* ObservableViewController.swift in Sources */,
 				3F9A2E991FE24A1D00086EFA /* ObserverViewController.swift in Sources */,
+				3F44B3581FE823330078C163 /* OperatorTableViewController.swift in Sources */,
 				3F07B3981FE364A0001F4E7F /* DisposableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

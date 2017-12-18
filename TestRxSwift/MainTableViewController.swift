@@ -48,7 +48,8 @@ class MainTableViewController: TTableViewController {
                       Observer_ObservableViewController.self,
                       DisposableViewController.self,
                       SchedulersViewController.self,
-                      ErrorHandlingViewController.self]
+                      ErrorHandlingViewController.self,
+                      OperatorTableViewController.self]
         data
             .asDriver()
             .drive(tableView.rx.items(cellIdentifier: "cell", cellType: UITableViewCell.self)) {

@@ -10,76 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Login View Controller-->
-        <scene sceneID="qrs-pt-wPC">
-            <objects>
-                <viewController id="dPT-6S-OFE" customClass="LoginViewController" customModule="TestRxSwift" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="1UF-Sm-9ke">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1hT-hy-yDy">
-                                <rect key="frame" x="16" y="78" width="343" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="djg-KI-jSk">
-                                <rect key="frame" x="16" y="132" width="343" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="输入&gt;5位用户名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9jw-rE-TM4">
-                                <rect key="frame" x="16" y="107" width="343" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="输入&gt;5位密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b0C-f4-GdB">
-                                <rect key="frame" x="16" y="163" width="343" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tuL-SV-fgp">
-                                <rect key="frame" x="16" y="232" width="343" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.58476730229999996" green="1" blue="0.63443915289999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal" title="Login"/>
-                                <state key="disabled">
-                                    <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                </state>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DN4-6r-NEE">
-                                <rect key="frame" x="150" y="347" width="75" height="57"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="6dM-8t-5y7"/>
-                    </view>
-                    <connections>
-                        <outlet property="imageV" destination="DN4-6r-NEE" id="pCL-Dg-mda"/>
-                        <outlet property="loginBtn" destination="tuL-SV-fgp" id="Bik-eg-Ozh"/>
-                        <outlet property="nameF" destination="1hT-hy-yDy" id="gCJ-PC-vBc"/>
-                        <outlet property="nameT" destination="9jw-rE-TM4" id="2T8-If-J5T"/>
-                        <outlet property="pwdF" destination="djg-KI-jSk" id="kyM-W8-Xav"/>
-                        <outlet property="pwdT" destination="b0C-f4-GdB" id="Vv0-cj-uuA"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="j3H-gm-9hd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2593" y="-1017"/>
-        </scene>
-        <!--RxSwfit-->
+        <!--RxSwift-->
         <scene sceneID="IMP-HZ-C6T">
             <objects>
                 <tableViewController id="odu-zz-i62" customClass="MainTableViewController" customModule="TestRxSwift" customModuleProvider="target" sceneMemberID="viewController">
@@ -92,7 +23,7 @@
                             <outlet property="delegate" destination="odu-zz-i62" id="mgV-uF-Vh2"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="RxSwfit" id="Atl-J7-dMa"/>
+                    <navigationItem key="navigationItem" title="RxSwift" id="Atl-J7-dMa"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OYV-ka-hNi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -308,7 +239,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X9g-Zr-IzA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="285.60000000000002" y="1005.2473763118442"/>
+            <point key="canvasLocation" x="286" y="1007"/>
         </scene>
         <!--Observer Observable View Controller-->
         <scene sceneID="kdp-ug-WXY">
@@ -413,7 +344,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n1e-f1-Zas" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="996" y="1005.2473763118442"/>
+            <point key="canvasLocation" x="1003" y="1007"/>
         </scene>
         <!--Disposable View Controller-->
         <scene sceneID="6un-LS-w8z">
@@ -490,7 +421,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fa4-6x-0Lt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1681" y="1006"/>
+            <point key="canvasLocation" x="-403" y="1888"/>
         </scene>
         <!--Schedulers View Controller-->
         <scene sceneID="Me8-yf-20Y">
@@ -539,7 +470,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KDe-lB-sNn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2359" y="1005"/>
+            <point key="canvasLocation" x="286" y="1888"/>
         </scene>
         <!--Error Handling View Controller-->
         <scene sceneID="pVo-OW-J78">
@@ -656,7 +587,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="csO-RM-DZ7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3047" y="1004"/>
+            <point key="canvasLocation" x="1003" y="1888"/>
+        </scene>
+        <!--Operator Table View Controller-->
+        <scene sceneID="MRQ-Ew-8fd">
+            <objects>
+                <tableViewController storyboardIdentifier="OperatorTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gyW-AK-YZI" customClass="OperatorTableViewController" customModule="TestRxSwift" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="CwM-ju-5KI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <outlet property="dataSource" destination="gyW-AK-YZI" id="ywl-Lg-GHI"/>
+                            <outlet property="delegate" destination="gyW-AK-YZI" id="uPu-HB-jKg"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="q31-1Q-2QO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1003" y="200"/>
         </scene>
     </scenes>
 </document>
