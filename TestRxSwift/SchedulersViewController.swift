@@ -34,17 +34,10 @@ class SchedulersViewController: TViewController {
 }
 
 extension SchedulersViewController {
-    // getCurrentQueueName() -> String
-    func getCurrentQueueName() -> String {
-        let name = __dispatch_queue_get_label(nil)
-        return String.init(cString: name, encoding: .utf8) ?? ""
-    }
-    
     // MARK: getObservable() -> Observable<String>
     func getObservable() -> Observable<String> {
-        return Observable<String>.create { [weak self] (observer) -> Disposable in
-            guard let strongSelf = self else { return Disposables.create() }
-            print("Observable  Queue Is: " + strongSelf.getCurrentQueueName())
+        return Observable<String>.create { (observer) -> Disposable in
+            print("Observable  Queue Is: " + getCurrentQueueName())
             
             // 当前线程直接发送元素
             observer.on(.next("Test 1"))
@@ -58,9 +51,8 @@ extension SchedulersViewController {
     
     // MARK: getObserver() -> AnyObserver<UIImage?>
     func getObserver() -> AnyObserver<String> {
-        return AnyObserver<String>.init(eventHandler: { [weak self] (e) in
-            guard let strongSelf = self else { return }
-            print("AnyObserver Queue Is: " + strongSelf.getCurrentQueueName())
+        return AnyObserver<String>.init(eventHandler: { (e) in
+            print("AnyObserver Queue Is: " + getCurrentQueueName())
             print("\t\t" + e.debugDescription)
         })
     }

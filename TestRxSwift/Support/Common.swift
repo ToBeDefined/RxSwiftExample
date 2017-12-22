@@ -49,3 +49,15 @@ class TTableViewController: UITableViewController {
     }
 }
 
+func delayTime(_ delayTime: TimeInterval, block: (() -> ())? ) {
+    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayTime) {
+        block?()
+    }
+}
+
+// getCurrentQueueName() -> String
+func getCurrentQueueName() -> String {
+    let name = __dispatch_queue_get_label(nil)
+    return String.init(cString: name, encoding: .utf8) ?? ""
+}
+
