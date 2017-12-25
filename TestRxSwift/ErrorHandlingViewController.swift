@@ -103,7 +103,7 @@ class ErrorHandlingViewController: TViewController {
             .subscribe(onNext: { [unowned self] (dict) in
                 print("Button is Taped: \(self.testInPreviousWayButton.titleLabel?.text ?? "" ) ")
                 print("get dict success: \(dict)")
-            }, onError: { (_) in
+            }, onError: { [unowned self] (_) in
                 // 此处一旦进入，订阅将失效，后续点击不会响应
                 print("Button is Taped: \(self.testInPreviousWayButton.titleLabel?.text ?? "" ) ")
                 // err.printLog()
