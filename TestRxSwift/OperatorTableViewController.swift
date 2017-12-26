@@ -28,14 +28,48 @@ class OperatorTableViewController: TTableViewController {
     }
     
     let `operator` = Operator()
-    let dataArray: Variable<[DataModel]> = Variable([])
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = nil
         tableView.dataSource = nil
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        let dataArray = [
+        
+        let dataArray: [SectionModel<String, DataModel>] = getDataArray()
+        
+        let dataArrayObservable = Observable<[SectionModel<String, DataModel>]>.just(dataArray)
+        
+        let dataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, DataModel>>
+            .init(configureCell: { (ds, tv, ip, model) -> UITableViewCell in
+                let cell = tv.dequeueReusableCell(withIdentifier: "cell", for: ip)
+                cell.textLabel?.text = model.text
+                cell.textLabel?.textAlignment = .center
+                return cell
+            }, titleForHeaderInSection: { (ds, sectionIndex) -> String? in
+                let sectionModel = ds.sectionModels[sectionIndex]
+                return sectionModel.model
+            })
+        
+        dataArrayObservable
+            .asDriver(onErrorJustReturn: [])
+            .drive(tableView.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
+        
+        tableView.rx.itemSelected
+            .asDriver()
+            .drive(onNext: { [unowned self] (index) in
+                self.tableView.deselectRow(at: index, animated: true)
+                let sectionModel = dataArray[index.section]
+                let dataModel = sectionModel.items[index.row]
+                if let selector = dataModel.selector {
+                    self.operator.perform(selector)
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func getDataArray() -> [SectionModel<String, DataModel>] {
+        return [
             SectionModel.init(model: "Debug", items: [
                 DataModel.init(#selector(Operator.debug)),
                 DataModel.init(#selector(Operator.`do`)),
@@ -139,35 +173,7 @@ class OperatorTableViewController: TTableViewController {
             SectionModel.init(model: "Using", items: [
                 DataModel.init(#selector(Operator.using)),
                 ]),
-            ]
-        let dataArrayObservable = Observable<[SectionModel<String, DataModel>]>.just(dataArray)
-        let dataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, DataModel>>
-            .init(configureCell: { (ds, tv, ip, model) -> UITableViewCell in
-                let cell = tv.dequeueReusableCell(withIdentifier: "cell", for: ip)
-                cell.textLabel?.text = model.text
-                cell.textLabel?.textAlignment = .center
-                return cell
-            }, titleForHeaderInSection: { (ds, sectionIndex) -> String? in
-                let sectionModel = ds.sectionModels[sectionIndex]
-                return sectionModel.model
-            })
-        
-        dataArrayObservable
-            .asDriver(onErrorJustReturn: [])
-            .drive(tableView.rx.items(dataSource: dataSource))
-            .disposed(by: disposeBag)
-        
-        tableView.rx.itemSelected
-            .asDriver()
-            .drive(onNext: { [unowned self] (index) in
-                self.tableView.deselectRow(at: index, animated: true)
-                let sectionModel = dataArray[index.section]
-                let dataModel = sectionModel.items[index.row]
-                if let selector = dataModel.selector {
-                    self.operator.perform(selector)
-                }
-            })
-            .disposed(by: disposeBag)
+        ]
     }
 }
 

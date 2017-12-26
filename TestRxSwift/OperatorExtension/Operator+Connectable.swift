@@ -49,7 +49,7 @@ extension Operator {
         })
     }
     
-    
+
     // 将 Observable 转换为可被连接的 Observable
     // publish 会将 Observable 转换为可被连接的 Observable。
     // 可被连接的 Observable 和普通的 Observable 十分相似，不过在被订阅后不会发出元素，直到 connect 操作符被应用为止。

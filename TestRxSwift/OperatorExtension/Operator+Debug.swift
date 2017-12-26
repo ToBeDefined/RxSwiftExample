@@ -39,6 +39,7 @@ extension Operator {
             
             delayTime(3, block: {
                 observer.onNext("3️⃣")
+                observer.onCompleted()
             })
             return Disposables.create()
         })
