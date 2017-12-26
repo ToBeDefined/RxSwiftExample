@@ -11,6 +11,45 @@ import RxSwift
 
 extension Operator {
     
+    // multicast()需要传入一个subject，通过subject来管理向订阅者发送消息
+
+    @objc
+    func multicast() {
+        let subject = PublishSubject<Int>()
+        subject
+            .subscribe(onNext: { print("Subject: \($0)") })
+            .disposed(by: disposeBag)
+        
+        let intSequence = Observable<Int>
+            .interval(1, scheduler: MainScheduler.instance)
+            .multicast(subject)
+            // 与下面相同：
+            // .multicast(makeSubject: { () -> PublishSubject<Int> in
+            //     return subject
+            // })
+        
+        intSequence
+            .subscribe(onNext: { print("\t Subscription 1:, Event: \($0)") })
+            .disposed(by: disposeBag)
+        
+        delayTime(2, block: {
+            intSequence.connect().disposed(by: self.disposeBag)
+        })
+        
+        delayTime(4, block: {
+            intSequence
+                .subscribe(onNext: { print("\t Subscription 2:, Event: \($0)") })
+                .disposed(by: self.disposeBag)
+        })
+        
+        delayTime(6, block: {
+            intSequence
+                .subscribe(onNext: { print("\t Subscription 3:, Event: \($0)") })
+                .disposed(by: self.disposeBag)
+        })
+    }
+    
+    
     // 将 Observable 转换为可被连接的 Observable
     // publish 会将 Observable 转换为可被连接的 Observable。
     // 可被连接的 Observable 和普通的 Observable 十分相似，不过在被订阅后不会发出元素，直到 connect 操作符被应用为止。

@@ -11,27 +11,6 @@ import RxSwift
 
 extension Operator {
     
-    // 将多个 Observables 合并成一个
-    // 通过使用 merge 操作符你可以将多个 Observables 合并成一个，当某一个 Observable 发出一个元素时，他就将这个元素发出。
-    // 如果，某一个 Observable 发出一个 onError 事件，那么被合并的 Observable 也会将它发出，并且立即终止序列。
-    @objc
-    func merge() {
-        let subject1 = PublishSubject<String>()
-        let subject2 = PublishSubject<String>()
-        
-        Observable.of(subject1, subject2)
-            .merge()
-            .subscribe(onNext: { print($0) })
-            .disposed(by: disposeBag)
-        subject1.onNext("🅰️")
-        subject1.onNext("🅱️")
-        subject2.onNext("①")
-        subject2.onNext("②")
-        subject1.onNext("🆎")
-        subject2.onNext("③")
-    }
-    
-    
     // 将一些元素插入到序列的头部
     // startWith 操作符会在 Observable 头部插入一些元素。
     // （如果你想在尾部加入一些元素可以用concat）
@@ -48,13 +27,6 @@ extension Operator {
     }
     
     
-//    // wait
-//    @objc
-//    func switchLatest() {
-//
-//    }
-    
-    
     // combineLatest 操作符将多个 Observables 中最新的元素通过一个函数组合起来，然后将这个组合的结果发出来。
     // 这些源 Observables 中任何一个发出一个元素，他都会发出一个元素（前提是，这些 Observables 曾经发出过元素）。
     @objc
@@ -67,6 +39,7 @@ extension Operator {
             .subscribe()
             .disposed(by: disposeBag)
     }
+    
     
     // 通过一个函数将多个 Observables 的元素组合起来，然后将每一个组合的结果发出来
     // zip 操作符将多个(最多不超过8个) Observables 的元素通过一个函数组合起来，然后将这个组合的结果发出来。它会严格的按照序列的索引数进行组合。
@@ -125,5 +98,75 @@ extension Operator {
                 .subscribe()
                 .disposed(by: self.disposeBag)
         }
+    }
+    
+    
+    // 将多个 Observables 合并成一个
+    // 通过使用 merge 操作符你可以将多个 Observables 合并成一个，当某一个 Observable 发出一个元素时，他就将这个元素发出。
+    // 如果，某一个 Observable 发出一个 onError 事件，那么被合并的 Observable 也会将它发出，并且立即终止序列。
+    @objc
+    func merge() {
+        let subject1 = PublishSubject<String>()
+        let subject2 = PublishSubject<String>()
+        
+        Observable.of(subject1, subject2)
+            .merge()
+            .subscribe(onNext: { print($0) })
+            .disposed(by: disposeBag)
+        subject1.onNext("🅰️")
+        subject1.onNext("🅱️")
+        subject2.onNext("①")
+        subject2.onNext("②")
+        subject1.onNext("🆎")
+        subject2.onNext("③")
+    }
+    
+    
+    // 当你的事件序列是一个事件序列的序列 (Observable<Observable<T>>) 的时候，（可以理解成二维序列）
+    // 可以使用 switch 将序列的序列平铺成一维，并且在出现新的序列的时候，自动切换到最新的那个序列上。
+    // 和 merge 相似的是，它也是起到了将多个序列『拍平』成一条序列的作用。
+    // > ⚠️注意：当源Observable发出一个新的Observable时，而不是当新的Observable发出一个项目时，它将从之前发出的Observable中取消订阅。
+    // 这意味着在后面的Observable被发射的时间和随后的Observable本身开始发射的时间之间，前一个Observable发射的物体将被丢弃（就像上图中的黄色圆圈一样）。
+    @objc
+    func switchLatest() {
+        // 第一个： 发送3个元素
+        let innerObservable_1 = Observable<String>.of("innerObservable_1: 1",
+                                                      "innerObservable_1: 2",
+                                                      "innerObservable_1: 3")
+        // 持续1秒发出一个元素，递增
+        let innerObservable_2 = Observable<Int>.interval(1, scheduler: MainScheduler.instance).map { (value) -> String in
+            print("innerObservable_2 => Send \(value)")
+            return "innerObservable_2: \(value)"
+        }
+        // 持续1秒发出一个元素，递增
+        let innerObservable_3 = Observable<Int>.interval(1, scheduler: MainScheduler.instance).map { (value) -> String in
+            print("innerObservable_3 => Send \(value)")
+            return "innerObservable_3: \(value)"
+        }
+        
+        let externalObservable = Observable<Observable<String>>.create({ (observer) -> Disposable in
+            observer.onNext(innerObservable_1)
+            delayTime(2, block: {
+                observer.onNext(innerObservable_2)
+            })
+            
+            delayTime(6, block: {
+                observer.onNext(innerObservable_3)
+            })
+            delayTime(12, block: {
+                // 不加 observer.onNext(Observable<String>.never()) 的话，innerObservable_3会持续不断的发送
+                print("observer.onNext(Observable<String>.never())")
+                print("observer.onCompleted()")
+                observer.onNext(Observable<String>.never())
+                observer.onCompleted()
+            })
+            return Disposables.create()
+        })
+        
+        externalObservable
+            .switchLatest()
+            .debug("switchLatest")
+            .subscribe()
+            .disposed(by: disposeBag)
     }
 }

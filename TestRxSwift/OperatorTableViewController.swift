@@ -85,12 +85,12 @@ class OperatorTableViewController: TTableViewController {
                 DataModel.init(#selector(Operator.single)),
                 ]),
             SectionModel.init(model: "联合 Observable", items: [
-                DataModel.init(#selector(Operator.merge)),
                 DataModel.init(#selector(Operator.startWith)),
-//                 DataModel.init(#selector(Operator.switchLatest)),
                 DataModel.init(#selector(Operator.combineLatest)),
                 DataModel.init(#selector(Operator.zip)),
                 DataModel.init(#selector(Operator.withLatestFrom)),
+                DataModel.init(#selector(Operator.merge)),
+                DataModel.init(#selector(Operator.switchLatest)),
                 ]),
             SectionModel.init(model: "错误处理操作符", items: [
                 DataModel.init(#selector(Operator.catchError)),
@@ -113,7 +113,7 @@ class OperatorTableViewController: TTableViewController {
                 DataModel.init(#selector(Operator.reduce)),
                 ]),
             SectionModel.init(model: "连接 Observable 操作符", items: [
-//                 DataModel.init(#selector(Operator.multicast)),
+                DataModel.init(#selector(Operator.multicast)),
                 DataModel.init(#selector(Operator.publish)),
                 DataModel.init(#selector(Operator.connect)),
                 DataModel.init(#selector(Operator.refCount)),
