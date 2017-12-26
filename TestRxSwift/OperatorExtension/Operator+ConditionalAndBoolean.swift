@@ -1,5 +1,5 @@
 //
-//  OperatorTableViewController+ConditionalAndBoolean.swift
+//  Operator+ConditionalAndBoolean.swift
 //  TestRxSwift
 //
 //  Created by 邵伟男 on 2017/12/26.
@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-extension OperatorTableViewController {
+extension Operator {
     
     // 当你传入多个 Observables 到 amb 操作符时
     // 它将取其中一个 Observable：第一个产生事件的那个 Observable

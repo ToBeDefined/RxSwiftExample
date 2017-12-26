@@ -1,5 +1,5 @@
 //
-//  OperatorTableViewController+CreateObservable.swift
+//  Operator+CreateObservable.swift
 //  TestRxSwift
 //
 //  Created by 邵伟男 on 2017/12/26.
@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-extension OperatorTableViewController {
+extension Operator {
     
     // create 操作符将创建一个 Observable，你需要提供一个构建函数，在构建函数里面描述事件（next，error，completed）的产生过程。
     // 通常情况下一个有限的序列，只会调用一次观察者的 onCompleted 或者 onError 方法。并且在调用它们后，不会再去调用观察者的其他方法。

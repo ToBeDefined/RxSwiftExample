@@ -1,5 +1,5 @@
 //
-//  OperatorTableViewController+Scheduler.swift
+//  Operator+Scheduler.swift
 //  TestRxSwift
 //
 //  Created by 邵伟男 on 2017/12/26.
@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-extension OperatorTableViewController {
+extension Operator {
     
     // 指定 Observable 在那个 Scheduler 发出通知
     // ReactiveX 使用 Scheduler 来让 Observable 支持多线程。你可以使用 observeOn 操作符，来指示 Observable 在哪个 Scheduler 发出通知。

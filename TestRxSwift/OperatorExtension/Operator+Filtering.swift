@@ -1,5 +1,5 @@
 //
-//  OperatorTableViewController+Filtering.swift
+//  Operator+Filtering.swift
 //  TestRxSwift
 //
 //  Created by 邵伟男 on 2017/12/26.
@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-extension OperatorTableViewController {
+extension Operator {
     
     // 忽略掉所有的元素，只发出 error 或 completed 事件
     // ignoreElements 操作符将阻止 Observable 发出 next 事件，但是允许他发出 error 或 completed 事件。

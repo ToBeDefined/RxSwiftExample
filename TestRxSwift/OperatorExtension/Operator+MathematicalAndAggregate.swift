@@ -1,5 +1,5 @@
 //
-//  OperatorTableViewController+MathematicalAndAggregate.swift
+//  Operator+MathematicalAndAggregate.swift
 //  TestRxSwift
 //
 //  Created by 邵伟男 on 2017/12/26.
@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-extension OperatorTableViewController {
+extension Operator {
     
     // concat 操作符将多个 Observables 按顺序串联起来，当前一个 Observable 元素发送完毕后，后一个 Observable 才可以开始发出元素。
     // concat 将等待前一个 Observable 产生完成事件后，才对后一个 Observable 进行订阅。

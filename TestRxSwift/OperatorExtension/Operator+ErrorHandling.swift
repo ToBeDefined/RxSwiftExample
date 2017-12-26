@@ -1,5 +1,5 @@
 //
-//  OperatorTableViewController+ErrorHandling.swift
+//  Operator+ErrorHandling.swift
 //  TestRxSwift
 //
 //  Created by 邵伟男 on 2017/12/26.
@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-extension OperatorTableViewController {
+extension Operator {
     
     // catchError 操作符将会拦截一个 error 事件，将它替换成其他的元素或者一组元素，然后传递给观察者。
     // 这样可以使得 Observable 正常结束，或者根本都不需要结束。

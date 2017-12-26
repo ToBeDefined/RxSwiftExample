@@ -36,16 +36,30 @@ extension Error {
 }
 
 class TViewController: UIViewController {
+    var isShouldPrintDeinitLog: Bool {
+        return true
+    }
+    
     let disposeBag = DisposeBag()
+    
     deinit {
-        print("Deinit:" + self.debugDescription)
+        if isShouldPrintDeinitLog {
+            print("Deinit: " + self.debugDescription)
+        }
     }
 }
 
 class TTableViewController: UITableViewController {
+    var isShouldPrintDeinitLog: Bool {
+        return true
+    }
+    
     let disposeBag = DisposeBag()
+    
     deinit {
-        print("Deinit:" + self.debugDescription)
+        if isShouldPrintDeinitLog {
+            print("Deinit: " + self.debugDescription)
+        }
     }
 }
 
@@ -55,7 +69,6 @@ func delayTime(_ delayTime: TimeInterval, block: (() -> ())? ) {
     }
 }
 
-// getCurrentQueueName() -> String
 func getCurrentQueueName() -> String {
     let name = __dispatch_queue_get_label(nil)
     return String.init(cString: name, encoding: .utf8) ?? ""

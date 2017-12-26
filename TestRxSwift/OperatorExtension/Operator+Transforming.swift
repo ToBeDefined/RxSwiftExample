@@ -1,5 +1,5 @@
 //
-//  OperatorTableViewController+Transforming.swift
+//  Operator+Transforming.swift
 //  TestRxSwift
 //
 //  Created by 邵伟男 on 2017/12/26.
@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-extension OperatorTableViewController {
+extension Operator {
     
     // 将 Observable 中的单个元素转换成 Array 的数据结构的 Observable 进行发送
     @objc

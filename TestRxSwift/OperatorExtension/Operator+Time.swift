@@ -1,5 +1,5 @@
 //
-//  OperatorTableViewController+Time.swift
+//  Operator+Time.swift
 //  TestRxSwift
 //
 //  Created by 邵伟男 on 2017/12/26.
@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-extension OperatorTableViewController {
+extension Operator {
     
     // 将 Observable 的每一个元素拖延一段时间后发出
     // > ⚠️注意：是延迟元素的发出时间而不是延迟订阅或者创建 Observable 的时间

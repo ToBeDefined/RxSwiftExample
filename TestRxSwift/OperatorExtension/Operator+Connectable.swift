@@ -1,5 +1,5 @@
 //
-//  OperatorTableViewController+Connectable.swift
+//  Operator+Connectable.swift
 //  TestRxSwift
 //
 //  Created by 邵伟男 on 2017/12/26.
@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-extension OperatorTableViewController {
+extension Operator {
     
     // 将 Observable 转换为可被连接的 Observable
     // publish 会将 Observable 转换为可被连接的 Observable。

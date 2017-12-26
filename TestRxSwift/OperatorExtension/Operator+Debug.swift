@@ -1,5 +1,5 @@
 //
-//  OperatorTableViewController+Debug.swift
+//  Operator+Debug.swift
 //  TestRxSwift
 //
 //  Created by 邵伟男 on 2017/12/26.
@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 
 // Debug
-extension OperatorTableViewController {
+extension Operator {
     
     // 打印所有的订阅，事件以及销毁信息
     @objc

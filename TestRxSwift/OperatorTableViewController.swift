@@ -12,6 +12,7 @@ import RxCocoa
 import RxDataSources
 
 class OperatorTableViewController: TTableViewController {
+    
     struct DataModel {
         var text: String? {
             return self.selector?.description
@@ -22,7 +23,13 @@ class OperatorTableViewController: TTableViewController {
         }
     }
     
+    override var isShouldPrintDeinitLog: Bool {
+        return false
+    }
+    
+    let `operator` = Operator()
     let dataArray: Variable<[DataModel]> = Variable([])
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = nil
@@ -30,107 +37,107 @@ class OperatorTableViewController: TTableViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         let dataArray = [
             SectionModel.init(model: "Debug", items: [
-                DataModel.init(#selector(debug)),
-                DataModel.init(#selector(`do`)),
+                DataModel.init(#selector(Operator.debug)),
+                DataModel.init(#selector(Operator.`do`)),
                 ]),
             SectionModel.init(model: "创建 Observable", items: [
-                DataModel.init(#selector(create)),
-                DataModel.init(#selector(never)),
-                DataModel.init(#selector(empty)),
-                DataModel.init(#selector(just)),
-                DataModel.init(#selector(error)),
-                DataModel.init(#selector(from)),
-                DataModel.init(#selector(of)),
-                DataModel.init(#selector(range)),
-                DataModel.init(#selector(repeatElement)),
-                DataModel.init(#selector(`defer`)),
-                DataModel.init(#selector(interval)),
-                DataModel.init(#selector(timer)),
+                DataModel.init(#selector(Operator.create)),
+                DataModel.init(#selector(Operator.never)),
+                DataModel.init(#selector(Operator.empty)),
+                DataModel.init(#selector(Operator.just)),
+                DataModel.init(#selector(Operator.error)),
+                DataModel.init(#selector(Operator.from)),
+                DataModel.init(#selector(Operator.of)),
+                DataModel.init(#selector(Operator.range)),
+                DataModel.init(#selector(Operator.repeatElement)),
+                DataModel.init(#selector(Operator.`defer`)),
+                DataModel.init(#selector(Operator.interval)),
+                DataModel.init(#selector(Operator.timer)),
                 ]),
             SectionModel.init(model: "变换 Observable", items: [
-                DataModel.init(#selector(toArray)),
-                DataModel.init(#selector(map)),
-                DataModel.init(#selector(scan)),
-                DataModel.init(#selector(flatMap)),
-                DataModel.init(#selector(flatMapFirst)),
-                DataModel.init(#selector(flatMapLatest)),
-                DataModel.init(#selector(flatMapWithIndex)),
-                DataModel.init(#selector(concatMap)),
-                DataModel.init(#selector(buffer)),
-                DataModel.init(#selector(window)),
-                DataModel.init(#selector(groupBy)),
+                DataModel.init(#selector(Operator.toArray)),
+                DataModel.init(#selector(Operator.map)),
+                DataModel.init(#selector(Operator.scan)),
+                DataModel.init(#selector(Operator.flatMap)),
+                DataModel.init(#selector(Operator.flatMapFirst)),
+                DataModel.init(#selector(Operator.flatMapLatest)),
+                DataModel.init(#selector(Operator.flatMapWithIndex)),
+                DataModel.init(#selector(Operator.concatMap)),
+                DataModel.init(#selector(Operator.buffer)),
+                DataModel.init(#selector(Operator.window)),
+                DataModel.init(#selector(Operator.groupBy)),
                 ]),
             SectionModel.init(model: "过滤 Observable", items: [
-                DataModel.init(#selector(ignoreElements)),
-                DataModel.init(#selector(elementAt)),
-                DataModel.init(#selector(filter)),
-                DataModel.init(#selector(debounce)),
-                DataModel.init(#selector(throttle)),
-                DataModel.init(#selector(distinctUntilChanged)),
-                DataModel.init(#selector(sample)),
-                DataModel.init(#selector(skip)),
-                DataModel.init(#selector(skipWhile)),
-                DataModel.init(#selector(skipUntil)),
-                DataModel.init(#selector(take)),
-                DataModel.init(#selector(takeLast)),
-                DataModel.init(#selector(takeWhile)),
-                DataModel.init(#selector(takeUntil)),
-                DataModel.init(#selector(single)),
+                DataModel.init(#selector(Operator.ignoreElements)),
+                DataModel.init(#selector(Operator.elementAt)),
+                DataModel.init(#selector(Operator.filter)),
+                DataModel.init(#selector(Operator.debounce)),
+                DataModel.init(#selector(Operator.throttle)),
+                DataModel.init(#selector(Operator.distinctUntilChanged)),
+                DataModel.init(#selector(Operator.sample)),
+                DataModel.init(#selector(Operator.skip)),
+                DataModel.init(#selector(Operator.skipWhile)),
+                DataModel.init(#selector(Operator.skipUntil)),
+                DataModel.init(#selector(Operator.take)),
+                DataModel.init(#selector(Operator.takeLast)),
+                DataModel.init(#selector(Operator.takeWhile)),
+                DataModel.init(#selector(Operator.takeUntil)),
+                DataModel.init(#selector(Operator.single)),
                 ]),
             SectionModel.init(model: "联合 Observable", items: [
-                DataModel.init(#selector(merge)),
-                DataModel.init(#selector(startWith)),
-//                 DataModel.init(#selector(switchLatest)),
-                DataModel.init(#selector(combineLatest)),
-                DataModel.init(#selector(zip)),
-                DataModel.init(#selector(withLatestFrom)),
+                DataModel.init(#selector(Operator.merge)),
+                DataModel.init(#selector(Operator.startWith)),
+//                 DataModel.init(#selector(Operator.switchLatest)),
+                DataModel.init(#selector(Operator.combineLatest)),
+                DataModel.init(#selector(Operator.zip)),
+                DataModel.init(#selector(Operator.withLatestFrom)),
                 ]),
             SectionModel.init(model: "错误处理操作符", items: [
-                DataModel.init(#selector(catchError)),
-                DataModel.init(#selector(catchErrorJustReturn)),
-                DataModel.init(#selector(retry)),
-                DataModel.init(#selector(retryWhen)),
+                DataModel.init(#selector(Operator.catchError)),
+                DataModel.init(#selector(Operator.catchErrorJustReturn)),
+                DataModel.init(#selector(Operator.retry)),
+                DataModel.init(#selector(Operator.retryWhen)),
                 ]),
             
             SectionModel.init(model: "条件和 Bool 操作符", items: [
-                DataModel.init(#selector(amb)),
+                DataModel.init(#selector(Operator.amb)),
                 // 过滤 Observable
-                DataModel.init(#selector(skipWhile)),
-                DataModel.init(#selector(skipUntil)),
-                DataModel.init(#selector(takeWhile)),
-                DataModel.init(#selector(takeUntil)),
+                DataModel.init(#selector(Operator.skipWhile)),
+                DataModel.init(#selector(Operator.skipUntil)),
+                DataModel.init(#selector(Operator.takeWhile)),
+                DataModel.init(#selector(Operator.takeUntil)),
                 ]),
             
             SectionModel.init(model: "数学和聚合操作符", items: [
-                DataModel.init(#selector(concat)),
-                DataModel.init(#selector(reduce)),
+                DataModel.init(#selector(Operator.concat)),
+                DataModel.init(#selector(Operator.reduce)),
                 ]),
             SectionModel.init(model: "连接 Observable 操作符", items: [
-//                 DataModel.init(#selector(multicast)),
-                DataModel.init(#selector(publish)),
-                DataModel.init(#selector(connect)),
-                DataModel.init(#selector(refCount)),
-                DataModel.init(#selector(replay)),
-                DataModel.init(#selector(shareReplay)),
+//                 DataModel.init(#selector(Operator.multicast)),
+                DataModel.init(#selector(Operator.publish)),
+                DataModel.init(#selector(Operator.connect)),
+                DataModel.init(#selector(Operator.refCount)),
+                DataModel.init(#selector(Operator.replay)),
+                DataModel.init(#selector(Operator.shareReplay)),
                 ]),
             SectionModel.init(model: "About Time", items: [
-                DataModel.init(#selector(delay)),
-                DataModel.init(#selector(delaySubscription)),
-                DataModel.init(#selector(timeout)),
+                DataModel.init(#selector(Operator.delay)),
+                DataModel.init(#selector(Operator.delaySubscription)),
+                DataModel.init(#selector(Operator.timeout)),
                 // 创建 Observable
-                DataModel.init(#selector(`defer`)),
-                DataModel.init(#selector(timer)),
+                DataModel.init(#selector(Operator.`defer`)),
+                DataModel.init(#selector(Operator.timer)),
                 ]),
             SectionModel.init(model: "Scheduler", items: [
-                DataModel.init(#selector(observeOn)),
-                DataModel.init(#selector(subscribeOn)),
+                DataModel.init(#selector(Operator.observeOn)),
+                DataModel.init(#selector(Operator.subscribeOn)),
                 ]),
             SectionModel.init(model: "Materialize", items: [
-                DataModel.init(#selector(materialize)),
-                DataModel.init(#selector(dematerialize)),
+                DataModel.init(#selector(Operator.materialize)),
+                DataModel.init(#selector(Operator.dematerialize)),
                 ]),
             SectionModel.init(model: "Using", items: [
-                DataModel.init(#selector(using)),
+                DataModel.init(#selector(Operator.using)),
                 ]),
             ]
         let dataArrayObservable = Observable<[SectionModel<String, DataModel>]>.just(dataArray)
@@ -157,105 +164,13 @@ class OperatorTableViewController: TTableViewController {
                 let sectionModel = dataArray[index.section]
                 let dataModel = sectionModel.items[index.row]
                 if let selector = dataModel.selector {
-                    self.perform(selector)
+                    self.operator.perform(selector)
                 }
             })
             .disposed(by: disposeBag)
     }
 }
 
-extension OperatorTableViewController {
-    func getFirstObservable() -> Observable<String> {
-        return Observable<String>.create({ (observer) -> Disposable in
-            // section 1
-            delayTime(1, block: {
-                observer.onNext("First -> 1|A")
-                observer.onNext("First -> 1|B")
-                observer.onNext("First -> 1|C")
-            })
-            
-            // section 2
-            delayTime(5, block: {
-                observer.onNext("First -> 2|A")
-                observer.onNext("First -> 2|B")
-                observer.onNext("First -> 2|C")
-            })
-            
-            // section 3
-            delayTime(9, block: {
-                observer.onNext("First -> 3|A")
-                observer.onNext("First -> 3|B")
-                observer.onNext("First -> 3|C")
-                observer.onCompleted()
-            })
-            return Disposables.create()
-        })
-    }
-    
-    func getSecondObservable() -> Observable<String> {
-        return Observable<String>.create({ (observer) -> Disposable in
-            delayTime(0.1, block: {
-                observer.onNext("Second -> 1")
-                
-                delayTime(4, block: {
-                    observer.onNext("Second -> 2")
-                })
-                
-                delayTime(8, block: {
-                    observer.onNext("Second -> 3")
-                    observer.onCompleted()
-                })
-            })
-            return Disposables.create()
-        })
-    }
-    
-    func getThirdObservable() -> Observable<String> {
-        return Observable<String>.create({ (observer) -> Disposable in
-            delayTime(0.1, block: {
-                observer.onNext("Third -> 1")
-                observer.onNext("Third -> 2")
-                observer.onNext("Third -> 3")
-                observer.onCompleted()
-            })
-            return Disposables.create()
-        })
-    }
-    
-    func getFourthObservable() -> Observable<String> {
-        let observable = Observable<String>.create({ (observer) -> Disposable in
-            print("> Send onNext(\"0️⃣\")")
-            observer.onNext("0️⃣")
-            
-            delayTime(1, block: {
-                print("> Send onNext(\"1️⃣\")")
-                observer.onNext("1️⃣")
-            })
-            
-            delayTime(2, block: {
-                print("> Send onNext(\"2️⃣\")")
-                observer.onNext("2️⃣")
-            })
-            return Disposables.create()
-        })
-        return observable
-    }
-    
-    func getErrorObservable() -> Observable<String> {
-        return Observable<String>.create({ (observer) -> Disposable in
-            delayTime(1, block: {
-                observer.onNext("1️⃣")
-            })
-            delayTime(2, block: {
-                observer.onNext("2️⃣")
-            })
-            delayTime(3, block: {
-                let err = TError.init(errorCode: 10, errorString: "Test", errorData: nil)
-                observer.onError(err)
-            })
-            return Disposables.create()
-        })
-    }
-}
+
 
 
