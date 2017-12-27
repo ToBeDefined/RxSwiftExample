@@ -1,7 +1,7 @@
 
-> Mathematical and Aggregate Operator
+## 数学和聚合操作符 - Mathematical and Aggregate Operator
 
-## concat
+### concat
 
 `concat` 操作符将多个 `Observables` 按顺序串联起来，当前一个 `Observable` 元素发送完毕后，后一个 `Observable` 才可以开始发出元素。
 
@@ -52,7 +52,7 @@ func concat() {
 2017-12-27 14:56:42.764: concat -> isDisposed
 ```
 
-## reduce
+### reduce
 
 持续的将 `Observable` 的每一个元素应用一个函数，然后发出最终结果。
 

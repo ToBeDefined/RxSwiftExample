@@ -1,7 +1,7 @@
 
-> ErrorHandling Operator
+## 错误处理操作符 - ErrorHandling Operator
 
-## catchError
+### catchError
 
 `catchError` 操作符将会拦截一个 `error` 事件，将它替换成其他的元素或者一组元素，然后传递给观察者。这样可以使得 `Observable` 正常结束，或者根本都不需要结束。
 
@@ -40,7 +40,7 @@ Test
 2017-12-27 13:51:01.070: catchError -> isDisposed
 ```
 
-## catchErrorJustReturn
+### catchErrorJustReturn
 
 `catchErrorJustReturn` 操作符会将 `error` 事件替换成其他的一个元素，然后结束该序列。
 
@@ -67,7 +67,7 @@ func catchErrorJustReturn() {
 2017-12-27 13:53:19.854: catchErrorJustReturn -> isDisposed
 ```
 
-## retry
+### retry
 
 如果源 `Observable` 产生一个错误事件，重新对它进行订阅，希望它不会再次产生错误
 `retry` 操作符将不会将 `error` 事件，传递给观察者。
@@ -124,7 +124,7 @@ func retry() {
 ```
 
 
-## retryWhen
+### retryWhen
 
 这个操作符主要描述应该在何时重试，并且通过闭包里面返回的 `Observable` 来控制重试的时机：
 

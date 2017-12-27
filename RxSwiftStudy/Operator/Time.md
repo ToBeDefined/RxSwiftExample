@@ -1,7 +1,7 @@
 
-> Time Operator
+## Time Operator
 
-## delay
+### delay
 
 
 `delay` 操作符将修改一个 `Observable`，它会将 `Observable` 的所有元素都拖延一段设定好的时间， 然后才将它们发送出来。
@@ -32,7 +32,7 @@ func delay() {
 2017-12-27 16:38:19.433: delay -> Event next(2️⃣)
 ```
 
-## delaySubscription
+### delaySubscription
 
 `delaySubscription` 操作符将在经过所设定的时间后，才真正的对 `Observable` 进行订阅操作。
 
@@ -62,7 +62,7 @@ Create Observable Now
 2017-12-27 16:42:57.179: delaySubscription -> Event next(2️⃣)
 ```
 
-## defer
+### defer
 
 **直到订阅发生，才创建 `Observable`，并且为每位订阅者创建全新的 `Observable`**
 
@@ -121,7 +121,7 @@ Observable is Create Now
 2017-12-27 09:44:42.280: Test Defer: Second Subscribe -> isDisposed
 ```
 
-## interval
+### interval
 
 创建一个 `Observable` 每隔一段时间，发出一个索引数
 
@@ -156,7 +156,7 @@ interval => next(7)
 ...........
 ```
 
-## timer
+### timer
 
 创建一个 `Observable` 在一段延时后，产生唯一的一个元素
 
@@ -222,7 +222,7 @@ func timer() {
 ............
 ```
 
-## timeout
+### timeout
 
 如果源 `Observable` 在规定时间内没有发任何出元素，就产生一个超时的 `error` 事件
 

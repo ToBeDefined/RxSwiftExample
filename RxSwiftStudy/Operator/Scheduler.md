@@ -1,7 +1,7 @@
 
-> Scheduler Operator
+## Scheduler Operator
 
-## observeOn
+### observeOn
 
 [https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/observeOn.html](https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/observeOn.html)
 
@@ -43,7 +43,7 @@ observeOn: ink.tbd.test.observeQueue;  ==>  next(5)
 observeOn: ink.tbd.test.observeQueue;  ==>  completed
 ```
 
-## subscribeOn
+### subscribeOn
 
 [https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/subscribeOn.html](https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree/subscribeOn.html)
 

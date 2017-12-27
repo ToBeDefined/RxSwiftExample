@@ -1,8 +1,8 @@
 
-> Transforming Operator
+## 变换 Observable - Transforming Operator
 
 
-## toArray
+### toArray
 
 将 `Observable` 中的单个元素转换成 `Array` 的数据结构的 `Observable` 进行发送
 
@@ -28,7 +28,7 @@ func toArray() {
 2017-12-27 10:05:30.893: toArray -> isDisposed
 ```
 
-## map
+### map
 
 通过一个转换函数，将 `Observable` 的每个元素转换一遍，`map` 操作符将源 `Observable` 的每个元素应用你提供的转换方法，然后返回含有转换结果的 `Observable`。
 
@@ -54,7 +54,7 @@ map => next(Value is 20)
 map => next(Value is 30)
 map => completed
 ```
-## scan
+### scan
 持续的将 `Observable` 的每一个元素应用一个函数，然后发出每一次函数返回的结果。
 
 `scan` 操作符将对第一个元素应用一个函数，将结果作为第一个元素发出。然后，将结果作为参数填入到第二个元素的应用函数中，创建第二个元素。以此类推，直到遍历完全部的元素。(这种操作符在其他地方有时候被称作是 `accumulator`。)
@@ -94,7 +94,7 @@ func scan() {
 2017-12-27 10:09:36.991: Scan -> isDisposed
 ```
 
-## flatMap
+### flatMap
 
 将 `Observable` 的元素转换成其他的 `Observable`，然后将这些 `Observables` 合并，`flatMap` 操作符将源 `Observable` 的每一个元素应用一个转换方法，将他们转换成 `Observables`。然后将这些 `Observables` 的元素合并之后再发送出来。
 
@@ -133,7 +133,7 @@ First => 🐱
 Second => 😂
 ```
 
-## flatMapFirst
+### flatMapFirst
 
 将 `Observable` 的元素转换成其他的 `Observable`，然后取这些 `Observables` 中的第一个。
 
@@ -171,7 +171,7 @@ First => 🐶
 First => 🐱
 ```
 
-## flatMapLatest
+### flatMapLatest
 
 将 `Observable` 的元素转换成其他的 `Observable`，然后取这些 `Observables` 中最新的一个。
 
@@ -209,7 +209,7 @@ Second => 😢
 Second => 😂
 ```
 
-## flatMapWithIndex
+### flatMapWithIndex
 
 > `@available(*, deprecated, message: "Please use enumerated().flatMap()")`
 
@@ -265,7 +265,7 @@ Second => 😢
 Second => 😂
 ```
 
-## concatMap
+### concatMap
 
 `concatMap` 操作符将源 `Observable` 的每一个元素应用一个转换方法，将元素转换成 `Observable`。
 
@@ -326,7 +326,7 @@ next(======================)
 completed
 ```
 
-## buffer
+### buffer
 
 `buffer` 操作符将缓存 `Observable` 中发出的新元素，当元素达到某个数量，或者经过了特定的时间，它就会将这个元素集合发送出来。
 
@@ -359,7 +359,7 @@ func buffer() {
 ["First -> 3|C"]
 ```
 
-## window
+### window
 
 将 `Observable` 分解为多个子 `Observable`，周期性的将子 `Observable` 发出来
 
@@ -422,7 +422,7 @@ window|onNext => completed
 window => onCompleted
 ```
 
-## groupBy
+### groupBy
 
 将源 `Observable` 分解为多个子 `Observable`，并且每个子 `Observable` 将源 `Observable` 中`相似`的元素发送出来。
 

@@ -1,8 +1,8 @@
 
-> Using Operator
+## Using Operator
 
 
-## Using
+### Using
 
 创建一个**可被清除的资源(即遵守`Disposable`协议)**，它和 `Observable` 具有相同的寿命
 

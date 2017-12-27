@@ -1,7 +1,7 @@
 
-> Combining Operator
+## 联合 Observable - Combining Operator
 
-## startWith
+### startWith
 
 
 `startWith` 操作符会在 `Observable` 头部插入一些元素。（如果你想在尾部加入一些元素可以用concat）
@@ -39,7 +39,7 @@ func startWith() {
 2017-12-27 12:42:41.260: startWith -> isDisposed
 ```
 
-## combineLatest
+### combineLatest
 
 `combineLatest` 操作符将多个 `Observables` 中最新的元素通过一个函数组合起来，然后将这个组合的结果发出来。
 
@@ -79,7 +79,7 @@ func combineLatest() {
 ```
 
 
-## zip
+### zip
 
 通过一个函数将多个 `Observables` 的元素组合起来，然后将每一个组合的结果发出来。
 
@@ -125,7 +125,7 @@ func zip()  {
 4D
 ```
 
-## withLatestFrom
+### withLatestFrom
 
 将两 `Observables` 最新的元素通过一个函数组合以来，当第一个 `Observable` 发出一个元素，就将组合后的元素发送出来
 
@@ -193,7 +193,7 @@ func withLatestFrom() {
 ```
 
 
-## merge
+### merge
 
 通过使用 `merge` 操作符你可以将多个 `Observables` 合并成一个，当某一个 `Observable` 发出一个元素时，他就将这个元素发出。
 
@@ -320,7 +320,7 @@ Unhandled error happened: TError(errorCode: 0, errorString: "Test Error", errorD
 2017-12-27 12:56:10.991: merge -> isDisposed
 ```
 
-## switchLatest
+### switchLatest
 
 当你的事件序列是一个事件序列的序列 (`Observable<Observable<T>>`) 的时候，（可以理解成二维序列）
 

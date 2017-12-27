@@ -1,7 +1,7 @@
 
-> Materialize Operator
+## Materialize Operator
 
-## materialize
+### materialize
 
 通常，一个有限的 `Observable` 将产生零个或者多个 `onNext` 事件，然后产生一个 `onCompleted` 或者 `onError` 事件。
 
@@ -29,7 +29,7 @@ next(error(TError(errorCode: 10, errorString: "Test", errorData: nil)))
 completed
 ```
 
-## dematerialize
+### dematerialize
 
 `dematerialize` 操作符将 `materialize` 转换后的元素还原
 

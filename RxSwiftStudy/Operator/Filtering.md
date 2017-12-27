@@ -1,7 +1,7 @@
 
-> Filtering Operator
+## 过滤 Observable - Filtering Operator
 
-## ignoreElements
+### ignoreElements
 
 忽略掉所有的元素，只发出 `error` 或 `completed` 事件
 
@@ -29,7 +29,7 @@ func ignoreElements() {
 2017-12-27 11:12:47.787: ignoreElements -> isDisposed
 ```
 
-## elementAt
+### elementAt
 
 `elementAt` 操作符将拉取 `Observable` 序列中指定索引数的元素，然后将它作为唯一的元素发出。
 
@@ -53,7 +53,7 @@ elementAt subscribe -> next(2)
 elementAt subscribe -> completed
 ```
 
-## filter
+### filter
 
 `filter` 操作符将通过你提供的判定方法过滤一个 `Observable`。仅仅发出 `Observable` 中通过判定的元素。
 
@@ -97,7 +97,7 @@ func filter() {
 ```
 
 
-## debounce
+### debounce
 
 用于过滤一定时间内发出的高频元素，只发送最后一个。`debounce` 操作符将发出这种元素，在 `Observable` 产生这种元素后，一段时间内没有新元素产生。
 
@@ -124,7 +124,7 @@ completed
 ```
 
 
-## throttle
+### throttle
 返回在指定连续时间窗口期间中，由源 `Observable` 发出的第一个和最后一个元素。这个运算符确保没有两个元素在少于 `dueTime` 的时间发送。
 
 eg:
@@ -178,7 +178,7 @@ next(10)
 completed
 ```
 
-## distinctUntilChanged
+### distinctUntilChanged
 
 `distinctUntilChanged` 操作符将阻止 `Observable` 发出相同的元素。如果后一个元素和前一个元素是相同的，那么这个元素将不会被发出来。如果后一个元素和前一个元素不相同，那么这个元素才会被发出来。
 
@@ -208,7 +208,7 @@ func distinctUntilChanged() {
 2017-12-27 11:23:01.270: distinctUntilChanged -> isDisposed
 ```
 
-## sample
+### sample
 
 `sample` 操作符将不定期的对源 `Observable` 进行取样操作。
 
@@ -239,7 +239,7 @@ func sample() {
 2017-12-27 11:24:56.643: sample -> isDisposed
 ```
 
-## skip
+### skip
 
 `skip` 操作符可以让你跳过 `Observable` 中头 `n` 个元素，只关注后面的元素。
 
@@ -270,7 +270,7 @@ func skip() {
 ```
 
 
-## skipWhile
+### skipWhile
 
 跳过 `Observable` 中头几个元素，直到元素的判定为否，闭包返回 `true` 则`跳过(skip)`，`skipWhile` 操作符可以让你忽略源 `Observable` 中 `头几个` 元素，直到元素的判定为 `false` 后，它才镜像源 `Observable`，**一旦有 `false` 产生，后面的元素不会再进行判断**。
 
@@ -307,7 +307,7 @@ func skipWhile() {
 ```
 
 
-## skipUntil
+### skipUntil
 
 跳过 `Observable` 中头几个元素，直到另一个 `Observable` 发出一个元素，`skipUntil` 操作符可以让你忽略源 `Observable` 中头几个元素，直到另一个 `Observable` 发出一个元素后，它才镜像源 `Observable`。
 
@@ -346,7 +346,7 @@ skipUntilObservable => onNext(0)
 ```
 
 
-## take
+### take
 
 通过 `take` 操作符你可以只发出头 `n` 个元素。并且忽略掉后面的元素，直接结束序列。
 
@@ -373,7 +373,7 @@ func take() {
 2017-12-27 12:28:14.822: take -> isDisposed
 ```
 
-## takeLast
+### takeLast
 
 
 通过 `takeLast` 操作符你可以只发出尾部 `n` 个元素。并且忽略掉前面的元素。
@@ -405,7 +405,7 @@ func takeLast() {
 2017-12-27 12:30:22.995: takeLast -> isDisposed
 ```
 
-## takeWhile
+### takeWhile
 
 镜像一个 `Observable` 直到某个元素的判定为 `false`
 
@@ -445,7 +445,7 @@ func takeWhile() {
 2017-12-27 12:32:42.492: skipWhile -> isDisposed
 ```
 
-## takeUntil
+### takeUntil
 
 忽略一部分元素，这些元素是在第二个 `Observable` 产生事件后发出的(则被忽略)。
 
@@ -482,7 +482,7 @@ takeUntilObservable => onNext(0)
 2017-12-27 12:36:44.995: takeUntil -> isDisposed
 ```
 
-## single
+### single
 
 限制 `Observable` 只有一个元素，否出发出一个 `error` 事件，`single` 操作符将限制 `Observable` 只产生一个元素。
 

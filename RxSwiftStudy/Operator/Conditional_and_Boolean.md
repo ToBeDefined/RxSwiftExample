@@ -1,7 +1,7 @@
 
-> Conditional and Boolean Operator
+## 条件和 Bool 操作符 - Conditional and Boolean Operator
 
-## amb
+### amb
 
 当你传入多个 `Observables` 到 `amb` 操作符时
 它将取其中一个 `Observable`：第一个产生事件的那个 `Observable`，可以是一个 `next`，`error` 或者 `completed` 事件。`amb` 将忽略掉其他的 Observables。
@@ -33,7 +33,7 @@ func amb() {
 2017-12-27 14:25:35.388: amb -> isDisposed
 ```
 
-## skipWhile
+### skipWhile
 
 跳过 `Observable` 中头几个元素，直到元素的判定为否，闭包返回 `true` 则`跳过(skip)`，`skipWhile` 操作符可以让你忽略源 `Observable` 中 `头几个` 元素，直到元素的判定为 `false` 后，它才镜像源 `Observable`，**一旦有 `false` 产生，后面的元素不会再进行判断**。
 
@@ -70,7 +70,7 @@ func skipWhile() {
 ```
 
 
-## skipUntil
+### skipUntil
 
 跳过 `Observable` 中头几个元素，直到另一个 `Observable` 发出一个元素，`skipUntil` 操作符可以让你忽略源 `Observable` 中头几个元素，直到另一个 `Observable` 发出一个元素后，它才镜像源 `Observable`。
 
@@ -108,7 +108,7 @@ skipUntilObservable => onNext(0)
 2017-12-27 12:25:51.201: skipUntil -> isDisposed
 ```
 
-## takeWhile
+### takeWhile
 
 镜像一个 `Observable` 直到某个元素的判定为 `false`
 
@@ -148,7 +148,7 @@ func takeWhile() {
 2017-12-27 12:32:42.492: takeWhile -> isDisposed
 ```
 
-## takeUntil
+### takeUntil
 
 忽略一部分元素，这些元素是在第二个 `Observable` 产生事件后发出的(则被忽略)。
 

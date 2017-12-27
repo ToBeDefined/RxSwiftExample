@@ -1,7 +1,7 @@
 
-> Connectable Operator
+## 连接 Observable 操作符 - Connectable Operator
 
-## multicast
+### multicast
 
 `multicast()`需要传入一个 `subject`，通过 `subject` 来管理向订阅者发送消息
 
@@ -80,7 +80,7 @@ Subject: 7
 ```
 
 
-## publish
+### publish
 
 将 `Observable` 转换为可被连接的 `Observable`，`publish` 会将 `Observable` 转换为可被连接的 `Observable`。
 
@@ -121,7 +121,7 @@ connectObservable => completed
 ```
 
 
-## connect
+### connect
 
 通知可被连接的 `Observable` 可以开始发出元素了，可被连接的 `Observable` 和普通的 `Observable` 十分相似，不过在被订阅后不会发出元素，直到 `connect` 操作符被应用为止。
 
@@ -177,7 +177,7 @@ First  Subscribe : completed
 Second Subscribe : completed
 ```
 
-## refCount
+### refCount
 
 将可被连接的 `Observable` 转换为普通 `Observable`，`refCount` 操作符将自动连接和断开可被连接的 `Observable`。
 
@@ -215,7 +215,7 @@ func refCount() {
 ```
 
 
-## replay
+### replay
 
 确保观察者接收到同样的序列，即使是在 `Observable` 发出元素后才订阅，`replay` 操作符将 `Observable` 转换为可被连接的 `Observable`，并且这个可被连接的 `Observable` 将缓存最新的 `n` 个元素。当有新的观察者对它进行订阅时，它就把这些被缓存的元素发送给观察者。
 
@@ -274,7 +274,7 @@ func replay() {
 2017-12-27 15:15:23.403: Replay -> isDisposed
 ```
 
-## share
+### share
 
 使观察者共享 `Observable`，不会对新增的观察者发送之前已经发送了的元素。
 
@@ -343,7 +343,7 @@ func share() {
 2017-12-27 16:14:33.066: Third  Subscribe -> isDisposed
 ```
 
-## shareReplay
+### shareReplay
 
 > @available(*, deprecated, message: "Suggested replacement is `share(replay: 1)`. In case old 3.x behavior of `shareReplay` is required please use `share(replay: 1, scope: .forever)` instead.", renamed: "share(replay:)")
 
@@ -402,7 +402,7 @@ func shareReplay() {
 ```
 
 
-## shareReplayLatestWhileConnected
+### shareReplayLatestWhileConnected
 
 > @available(*, deprecated, message: "use `share(replay: 1)` instead", renamed: "`share(replay:)`")
 

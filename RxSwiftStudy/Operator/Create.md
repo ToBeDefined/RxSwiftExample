@@ -1,7 +1,7 @@
 
-> Create Observable Operator
+## 创建 Observable - Create Observable Operator
 
-## create
+### create
 
 `create` 操作符将创建一个 `Observable`，你需要提供一个构建函数，在构建函数里面描述事件（`next`，`error`，`completed`）的产生过程。
 
@@ -25,7 +25,7 @@ func create() {
 }
 ```
 
-## never
+### never
 
 创建一个永远不会发出元素的 `Observable`
 
@@ -45,7 +45,7 @@ func never() {
 ```
 
 
-## empty
+### empty
 
 创建一个空 `Observable`
 
@@ -76,7 +76,7 @@ func empty() {
 2017-12-27 09:25:19.926: Empty -> isDisposed
 ```
 
-## just
+### just
 
 创建 `Observable` 发出唯一的一个元素
 
@@ -109,7 +109,7 @@ just => next(A String)
 just => completed
 ```
 
-## error
+### error
 
 创建一个只有 `error` 事件的 `Observable`
 
@@ -141,7 +141,7 @@ func error() {
 Error --> error(TError(errorCode: 10, errorString: "test error", errorData: nil))
 ```
 
-## from
+### from
 
 将其他类型或者数据结构转换为 `Observable`, 当你在使用 `Observable` 时，如果能够直接将其他类型转换为 `Observable`，这将是非常省事的。
 
@@ -204,7 +204,7 @@ From Optional => completed
 
 ```
 
-## of
+### of
 
 `of` 操作符将某一个元素或多个元素转换为 `Observable`。
 
@@ -238,7 +238,7 @@ Of => next(3)
 Of => completed
 ```
 
-## range
+### range
 
 创建一个发射特定范围的顺序整数的 `Observable`
 
@@ -292,7 +292,7 @@ func range() {
 2017-12-27 09:37:15.269: range -> isDisposed
 ```
 
-## repeatElement
+### repeatElement
 `repeatElement` 操作符将创建一个 `Observable`，这个 `Observable` 将无止尽的发出同一个元素。
 
 eg:
@@ -340,7 +340,7 @@ func repeatElement() {
 ```
 
 
-## defer
+### defer
 
 **直到订阅发生，才创建 `Observable`，并且为每位订阅者创建全新的 `Observable`**
 
@@ -400,7 +400,7 @@ Observable is Create Now
 ```
 
 
-## interval
+### interval
 
 创建一个 `Observable` 每隔一段时间，发出一个索引数
 
@@ -435,7 +435,7 @@ interval => next(7)
 ...........
 ```
 
-## timer
+### timer
 
 创建一个 `Observable` 在一段延时后，产生唯一的一个元素
 
