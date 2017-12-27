@@ -1,0 +1,37 @@
+{
+    "generator": "site",
+    "title": "RxSwift Example",
+    "description": null,
+    "structure": {
+        "readme": "README.md"
+    },
+    "language": "zh-hans",
+    "plugins": [
+        "expandable-chapters-small",
+        "editlink",
+        "include-codeblock",
+        "include-highlight",
+        "github-buttons"
+    ],
+    "theme": "theme",
+    "pluginsConfig": {
+        "fontSettings": {
+            "theme": "white",
+            "family": "sans"
+        },
+        "editlink": {
+            "base": "https://github.com/ToBeDefined/RxSwiftExample/edit/master",
+            "label": "编辑页面"
+        },
+        "github-buttons": {
+            "repo": "ToBeDefined/RxSwiftExample",
+            "types": [
+                "star"
+            ],
+            "size": "small"
+        }
+    },
+    "variables": {
+        "isPdf": false
+    }
+}

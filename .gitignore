@@ -3,6 +3,7 @@ xcuserdata/
 build/
 .vscode/
 Pods/
+/node_modules/
 /_book/
 
 
