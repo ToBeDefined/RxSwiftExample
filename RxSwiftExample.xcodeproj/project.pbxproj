@@ -65,13 +65,13 @@
 		3F6341791FF25D220094B090 /* Operator+Scheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Operator+Scheduler.swift"; sourceTree = "<group>"; };
 		3F63417B1FF25D2B0094B090 /* Operator+Materialize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Operator+Materialize.swift"; sourceTree = "<group>"; };
 		3F63417D1FF25D340094B090 /* Operator+Using.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Operator+Using.swift"; sourceTree = "<group>"; };
-		3F802C271FF3A68F00FE2939 /* 1. Observable - 可被监听的序列.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "1. Observable - 可被监听的序列.md"; sourceTree = "<group>"; };
-		3F802C281FF3A68F00FE2939 /* 2. Observer - 观察者.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "2. Observer - 观察者.md"; sourceTree = "<group>"; };
-		3F802C291FF3A68F00FE2939 /* 3. Observable & Observer 既是可被监听的序列也是观察者.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "3. Observable & Observer 既是可被监听的序列也是观察者.md"; sourceTree = "<group>"; };
-		3F802C2A1FF3A68F00FE2939 /* 4. Disposable - 可被清除的资源.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "4. Disposable - 可被清除的资源.md"; sourceTree = "<group>"; };
-		3F802C2B1FF3A68F00FE2939 /* 5. Schedulers - 调度器.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "5. Schedulers - 调度器.md"; sourceTree = "<group>"; };
-		3F802C2C1FF3A68F00FE2939 /* 6. Error Handling - 错误处理.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "6. Error Handling - 错误处理.md"; sourceTree = "<group>"; };
-		3F802C2D1FF3A68F00FE2939 /* 7. Operator - 操作符.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "7. Operator - 操作符.md"; sourceTree = "<group>"; };
+		3F802C271FF3A68F00FE2939 /* 1.Observable-可被监听的序列.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "1.Observable-可被监听的序列.md"; sourceTree = "<group>"; };
+		3F802C281FF3A68F00FE2939 /* 2.Observer-观察者.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "2.Observer-观察者.md"; sourceTree = "<group>"; };
+		3F802C291FF3A68F00FE2939 /* 3.Observable&Observer既是可被监听的序列也是观察者.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "3.Observable&Observer既是可被监听的序列也是观察者.md"; sourceTree = "<group>"; };
+		3F802C2A1FF3A68F00FE2939 /* 4.Disposable-可被清除的资源.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "4.Disposable-可被清除的资源.md"; sourceTree = "<group>"; };
+		3F802C2B1FF3A68F00FE2939 /* 5.Schedulers-调度器.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "5.Schedulers-调度器.md"; sourceTree = "<group>"; };
+		3F802C2C1FF3A68F00FE2939 /* 6.ErrorHandling-错误处理.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "6.ErrorHandling-错误处理.md"; sourceTree = "<group>"; };
+		3F802C2D1FF3A68F00FE2939 /* 7.Operator-操作符.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "7.Operator-操作符.md"; sourceTree = "<group>"; };
 		3F802C2F1FF3A68F00FE2939 /* Combining.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Combining.md; sourceTree = "<group>"; };
 		3F802C301FF3A68F00FE2939 /* Conditional_and_Boolean.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Conditional_and_Boolean.md; sourceTree = "<group>"; };
 		3F802C311FF3A68F00FE2939 /* Connectable.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Connectable.md; sourceTree = "<group>"; };
@@ -168,13 +168,13 @@
 		3F802C261FF3A68F00FE2939 /* RxSwiftStudy */ = {
 			isa = PBXGroup;
 			children = (
-				3F802C271FF3A68F00FE2939 /* 1. Observable - 可被监听的序列.md */,
-				3F802C281FF3A68F00FE2939 /* 2. Observer - 观察者.md */,
-				3F802C291FF3A68F00FE2939 /* 3. Observable & Observer 既是可被监听的序列也是观察者.md */,
-				3F802C2A1FF3A68F00FE2939 /* 4. Disposable - 可被清除的资源.md */,
-				3F802C2B1FF3A68F00FE2939 /* 5. Schedulers - 调度器.md */,
-				3F802C2C1FF3A68F00FE2939 /* 6. Error Handling - 错误处理.md */,
-				3F802C2D1FF3A68F00FE2939 /* 7. Operator - 操作符.md */,
+				3F802C271FF3A68F00FE2939 /* 1.Observable-可被监听的序列.md */,
+				3F802C281FF3A68F00FE2939 /* 2.Observer-观察者.md */,
+				3F802C291FF3A68F00FE2939 /* 3.Observable&Observer既是可被监听的序列也是观察者.md */,
+				3F802C2A1FF3A68F00FE2939 /* 4.Disposable-可被清除的资源.md */,
+				3F802C2B1FF3A68F00FE2939 /* 5.Schedulers-调度器.md */,
+				3F802C2C1FF3A68F00FE2939 /* 6.ErrorHandling-错误处理.md */,
+				3F802C2D1FF3A68F00FE2939 /* 7.Operator-操作符.md */,
 				3F802C2E1FF3A68F00FE2939 /* Operator */,
 			);
 			path = RxSwiftStudy;
