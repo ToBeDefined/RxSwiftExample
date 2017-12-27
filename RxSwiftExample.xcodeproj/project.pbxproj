@@ -184,18 +184,18 @@
 			isa = PBXGroup;
 			children = (
 				3F27CD701FF3D261009F5EB3 /* Prepare.md */,
-				3F802C2F1FF3A68F00FE2939 /* Combining.md */,
-				3F802C301FF3A68F00FE2939 /* Conditional_and_Boolean.md */,
-				3F802C311FF3A68F00FE2939 /* Connectable.md */,
-				3F802C321FF3A68F00FE2939 /* Create_Observable.md */,
 				3F802C331FF3A68F00FE2939 /* Debug.md */,
-				3F802C341FF3A68F00FE2939 /* ErrorHandling.md */,
-				3F802C351FF3A68F00FE2939 /* Filtering.md */,
-				3F802C361FF3A68F00FE2939 /* Materialize.md */,
-				3F802C371FF3A68F00FE2939 /* Mathematical_and_Aggregate.md */,
-				3F802C381FF3A68F00FE2939 /* Scheduler.md */,
-				3F802C391FF3A68F00FE2939 /* Time.md */,
+				3F802C321FF3A68F00FE2939 /* Create_Observable.md */,
 				3F802C3A1FF3A68F00FE2939 /* Transforming.md */,
+				3F802C351FF3A68F00FE2939 /* Filtering.md */,
+				3F802C2F1FF3A68F00FE2939 /* Combining.md */,
+				3F802C341FF3A68F00FE2939 /* ErrorHandling.md */,
+				3F802C301FF3A68F00FE2939 /* Conditional_and_Boolean.md */,
+				3F802C371FF3A68F00FE2939 /* Mathematical_and_Aggregate.md */,
+				3F802C311FF3A68F00FE2939 /* Connectable.md */,
+				3F802C391FF3A68F00FE2939 /* Time.md */,
+				3F802C381FF3A68F00FE2939 /* Scheduler.md */,
+				3F802C361FF3A68F00FE2939 /* Materialize.md */,
 				3F802C3B1FF3A68F00FE2939 /* Using.md */,
 			);
 			path = Operator;
