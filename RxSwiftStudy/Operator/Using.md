@@ -1,6 +1,9 @@
 
 > Using Operator
 
+
+## Using
+
 创建一个**可被清除的资源(即遵守`Disposable`协议)**，它和 `Observable` 具有相同的寿命
 
 通过使用 `using` 操作符创建 `Observable` 时，同时创建一个可被清除的资源，一旦 `Observable` 终止了，那么这个资源就会被清除掉了(即调用了该资源的`dispose()`方法)。
