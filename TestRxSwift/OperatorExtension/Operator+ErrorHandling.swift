@@ -23,9 +23,8 @@ extension Operator {
                 print("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n")
                 return recoverObservable
             })
-            .subscribe({ (e) in
-                print(e)
-            })
+            .debug("catchError")
+            .subscribe()
             .disposed(by: disposeBag)
     }
     
@@ -35,9 +34,8 @@ extension Operator {
     func catchErrorJustReturn() {
         getErrorObservable()
             .catchErrorJustReturn("Recover Error")
-            .subscribe({ (e) in
-                print(e)
-            })
+            .debug("catchErrorJustReturn")
+            .subscribe()
             .disposed(by: disposeBag)
     }
     

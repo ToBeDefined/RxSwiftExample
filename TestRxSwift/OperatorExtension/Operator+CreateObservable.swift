@@ -203,7 +203,7 @@ extension Operator {
     // > ⚠️注意：是延迟创建 Observable ，而不是延迟订阅或者延迟元素的发出时间
     // defer 操作符将等待观察者订阅它，才创建一个 Observable，它会通过一个构建函数为每一位订阅者创建新的 Observable。
     // > ⚠️注意：看上去每位订阅者都是对同一个 Observable 产生订阅，实际上它们都获得了独立的序列。
-    // 并不是像以前一样订阅同一个 Observable，实际为每个订阅者都创建了一个Observable
+    // 其实并不是像以前一样订阅同一个 Observable，实际为每个订阅者都创建了一个Observable
     // 在一些情况下，直到订阅时才创建 Observable 是可以保证拿到的数据都是最新的。
     @objc
     func `defer`() {

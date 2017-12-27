@@ -12,8 +12,7 @@ import RxSwift
 extension Operator {
     
     // 当你传入多个 Observables 到 amb 操作符时
-    // 它将取其中一个 Observable：第一个产生事件的那个 Observable
-    // 可以是一个 next，error 或者 completed 事件
+    // 它将取其中一个 Observable：第一个产生事件的那个 Observable，可以是一个 next，error 或者 completed 事件
     // amb 将忽略掉其他的 Observables。
     @objc
     func amb() {
@@ -23,7 +22,7 @@ extension Operator {
         first
             .amb(second)
             .amb(third)
-            .debug()
+            .debug("amb")
             .subscribe()
             .disposed(by: disposeBag)
     }

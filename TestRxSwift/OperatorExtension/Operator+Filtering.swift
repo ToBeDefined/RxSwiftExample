@@ -16,7 +16,7 @@ extension Operator {
     // 如果你并不关心 Observable 的任何元素，你只想知道 Observable 在什么时候终止，那就可以使用 ignoreElements 操作符。
     @objc
     func ignoreElements() {
-        getFourthObservable()
+        Observable<Int>.of(1, 2, 3, 4, 5)
             .ignoreElements()
             .debug("ignoreElements")
             .subscribe()
@@ -27,7 +27,7 @@ extension Operator {
     // elementAt 操作符将拉取 Observable 序列中指定索引数的元素，然后将它作为唯一的元素发出。
     @objc
     func elementAt() {
-        getFourthObservable()
+        Observable<Int>.of(1, 2, 3, 4, 5)
             .elementAt(1)
             .subscribe({ (e) in
                 print("elementAt subscribe -> \(e.debugDescription)")
@@ -66,7 +66,7 @@ extension Operator {
     
     
     // 返回在指定连续时间窗口期间中，由源 Observable 发出的第一个和最后一个元素。
-    // 这个运算符确保没有两个元素在少于dueTime的时间发送。
+    // 这个运算符确保没有两个元素在少于 dueTime 的时间发送。
     @objc
     func throttle() {
         let subject = BehaviorSubject<Int>.init(value: 0)
@@ -149,6 +149,7 @@ extension Operator {
     // 跳过 Observable 中头几个元素，直到元素的判定为否
     // 闭包返回 true 则跳过(skip)
     // skipWhile 操作符可以让你忽略源 Observable 中头几个元素，直到元素的判定为否后，它才镜像源 Observable。
+    // 一旦有 false 产生，后面的元素不会再进行判断
     @objc
     func skipWhile() {
         Observable<Int>
@@ -195,10 +196,11 @@ extension Operator {
     
     // 仅仅从 Observable 中发出尾部 n 个元素
     // 通过 takeLast 操作符你可以只发出尾部 n 个元素。并且忽略掉前面的元素。
+    // 在 onCompleted() 之后取出最后n个元素一次性发出
     @objc
     func takeLast() {
         getFirstObservable()
-            .takeLast(4)
+            .takeLast(5)
             .debug("takeLast")
             .subscribe()
             .disposed(by: disposeBag)
@@ -215,7 +217,7 @@ extension Operator {
             .takeWhile({ (value) -> Bool in
                 return value >= 0
             })
-            .debug("skipWhile")
+            .debug("takeWhile")
             .subscribe()
             .disposed(by: disposeBag)
     }

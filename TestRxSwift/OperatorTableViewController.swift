@@ -132,7 +132,6 @@ class OperatorTableViewController: TTableViewController {
                 DataModel.init(#selector(Operator.retry)),
                 DataModel.init(#selector(Operator.retryWhen)),
                 ]),
-            
             SectionModel.init(model: "条件和 Bool 操作符", items: [
                 DataModel.init(#selector(Operator.amb)),
                 // 过滤 Observable
@@ -141,7 +140,6 @@ class OperatorTableViewController: TTableViewController {
                 DataModel.init(#selector(Operator.takeWhile)),
                 DataModel.init(#selector(Operator.takeUntil)),
                 ]),
-            
             SectionModel.init(model: "数学和聚合操作符", items: [
                 DataModel.init(#selector(Operator.concat)),
                 DataModel.init(#selector(Operator.reduce)),
@@ -152,15 +150,20 @@ class OperatorTableViewController: TTableViewController {
                 DataModel.init(#selector(Operator.connect)),
                 DataModel.init(#selector(Operator.refCount)),
                 DataModel.init(#selector(Operator.replay)),
+                DataModel.init(#selector(Operator.share)),
                 DataModel.init(#selector(Operator.shareReplay)),
+                DataModel.init(#selector(Operator.shareReplayLatestWhileConnected)),
                 ]),
             SectionModel.init(model: "About Time", items: [
+                // About Time
                 DataModel.init(#selector(Operator.delay)),
                 DataModel.init(#selector(Operator.delaySubscription)),
-                DataModel.init(#selector(Operator.timeout)),
                 // 创建 Observable
                 DataModel.init(#selector(Operator.`defer`)),
+                DataModel.init(#selector(Operator.interval)),
                 DataModel.init(#selector(Operator.timer)),
+                // About Time
+                DataModel.init(#selector(Operator.timeout)),
                 ]),
             SectionModel.init(model: "Scheduler", items: [
                 DataModel.init(#selector(Operator.observeOn)),

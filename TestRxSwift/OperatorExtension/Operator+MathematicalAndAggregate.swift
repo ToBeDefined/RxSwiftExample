@@ -19,7 +19,7 @@ extension Operator {
         getFirstObservable()
             .concat(getSecondObservable())
             .concat(getThirdObservable())
-            .debug()
+            .debug("concat")
             .subscribe()
             .disposed(by: disposeBag)
     }
@@ -32,10 +32,11 @@ extension Operator {
     @objc
     func reduce() {
         let observable = Observable.of(1, 2, 3, 4, 5, 6)
-        // reduce(<#T##seed: A##A#>, accumulator: <#T##(A, Int) throws -> A#>)
+        // reduce(_ seed:accumulator:)
         // seed: 基数，accumulator: 运算方法
-        // reduce(<#T##seed: A##A#>, accumulator: <#T##(A, Int) throws -> A#>, mapResult: <#T##(A) throws -> R#>)
-        // seed: 基数，accumulator: 运算方法，mapResult:
+        //
+        // reduce(_ seed:accumulator:mapResult:)
+        // seed: 基数，accumulator: 运算方法，mapResult: 转换返回值
         observable
             .reduce(10, accumulator: {(a, b) -> Int in
                 return a*b

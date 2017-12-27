@@ -35,7 +35,7 @@ extension Operator {
             .combineLatest(getFirstObservable(), getSecondObservable(), resultSelector: { (fstr, sstr) -> String in
                 return fstr + " | " + sstr
             })
-            .debug()
+            .debug("combineLatest")
             .subscribe()
             .disposed(by: disposeBag)
     }
@@ -111,22 +111,27 @@ extension Operator {
         
         Observable.of(subject1, subject2)
             .merge()
-            .subscribe(onNext: { print($0) })
+            .debug("merge")
+            .subscribe()
             .disposed(by: disposeBag)
         subject1.onNext("🅰️")
         subject1.onNext("🅱️")
-        subject2.onNext("①")
-        subject2.onNext("②")
+        subject2.onNext("1️⃣")
+        subject2.onNext("2️⃣")
         subject1.onNext("🆎")
-        subject2.onNext("③")
+        subject2.onNext("3️⃣")
+        let err = TError.init(errorCode: 0, errorString: "Test Error", errorData: nil)
+        subject1.onError(err)
+        subject2.onNext("4️⃣")
+        subject2.onNext("5️⃣")
     }
     
     
     // 当你的事件序列是一个事件序列的序列 (Observable<Observable<T>>) 的时候，（可以理解成二维序列）
     // 可以使用 switch 将序列的序列平铺成一维，并且在出现新的序列的时候，自动切换到最新的那个序列上。
     // 和 merge 相似的是，它也是起到了将多个序列『拍平』成一条序列的作用。
-    // > ⚠️注意：当源Observable发出一个新的Observable时，而不是当新的Observable发出一个项目时，它将从之前发出的Observable中取消订阅。
-    // 这意味着在后面的Observable被发射的时间和随后的Observable本身开始发射的时间之间，前一个Observable发射的物体将被丢弃（就像上图中的黄色圆圈一样）。
+    // > ⚠️注意：当源 Observable 发出一个新的 Observable 时，而不是当新的 Observable 发出一个项目时，它将从之前发出的 Observable 中取消订阅。
+    // 这意味着在后面的 Observable 被发射的时间和随后的 Observable 本身开始发射的时间之间，前一个 Observable 发射的物体将被丢弃。
     @objc
     func switchLatest() {
         // 第一个： 发送3个元素

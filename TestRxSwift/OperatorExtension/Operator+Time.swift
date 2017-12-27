@@ -18,9 +18,8 @@ extension Operator {
     func delay() {
         getFourthObservable()
             .delay(5, scheduler: MainScheduler.instance)
-            .subscribe({ (e) in
-                print(e)
-            })
+            .debug("delay")
+            .subscribe()
             .disposed(by: disposeBag)
     }
     
@@ -32,9 +31,8 @@ extension Operator {
         print("Create Observable Now")
         getFourthObservable()
             .delaySubscription(5, scheduler: MainScheduler.instance)
-            .subscribe({ (e) in
-                print(e.debugDescription)
-            })
+            .debug("delaySubscription")
+            .subscribe()
             .disposed(by: disposeBag)
     }
     

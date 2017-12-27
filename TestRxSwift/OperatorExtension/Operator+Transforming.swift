@@ -84,7 +84,6 @@ extension Operator {
     
     
     // 将 Observable 的元素转换成其他的 Observable，然后取这些 Observables 中的第一个
-    // flatMapFirst 操作符将源 Observable 的每一个元素应用一个转换方法，将他们转换成 Observables。
     // 只发第一个 Observables 的元素，其他的 Observables 的元素将被忽略掉。
     @objc
     func flatMapFirst() {
@@ -108,7 +107,6 @@ extension Operator {
     
     
     // 将 Observable 的元素转换成其他的 Observable，然后取这些 Observables 中最新的一个
-    // flatMapLatest 操作符将源 Observable 的每一个元素应用一个转换方法，将他们转换成 Observables。
     // 一旦转换出一个新的 Observable，就只发出它的元素，旧的 Observables 的元素将被忽略掉。
     @objc
     func flatMapLatest() {
@@ -131,8 +129,8 @@ extension Operator {
     }
     
     
-    // 将 Observable 的元素转换成其他的 Observable，然后取这些 Observables 中指定的一个
-    // flatMapWithIndex（ `.enumerated().flatMap(_:)` ） 操作符将源 Observable 的每一个元素应用一个转换方法，将他们转换成 Observables。
+    // > `@available(*, deprecated, message: "Please use enumerated().flatMap()")`
+    // flatMapWithIndex（ `.enumerated().flatMap(_:)` ） 操作符将 Observable 的元素转换成其他的 Observable，然后取这些 Observables 中指定的一个或者几个
     // 只发出指定允许的index的 Observable 中产生的元素，其他的 Observables 的元素将被忽略掉。
     @objc
     func flatMapWithIndex() {
@@ -171,12 +169,9 @@ extension Operator {
     }
     
     
-    // concatMap 操作符将源 Observable 的每一个元素应用一个转换方法，将他们转换成 Observables。
-    // 然后让这些 Observables 按顺序的发出元素，当前一个 Observable 元素发送完毕后，后一个 Observable 才可以开始发出元素。
-    // 等待前一个 Observable 产生完成事件后，才对后一个 Observable 进行订阅。
+    // concatMap 操作符将源 Observable 的每一个元素应用一个转换方法，将元素转换成 Observable。
     @objc
     func concatMap() {
-        
         getFirstObservable()
             .concatMap({ (str) -> Observable<String> in
                 return Observable.of("\(str) + 1️⃣", "\(str) + 2️⃣", "\(str) + 3️⃣", "======================")
@@ -203,9 +198,11 @@ extension Operator {
     
     // 将 Observable 分解为多个子 Observable，周期性的将子 Observable 发出来
     // window 操作符和 buffer 十分相似:
-    //     - buffer 周期性的将缓存的元素集合发送出来，
-    //     - window 周期性的将元素集合以 Observable 的形态发送出来。
-    // buffer 要等到元素搜集完毕后，才会发出元素序列。而 window 可以实时发出元素序列。
+    // |    \     |                发送出的内容形态               |             发送的时机            |
+    // | :------: | :----------------------------------------: | :-----------------------------: |
+    // | `buffer` |         周期性的将缓存的元素集合发送出来         | 要等到元素搜集完毕后，才会发出元素序列 |
+    // | `window` | 周期性的将元素集合以 `Observable` 的形态发送出来 |         可以实时发出元素序列        |
+
     @objc
     func window() {
         getFirstObservable()
