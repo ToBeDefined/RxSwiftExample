@@ -1,4 +1,4 @@
-target 'TestRxSwift' do
+target 'RxSwiftExample' do
     use_frameworks!
     inhibit_all_warnings!
     

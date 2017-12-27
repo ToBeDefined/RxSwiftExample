@@ -237,12 +237,12 @@ func merge() {
 Unhandled error happened: TError(errorCode: 0, errorString: "Test Error", errorData: nil)
  subscription called from:
 0   RxSwift                             0x0000000109fa158c _T07RxSwift14ObservableTypePAAE9subscribeAA10Disposable_py1EQzcSg6onNext_ys5Error_pcSg0gI0yycSg0G9CompletedAM0G8DisposedtF + 780
-1   TestRxSwift                         0x0000000109853023 _T011TestRxSwift8OperatorC5mergeyyF + 1427
-2   TestRxSwift                         0x0000000109853884 _T011TestRxSwift8OperatorC5mergeyyFTo + 36
-3   TestRxSwift                         0x0000000109877de1 _T011TestRxSwift27OperatorTableViewControllerC11viewDidLoadyyFy10Foundation9IndexPathVcfU1_ + 897
-4   TestRxSwift                         0x0000000109877f17 _T011TestRxSwift27OperatorTableViewControllerC11viewDidLoadyyFy10Foundation9IndexPathVcfU1_TA + 103
-5   TestRxSwift                         0x0000000109838da0 _T010Foundation9IndexPathVIxx_ACIxi_TR + 48
-6   TestRxSwift                         0x0000000109877fa2 _T010Foundation9IndexPathVIxx_ACIxi_TRTA + 66
+1   RxSwiftExample                         0x0000000109853023 _T011RxSwiftExample8OperatorC5mergeyyF + 1427
+2   RxSwiftExample                         0x0000000109853884 _T011RxSwiftExample8OperatorC5mergeyyFTo + 36
+3   RxSwiftExample                         0x0000000109877de1 _T011RxSwiftExample27OperatorTableViewControllerC11viewDidLoadyyFy10Foundation9IndexPathVcfU1_ + 897
+4   RxSwiftExample                         0x0000000109877f17 _T011RxSwiftExample27OperatorTableViewControllerC11viewDidLoadyyFy10Foundation9IndexPathVcfU1_TA + 103
+5   RxSwiftExample                         0x0000000109838da0 _T010Foundation9IndexPathVIxx_ACIxi_TR + 48
+6   RxSwiftExample                         0x0000000109877fa2 _T010Foundation9IndexPathVIxx_ACIxi_TRTA + 66
 7   RxSwift                             0x0000000109fa1d35 _T07RxSwift14ObservableTypePAAE9subscribeAA10Disposable_py1EQzcSg6onNext_ys5Error_pcSg0gI0yycSg0G9CompletedAM0G8DisposedtFyAA5EventOyAGGcfU_ + 885
 8   RxSwift                             0x0000000109fa228a _T07RxSwift14ObservableTypePAAE9subscribeAA10Disposable_py1EQzcSg6onNext_ys5Error_pcSg0gI0yycSg0G9CompletedAM0G8DisposedtFyAA5EventOyAGGcfU_TA + 282
 9   RxSwift                             0x0000000109ed7998 _T07RxSwift17AnonymousObserverC6onCoreyAA5EventOyxGF + 408
@@ -314,7 +314,7 @@ Unhandled error happened: TError(errorCode: 0, errorString: "Test Error", errorD
 75  CoreFoundation                      0x000000010dee5889 CFRunLoopRunSpecific + 409
 76  GraphicsServices                    0x00000001136149c6 GSEventRunModal + 62
 77  UIKit                               0x000000010b1c75d6 UIApplicationMain + 159
-78  TestRxSwift                         0x0000000109858c07 main + 55
+78  RxSwiftExample                         0x0000000109858c07 main + 55
 79  libdyld.dylib                       0x000000010f7bcd81 start + 1
 80  ???                                 0x0000000000000001 0x0 + 1
 2017-12-27 12:56:10.991: merge -> isDisposed

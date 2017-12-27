@@ -249,12 +249,12 @@ func timeout() {
 Unhandled error happened: Sequence timeout.
  subscription called from:
 0   RxSwift                             0x000000010b9db58c _T07RxSwift14ObservableTypePAAE9subscribeAA10Disposable_py1EQzcSg6onNext_ys5Error_pcSg0gI0yycSg0G9CompletedAM0G8DisposedtF + 780
-1   TestRxSwift                         0x000000010b277bae _T011TestRxSwift8OperatorC7timeoutyyF + 1150
-2   TestRxSwift                         0x000000010b277e04 _T011TestRxSwift8OperatorC7timeoutyyFTo + 36
-3   TestRxSwift                         0x000000010b2ac771 _T011TestRxSwift27OperatorTableViewControllerC11viewDidLoadyyFy10Foundation9IndexPathVcfU1_ + 897
-4   TestRxSwift                         0x000000010b2ac8a7 _T011TestRxSwift27OperatorTableViewControllerC11viewDidLoadyyFy10Foundation9IndexPathVcfU1_TA + 103
-5   TestRxSwift                         0x000000010b26cdc0 _T010Foundation9IndexPathVIxx_ACIxi_TR + 48
-6   TestRxSwift                         0x000000010b2ac932 _T010Foundation9IndexPathVIxx_ACIxi_TRTA + 66
+1   RxSwiftExample                         0x000000010b277bae _T011RxSwiftExample8OperatorC7timeoutyyF + 1150
+2   RxSwiftExample                         0x000000010b277e04 _T011RxSwiftExample8OperatorC7timeoutyyFTo + 36
+3   RxSwiftExample                         0x000000010b2ac771 _T011RxSwiftExample27OperatorTableViewControllerC11viewDidLoadyyFy10Foundation9IndexPathVcfU1_ + 897
+4   RxSwiftExample                         0x000000010b2ac8a7 _T011RxSwiftExample27OperatorTableViewControllerC11viewDidLoadyyFy10Foundation9IndexPathVcfU1_TA + 103
+5   RxSwiftExample                         0x000000010b26cdc0 _T010Foundation9IndexPathVIxx_ACIxi_TR + 48
+6   RxSwiftExample                         0x000000010b2ac932 _T010Foundation9IndexPathVIxx_ACIxi_TRTA + 66
 7   RxSwift                             0x000000010b9dbd35 _T07RxSwift14ObservableTypePAAE9subscribeAA10Disposable_py1EQzcSg6onNext_ys5Error_pcSg0gI0yycSg0G9CompletedAM0G8DisposedtFyAA5EventOyAGGcfU_ + 885
 8   RxSwift                             0x000000010b9dc28a _T07RxSwift14ObservableTypePAAE9subscribeAA10Disposable_py1EQzcSg6onNext_ys5Error_pcSg0gI0yycSg0G9CompletedAM0G8DisposedtFyAA5EventOyAGGcfU_TA + 282
 9   RxSwift                             0x000000010b911998 _T07RxSwift17AnonymousObserverC6onCoreyAA5EventOyxGF + 408
@@ -326,7 +326,7 @@ Unhandled error happened: Sequence timeout.
 75  CoreFoundation                      0x000000010f91f889 CFRunLoopRunSpecific + 409
 76  GraphicsServices                    0x000000011504a9c6 GSEventRunModal + 62
 77  UIKit                               0x000000010cc015d6 UIApplicationMain + 159
-78  TestRxSwift                         0x000000010b28d597 main + 55
+78  RxSwiftExample                         0x000000010b28d597 main + 55
 79  libdyld.dylib                       0x00000001111f6d81 start + 1
 80  ???                                 0x0000000000000001 0x0 + 1
 2017-12-27 16:44:35.902: timeout -> isDisposed
