@@ -1,0 +1,29 @@
+language: node_js
+
+node_js:
+  - '6'
+
+branches:
+  only:
+    - master
+
+cache:
+  directories:
+    - node_modules/
+
+before_install:
+  - openssl aes-256-cbc -K $encrypted_717ed256e368_key -iv $encrypted_717ed256e368_iv -in .travis/id_rsa.enc -out ~/.ssh/id_rsa -d
+  - chmod 600 ~/.ssh/id_rsa
+  - eval $(ssh-agent)
+  - ssh-add ~/.ssh/id_rsa
+  - cp .travis/ssh_config ~/.ssh/config
+  - git config --global user.name "TBD_GitLab_CI"
+  - git config --global user.email "weinanshao@163.com"
+  - git submodule update --init --recursive
+
+install:
+  - npm install -g gitbook
+  - npm install -g gitbook-cli
+
+script:
+  - sh publish_gitbook.sh
