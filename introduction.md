@@ -30,5 +30,6 @@
     - [7.11 Scheduler Operator](./RxSwiftStudy/Operator/Scheduler.md)
     - [7.12 Materialize Operator](./RxSwiftStudy/Operator/Materialize.md)
     - [7.13 Using Operator](./RxSwiftStudy/Operator/Using.md)
+- [8. 其他相关资料](./RxSwiftStudy/8.其他相关资料.md)
 
-    
+

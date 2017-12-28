@@ -32,6 +32,7 @@
 		3F63417A1FF25D220094B090 /* Operator+Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6341791FF25D220094B090 /* Operator+Scheduler.swift */; };
 		3F63417C1FF25D2B0094B090 /* Operator+Materialize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F63417B1FF25D2B0094B090 /* Operator+Materialize.swift */; };
 		3F63417E1FF25D340094B090 /* Operator+Using.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F63417D1FF25D340094B090 /* Operator+Using.swift */; };
+		3F802C3D1FF47EEB00FE2939 /* 8.其他相关资料.md in Resources */ = {isa = PBXBuildFile; fileRef = 3F802C3C1FF47EEB00FE2939 /* 8.其他相关资料.md */; };
 		3F9A2E991FE24A1D00086EFA /* ObserverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9A2E981FE24A1D00086EFA /* ObserverViewController.swift */; };
 		3F9A2E9B1FE24E0100086EFA /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9A2E9A1FE24E0100086EFA /* Common.swift */; };
 		3FDA1F811FE3BF1900451C48 /* ErrorHandlingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDA1F801FE3BF1900451C48 /* ErrorHandlingViewController.swift */; };
@@ -85,6 +86,7 @@
 		3F802C391FF3A68F00FE2939 /* Time.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Time.md; sourceTree = "<group>"; };
 		3F802C3A1FF3A68F00FE2939 /* Transforming.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Transforming.md; sourceTree = "<group>"; };
 		3F802C3B1FF3A68F00FE2939 /* Using.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Using.md; sourceTree = "<group>"; };
+		3F802C3C1FF47EEB00FE2939 /* 8.其他相关资料.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "8.其他相关资料.md"; sourceTree = "<group>"; };
 		3F9A2E981FE24A1D00086EFA /* ObserverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserverViewController.swift; sourceTree = "<group>"; };
 		3F9A2E9A1FE24E0100086EFA /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		3FDA1F801FE3BF1900451C48 /* ErrorHandlingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandlingViewController.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				3F802C2B1FF3A68F00FE2939 /* 5.Schedulers-调度器.md */,
 				3F802C2C1FF3A68F00FE2939 /* 6.ErrorHandling-错误处理.md */,
 				3F802C2D1FF3A68F00FE2939 /* 7.Operator-操作符.md */,
+				3F802C3C1FF47EEB00FE2939 /* 8.其他相关资料.md */,
 				3F802C2E1FF3A68F00FE2939 /* Operator */,
 			);
 			path = RxSwiftStudy;
@@ -301,6 +304,7 @@
 			files = (
 				3F27CD711FF3D261009F5EB3 /* Prepare.md in Resources */,
 				3F1D65331FDFDBA800495602 /* LaunchScreen.storyboard in Resources */,
+				3F802C3D1FF47EEB00FE2939 /* 8.其他相关资料.md in Resources */,
 				3F1D65301FDFDBA800495602 /* Assets.xcassets in Resources */,
 				3F1D652E1FDFDBA800495602 /* Main.storyboard in Resources */,
 			);
