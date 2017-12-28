@@ -3,11 +3,14 @@
 
 主要是RxSwift的一些操作符的示例
 
-部分内容摘自[官方文档](http://reactivex.io/documentation/operators.html)以及翻译的[中文文档](https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree.html)
+> 部分内容摘自[官方文档](http://reactivex.io/documentation/operators.html)以及翻译的[中文文档](https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree.html)
 
-[GitBook地址: https://swift.rx.tbd.ink](https://swift.rx.tbd.ink)
+## 相关地址
+- RxSwiftExample Xcode项目: [https://github.com/ToBeDefined/RxSwiftExample/](https://github.com/ToBeDefined/RxSwiftExample/)
+- GitBook地址: [https://swift.rx.tbd.ink](https://swift.rx.tbd.ink/)
+- GitBook备用地址: [https://weinanshao.gitbooks.io/rxswift-example/content/](https://weinanshao.gitbooks.io/rxswift-example/content/)
 
-[GitBook备用地址](https://weinanshao.gitbooks.io/rxswift-example/content/)
+## 目录
 
 - [1. Observable - 可被监听的序列](./RxSwiftStudy/1.Observable-可被监听的序列.md)
 - [2. Observer - 观察者](./RxSwiftStudy/2.Observer-观察者.md)
