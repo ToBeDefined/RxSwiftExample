@@ -6,9 +6,10 @@
 > 部分内容摘自[官方文档](http://reactivex.io/documentation/operators.html)以及翻译的[中文文档](https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree.html)
 
 ## 相关地址
+
 - RxSwiftExample Xcode项目: [https://github.com/ToBeDefined/RxSwiftExample/](https://github.com/ToBeDefined/RxSwiftExample/)
-- GitBook地址: [https://swift.rx.tbd.ink](https://swift.rx.tbd.ink/)
-- GitBook备用地址: [https://weinanshao.gitbooks.io/rxswift-example/content/](https://weinanshao.gitbooks.io/rxswift-example/content/)
+- GitBook地址: [http://rxswift.tbd.ink](http://rxswift.tbd.ink/)
+- GitBook备用地址: [https://swift.rx.tbd.ink](https://swift.rx.tbd.ink/)
 
 ## 目录
 
