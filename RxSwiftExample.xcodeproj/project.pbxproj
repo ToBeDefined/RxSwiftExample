@@ -16,7 +16,6 @@
 		3F1D652E1FDFDBA800495602 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F1D652C1FDFDBA800495602 /* Main.storyboard */; };
 		3F1D65301FDFDBA800495602 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F1D652F1FDFDBA800495602 /* Assets.xcassets */; };
 		3F1D65331FDFDBA800495602 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F1D65311FDFDBA800495602 /* LaunchScreen.storyboard */; };
-		3F27CD711FF3D261009F5EB3 /* Prepare.md in Resources */ = {isa = PBXBuildFile; fileRef = 3F27CD701FF3D261009F5EB3 /* Prepare.md */; };
 		3F44B3581FE823330078C163 /* OperatorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F44B3571FE823330078C163 /* OperatorTableViewController.swift */; };
 		3F48980A1FF2704F00378C37 /* Operator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4898091FF2704F00378C37 /* Operator.swift */; };
 		3F6341631FF232520094B090 /* Operator+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6341621FF232520094B090 /* Operator+Debug.swift */; };
@@ -32,7 +31,6 @@
 		3F63417A1FF25D220094B090 /* Operator+Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6341791FF25D220094B090 /* Operator+Scheduler.swift */; };
 		3F63417C1FF25D2B0094B090 /* Operator+Materialize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F63417B1FF25D2B0094B090 /* Operator+Materialize.swift */; };
 		3F63417E1FF25D340094B090 /* Operator+Using.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F63417D1FF25D340094B090 /* Operator+Using.swift */; };
-		3F802C3D1FF47EEB00FE2939 /* 8.其他相关资料.md in Resources */ = {isa = PBXBuildFile; fileRef = 3F802C3C1FF47EEB00FE2939 /* 8.其他相关资料.md */; };
 		3F9A2E991FE24A1D00086EFA /* ObserverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9A2E981FE24A1D00086EFA /* ObserverViewController.swift */; };
 		3F9A2E9B1FE24E0100086EFA /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9A2E9A1FE24E0100086EFA /* Common.swift */; };
 		3FDA1F811FE3BF1900451C48 /* ErrorHandlingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDA1F801FE3BF1900451C48 /* ErrorHandlingViewController.swift */; };
@@ -302,9 +300,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F27CD711FF3D261009F5EB3 /* Prepare.md in Resources */,
 				3F1D65331FDFDBA800495602 /* LaunchScreen.storyboard in Resources */,
-				3F802C3D1FF47EEB00FE2939 /* 8.其他相关资料.md in Resources */,
 				3F1D65301FDFDBA800495602 /* Assets.xcassets in Resources */,
 				3F1D652E1FDFDBA800495602 /* Main.storyboard in Resources */,
 			);
