@@ -7,6 +7,9 @@
     },
     "language": "zh-hans",
     "plugins": [
+        "-lunr",
+        "-search",
+        "search-plus",
         "expandable-chapters-small",
         "editlink",
         "include-codeblock",
