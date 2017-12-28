@@ -8,6 +8,8 @@
 
 通过使用 `using` 操作符创建 `Observable` 时，同时创建一个可被清除的资源，一旦 `Observable` 终止了，那么这个资源就会被清除掉了(即调用了该资源的`dispose()`方法)。
 
+eg:
+
 ```swift
 func using() {
     class DisposableResource: Disposable {
@@ -40,6 +42,8 @@ func using() {
         .disposed(by: disposeBag)
 }
 ```
+
+输出如下：
 
 ```swift
 2017-12-27 17:06:35.757: Operator+Using.swift:43 (using()) -> subscribed

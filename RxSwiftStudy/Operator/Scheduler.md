@@ -57,6 +57,8 @@ observeOn: ink.tbd.test.observeQueue;  ==>  completed
 
 `subscribeOn` 操作符指定 `Observable` 在那个 `Scheduler` 开始执行，无论它处于链的那个位置。 另一方面 `observeOn` 将决定后面的方法在哪个 `Scheduler` 运行。因此，你可能会多次调用 `observeOn` 来决定某些操作符在哪个线程运行。
 
+eg:
+
 ```swift
 func subscribeOn() {
     let observable = Observable<Int>.of(1, 2, 3, 4, 5)
