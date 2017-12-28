@@ -1,0 +1,815 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>7.10 Time Operator · RxSwift Example</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search-plus/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="Scheduler.html" />
+    
+    
+    <link rel="prev" href="Connectable.html" />
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"repo":"ToBeDefined/RxSwiftExample","types":["star"],"size":"small"};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../1.Observable-可被监听的序列.html">
+            
+                <a href="../1.Observable-可被监听的序列.html">
+            
+                    
+                    1. Observable - 可被监听的序列
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../2.Observer-观察者.html">
+            
+                <a href="../2.Observer-观察者.html">
+            
+                    
+                    2. Observer - 观察者
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../3.Observable&Observer-既是可被监听的序列也是观察者.html">
+            
+                <a href="../3.Observable&Observer-既是可被监听的序列也是观察者.html">
+            
+                    
+                    3. Observable & Observer 既是可被监听的序列也是观察者
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../4.Disposable-可被清除的资源.html">
+            
+                <a href="../4.Disposable-可被清除的资源.html">
+            
+                    
+                    4. Disposable - 可被清除的资源
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../5.Schedulers-调度器.html">
+            
+                <a href="../5.Schedulers-调度器.html">
+            
+                    
+                    5. Schedulers - 调度器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../6.ErrorHandling-错误处理.html">
+            
+                <a href="../6.ErrorHandling-错误处理.html">
+            
+                    
+                    6. Error Handling - 错误处理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../7.Operator-操作符.html">
+            
+                <a href="../7.Operator-操作符.html">
+            
+                    
+                    7. Operator - 操作符
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="Prepare.html">
+            
+                <a href="Prepare.html">
+            
+                    
+                    7.00 准备测试使用的方法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="Debug.html">
+            
+                <a href="Debug.html">
+            
+                    
+                    7.01 Debug Operator
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" data-path="Create.html">
+            
+                <a href="Create.html">
+            
+                    
+                    7.02 创建 Observable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4" data-path="Transforming.html">
+            
+                <a href="Transforming.html">
+            
+                    
+                    7.03 变换 Observable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5" data-path="Filtering.html">
+            
+                <a href="Filtering.html">
+            
+                    
+                    7.04 过滤 Observable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.6" data-path="Combining.html">
+            
+                <a href="Combining.html">
+            
+                    
+                    7.05 联合 Observable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.7" data-path="ErrorHandling.html">
+            
+                <a href="ErrorHandling.html">
+            
+                    
+                    7.06 错误处理操作符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.8" data-path="Conditional_and_Boolean.html">
+            
+                <a href="Conditional_and_Boolean.html">
+            
+                    
+                    7.07 条件和 Bool 操作符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.9" data-path="Mathematical_and_Aggregate.html">
+            
+                <a href="Mathematical_and_Aggregate.html">
+            
+                    
+                    7.08 数学和聚合操作符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.10" data-path="Connectable.html">
+            
+                <a href="Connectable.html">
+            
+                    
+                    7.09 连接 Observable 操作符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.8.11" data-path="Time.html">
+            
+                <a href="Time.html">
+            
+                    
+                    7.10 Time Operator
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.12" data-path="Scheduler.html">
+            
+                <a href="Scheduler.html">
+            
+                    
+                    7.11 Scheduler Operator
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.13" data-path="Materialize.html">
+            
+                <a href="Materialize.html">
+            
+                    
+                    7.12 Materialize Operator
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.14" data-path="Using.html">
+            
+                <a href="Using.html">
+            
+                    
+                    7.13 Using Operator
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../8.其他相关资料.html">
+            
+                <a href="../8.其他相关资料.html">
+            
+                    
+                    8. 其他相关资料
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >7.10 Time Operator</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div class="search-plus" id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="time-operator">Time Operator</h2>
+<h3 id="delay">delay</h3>
+<p><code>delay</code> &#x64CD;&#x4F5C;&#x7B26;&#x5C06;&#x4FEE;&#x6539;&#x4E00;&#x4E2A; <code>Observable</code>&#xFF0C;&#x5B83;&#x4F1A;&#x5C06; <code>Observable</code> &#x7684;&#x6240;&#x6709;&#x5143;&#x7D20;&#x90FD;&#x62D6;&#x5EF6;&#x4E00;&#x6BB5;&#x8BBE;&#x5B9A;&#x597D;&#x7684;&#x65F6;&#x95F4;&#xFF0C; &#x7136;&#x540E;&#x624D;&#x5C06;&#x5B83;&#x4EEC;&#x53D1;&#x9001;&#x51FA;&#x6765;&#x3002;</p>
+<p><strong>&#x26A0;&#xFE0F;&#x6CE8;&#x610F;&#xFF1A;&#x662F;&#x5EF6;&#x8FDF;&#x5143;&#x7D20;&#x7684;&#x53D1;&#x51FA;&#x65F6;&#x95F4;&#x800C;&#x4E0D;&#x662F;&#x5EF6;&#x8FDF;&#x8BA2;&#x9605;&#x6216;&#x8005;&#x521B;&#x5EFA; Observable &#x7684;&#x65F6;&#x95F4;</strong></p>
+<p>eg:</p>
+<pre><code class="lang-swift"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">delay</span><span class="hljs-params">()</span></span> {
+    getFourthObservable()
+        .delay(<span class="hljs-number">5</span>, scheduler: <span class="hljs-type">MainScheduler</span>.instance)
+        .debug(<span class="hljs-string">&quot;delay&quot;</span>)
+        .subscribe()
+        .disposed(by: disposeBag)
+}
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-swift"><span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">16</span>:<span class="hljs-number">38</span>:<span class="hljs-number">12.431</span>: delay -&gt; subscribed
+&gt; <span class="hljs-type">Send</span> onNext(<span class="hljs-string">&quot;0&#xFE0F;&#x20E3;&quot;</span>)
+&gt; <span class="hljs-type">Send</span> onNext(<span class="hljs-string">&quot;1&#xFE0F;&#x20E3;&quot;</span>)
+&gt; <span class="hljs-type">Send</span> onNext(<span class="hljs-string">&quot;2&#xFE0F;&#x20E3;&quot;</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">16</span>:<span class="hljs-number">38</span>:<span class="hljs-number">17.435</span>: delay -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">0</span>&#xFE0F;&#x20E3;)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">16</span>:<span class="hljs-number">38</span>:<span class="hljs-number">18.433</span>: delay -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">1</span>&#xFE0F;&#x20E3;)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">16</span>:<span class="hljs-number">38</span>:<span class="hljs-number">19.433</span>: delay -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">2</span>&#xFE0F;&#x20E3;)
+</code></pre>
+<h3 id="delaysubscription">delaySubscription</h3>
+<p><code>delaySubscription</code> &#x64CD;&#x4F5C;&#x7B26;&#x5C06;&#x5728;&#x7ECF;&#x8FC7;&#x6240;&#x8BBE;&#x5B9A;&#x7684;&#x65F6;&#x95F4;&#x540E;&#xFF0C;&#x624D;&#x771F;&#x6B63;&#x7684;&#x5BF9; <code>Observable</code> &#x8FDB;&#x884C;&#x8BA2;&#x9605;&#x64CD;&#x4F5C;&#x3002;</p>
+<p><strong>&#x26A0;&#xFE0F;&#x6CE8;&#x610F;&#xFF1A;&#x662F;&#x5EF6;&#x8FDF;&#x5EF6;&#x8FDF;&#x8BA2;&#x9605;&#x65F6;&#x95F4;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x5143;&#x7D20;&#x7684;&#x53D1;&#x51FA;&#x65F6;&#x95F4;&#x6216;&#x8005;&#x521B;&#x5EFA; Observable &#x7684;&#x65F6;&#x95F4;</strong></p>
+<pre><code class="lang-swift"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">delaySubscription</span><span class="hljs-params">()</span></span> {
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Create Observable Now&quot;</span>)
+    getFourthObservable()
+        .delaySubscription(<span class="hljs-number">5</span>, scheduler: <span class="hljs-type">MainScheduler</span>.instance)
+        .debug(<span class="hljs-string">&quot;delaySubscription&quot;</span>)
+        .subscribe()
+        .disposed(by: disposeBag)
+}
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-swift"><span class="hljs-type">Create</span> <span class="hljs-type">Observable</span> <span class="hljs-type">Now</span>
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">16</span>:<span class="hljs-number">42</span>:<span class="hljs-number">49.984</span>: delaySubscription -&gt; subscribed
+&gt; <span class="hljs-type">Send</span> onNext(<span class="hljs-string">&quot;0&#xFE0F;&#x20E3;&quot;</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">16</span>:<span class="hljs-number">42</span>:<span class="hljs-number">54.989</span>: delaySubscription -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">0</span>&#xFE0F;&#x20E3;)
+&gt; <span class="hljs-type">Send</span> onNext(<span class="hljs-string">&quot;1&#xFE0F;&#x20E3;&quot;</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">16</span>:<span class="hljs-number">42</span>:<span class="hljs-number">56.086</span>: delaySubscription -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">1</span>&#xFE0F;&#x20E3;)
+&gt; <span class="hljs-type">Send</span> onNext(<span class="hljs-string">&quot;2&#xFE0F;&#x20E3;&quot;</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">16</span>:<span class="hljs-number">42</span>:<span class="hljs-number">57.179</span>: delaySubscription -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">2</span>&#xFE0F;&#x20E3;)
+</code></pre>
+<h3 id="defer">defer</h3>
+<p><strong>&#x76F4;&#x5230;&#x8BA2;&#x9605;&#x53D1;&#x751F;&#xFF0C;&#x624D;&#x521B;&#x5EFA; <code>Observable</code>&#xFF0C;&#x5E76;&#x4E14;&#x4E3A;&#x6BCF;&#x4F4D;&#x8BA2;&#x9605;&#x8005;&#x521B;&#x5EFA;&#x5168;&#x65B0;&#x7684; <code>Observable</code></strong></p>
+<blockquote>
+<p>&#x26A0;&#xFE0F;&#x6CE8;&#x610F;&#xFF1A;&#x662F;&#x5EF6;&#x8FDF;&#x521B;&#x5EFA; <code>Observable</code> &#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x5EF6;&#x8FDF;&#x8BA2;&#x9605;&#x6216;&#x8005;&#x5EF6;&#x8FDF;&#x5143;&#x7D20;&#x7684;&#x53D1;&#x51FA;&#x65F6;&#x95F4;</p>
+<blockquote>
+<p><code>defer</code> &#x64CD;&#x4F5C;&#x7B26;&#x5C06;&#x7B49;&#x5F85;&#x89C2;&#x5BDF;&#x8005;&#x8BA2;&#x9605;&#x5B83;&#xFF0C;&#x624D;&#x521B;&#x5EFA;&#x4E00;&#x4E2A; <code>Observable</code>&#xFF0C;&#x5B83;&#x4F1A;&#x901A;&#x8FC7;&#x4E00;&#x4E2A;&#x6784;&#x5EFA;&#x51FD;&#x6570;&#x4E3A;&#x6BCF;&#x4E00;&#x4F4D;&#x8BA2;&#x9605;&#x8005;&#x521B;&#x5EFA;&#x65B0;&#x7684; <code>Observable</code>&#x3002;</p>
+</blockquote>
+<p>&#x26A0;&#xFE0F;&#x6CE8;&#x610F;&#xFF1A;&#x770B;&#x4E0A;&#x53BB;&#x6BCF;&#x4F4D;&#x8BA2;&#x9605;&#x8005;&#x90FD;&#x662F;&#x5BF9;&#x540C;&#x4E00;&#x4E2A; <code>Observable</code> &#x4EA7;&#x751F;&#x8BA2;&#x9605;&#xFF0C;&#x5B9E;&#x9645;&#x4E0A;&#x5B83;&#x4EEC;&#x90FD;&#x83B7;&#x5F97;&#x4E86;&#x72EC;&#x7ACB;&#x7684;&#x5E8F;&#x5217;&#x3002;&#x5176;&#x5B9E;&#x5E76;&#x4E0D;&#x662F;&#x50CF;&#x4EE5;&#x524D;&#x4E00;&#x6837;&#x8BA2;&#x9605;&#x540C;&#x4E00;&#x4E2A; <code>Observable</code>&#xFF0C;&#x5B9E;&#x9645;&#x4E3A;&#x6BCF;&#x4E2A;&#x8BA2;&#x9605;&#x8005;&#x90FD;&#x521B;&#x5EFA;&#x4E86;&#x4E00;&#x4E2A; <code>Observable</code> &#xFF0C;&#x5728;&#x4E00;&#x4E9B;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x76F4;&#x5230;&#x8BA2;&#x9605;&#x65F6;&#x624D;&#x521B;&#x5EFA; <code>Observable</code> &#x662F;&#x53EF;&#x4EE5;&#x4FDD;&#x8BC1;&#x62FF;&#x5230;&#x7684;&#x6570;&#x636E;&#x90FD;&#x662F;&#x6700;&#x65B0;&#x7684;&#x3002;</p>
+</blockquote>
+<p>eg:</p>
+<pre><code class="lang-swift"><span class="hljs-function"><span class="hljs-keyword">func</span> `<span class="hljs-title">defer</span>`<span class="hljs-params">()</span></span> {
+    <span class="hljs-keyword">let</span> observable = <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">String</span>&gt;.deferred { [<span class="hljs-keyword">unowned</span> <span class="hljs-keyword">self</span>] () -&gt; <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">String</span>&gt; <span class="hljs-keyword">in</span>
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Observable is Create Now&quot;</span>)
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">self</span>.getSecondObservable()
+    }
+
+    delayTime(<span class="hljs-number">2</span>) {
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;First Subscribe Now&quot;</span>)
+        observable
+            .debug(<span class="hljs-string">&quot;Test Defer: First Subscribe&quot;</span>)
+            .subscribe()
+            .disposed(by: <span class="hljs-keyword">self</span>.disposeBag)
+    }
+
+    <span class="hljs-comment">// &#x6D4B;&#x8BD5;&#x662F;&#x5426;&#x4E3A;&#x6BCF;&#x4F4D;&#x8BA2;&#x9605;&#x8005;&#x90FD;&#x521B;&#x5EFA;&#x4E86; Observable</span>
+    delayTime(<span class="hljs-number">5</span>) {
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Second Subscribe Now&quot;</span>)
+        observable
+            .debug(<span class="hljs-string">&quot;Test Defer: Second Subscribe&quot;</span>)
+            .subscribe()
+            .disposed(by: <span class="hljs-keyword">self</span>.disposeBag)
+    }
+}
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-swift"><span class="hljs-type">First</span> <span class="hljs-type">Subscribe</span> <span class="hljs-type">Now</span>
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">09</span>:<span class="hljs-number">44</span>:<span class="hljs-number">31.176</span>: <span class="hljs-type">Test</span> <span class="hljs-type">Defer</span>: <span class="hljs-type">First</span> <span class="hljs-type">Subscribe</span> -&gt; subscribed
+<span class="hljs-type">Observable</span> <span class="hljs-keyword">is</span> <span class="hljs-type">Create</span> <span class="hljs-type">Now</span>
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">09</span>:<span class="hljs-number">44</span>:<span class="hljs-number">31.280</span>: <span class="hljs-type">Test</span> <span class="hljs-type">Defer</span>: <span class="hljs-type">First</span> <span class="hljs-type">Subscribe</span> -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">Second</span> -&gt; <span class="hljs-number">1</span>)
+<span class="hljs-type">Second</span> <span class="hljs-type">Subscribe</span> <span class="hljs-type">Now</span>
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">09</span>:<span class="hljs-number">44</span>:<span class="hljs-number">34.171</span>: <span class="hljs-type">Test</span> <span class="hljs-type">Defer</span>: <span class="hljs-type">Second</span> <span class="hljs-type">Subscribe</span> -&gt; subscribed
+<span class="hljs-type">Observable</span> <span class="hljs-keyword">is</span> <span class="hljs-type">Create</span> <span class="hljs-type">Now</span>
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">09</span>:<span class="hljs-number">44</span>:<span class="hljs-number">34.279</span>: <span class="hljs-type">Test</span> <span class="hljs-type">Defer</span>: <span class="hljs-type">Second</span> <span class="hljs-type">Subscribe</span> -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">Second</span> -&gt; <span class="hljs-number">1</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">09</span>:<span class="hljs-number">44</span>:<span class="hljs-number">35.280</span>: <span class="hljs-type">Test</span> <span class="hljs-type">Defer</span>: <span class="hljs-type">First</span> <span class="hljs-type">Subscribe</span> -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">Second</span> -&gt; <span class="hljs-number">2</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">09</span>:<span class="hljs-number">44</span>:<span class="hljs-number">38.279</span>: <span class="hljs-type">Test</span> <span class="hljs-type">Defer</span>: <span class="hljs-type">Second</span> <span class="hljs-type">Subscribe</span> -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">Second</span> -&gt; <span class="hljs-number">2</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">09</span>:<span class="hljs-number">44</span>:<span class="hljs-number">39.280</span>: <span class="hljs-type">Test</span> <span class="hljs-type">Defer</span>: <span class="hljs-type">First</span> <span class="hljs-type">Subscribe</span> -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">Second</span> -&gt; <span class="hljs-number">3</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">09</span>:<span class="hljs-number">44</span>:<span class="hljs-number">39.280</span>: <span class="hljs-type">Test</span> <span class="hljs-type">Defer</span>: <span class="hljs-type">First</span> <span class="hljs-type">Subscribe</span> -&gt; <span class="hljs-type">Event</span> completed
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">09</span>:<span class="hljs-number">44</span>:<span class="hljs-number">39.280</span>: <span class="hljs-type">Test</span> <span class="hljs-type">Defer</span>: <span class="hljs-type">First</span> <span class="hljs-type">Subscribe</span> -&gt; isDisposed
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">09</span>:<span class="hljs-number">44</span>:<span class="hljs-number">42.279</span>: <span class="hljs-type">Test</span> <span class="hljs-type">Defer</span>: <span class="hljs-type">Second</span> <span class="hljs-type">Subscribe</span> -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">Second</span> -&gt; <span class="hljs-number">3</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">09</span>:<span class="hljs-number">44</span>:<span class="hljs-number">42.279</span>: <span class="hljs-type">Test</span> <span class="hljs-type">Defer</span>: <span class="hljs-type">Second</span> <span class="hljs-type">Subscribe</span> -&gt; <span class="hljs-type">Event</span> completed
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">09</span>:<span class="hljs-number">44</span>:<span class="hljs-number">42.280</span>: <span class="hljs-type">Test</span> <span class="hljs-type">Defer</span>: <span class="hljs-type">Second</span> <span class="hljs-type">Subscribe</span> -&gt; isDisposed
+</code></pre>
+<h3 id="interval">interval</h3>
+<p>&#x521B;&#x5EFA;&#x4E00;&#x4E2A; <code>Observable</code> &#x6BCF;&#x9694;&#x4E00;&#x6BB5;&#x65F6;&#x95F4;&#xFF0C;&#x53D1;&#x51FA;&#x4E00;&#x4E2A;&#x7D22;&#x5F15;&#x6570;</p>
+<p><code>interval</code> &#x64CD;&#x4F5C;&#x7B26;&#x5C06;&#x521B;&#x5EFA;&#x4E00;&#x4E2A; <code>Observable</code>&#xFF0C;&#x5B83;&#x6BCF;&#x9694;&#x4E00;&#x6BB5;&#x8BBE;&#x5B9A;&#x7684;&#x65F6;&#x95F4;&#xFF0C;&#x53D1;&#x51FA;&#x4E00;&#x4E2A;&#x7D22;&#x5F15;&#x6570;&#x7684;&#x5143;&#x7D20;&#x3002;&#x5B83;&#x5C06;&#x53D1;&#x51FA;&#x65E0;&#x6570;&#x4E2A;&#x5143;&#x7D20;&#x3002;</p>
+<p>eg:</p>
+<pre><code class="lang-swift"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">interval</span><span class="hljs-params">()</span></span> {
+    <span class="hljs-keyword">let</span> intervalQueue = <span class="hljs-type">DispatchQueue</span>.<span class="hljs-keyword">init</span>(label: <span class="hljs-string">&quot;ink.tbd.test.interval&quot;</span>)
+    <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">Int</span>&gt;
+        .interval(<span class="hljs-number">1</span>, scheduler: <span class="hljs-type">ConcurrentDispatchQueueScheduler</span>.<span class="hljs-keyword">init</span>(queue: intervalQueue))
+        .subscribe({ (e) <span class="hljs-keyword">in</span>
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;interval =&gt; <span class="hljs-subst">\(e.debugDescription)</span>&quot;</span>)
+        })
+        .disposed(by: disposeBag)
+}
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-swift">interval =&gt; next(<span class="hljs-number">0</span>)
+interval =&gt; next(<span class="hljs-number">1</span>)
+interval =&gt; next(<span class="hljs-number">2</span>)
+interval =&gt; next(<span class="hljs-number">3</span>)
+interval =&gt; next(<span class="hljs-number">4</span>)
+interval =&gt; next(<span class="hljs-number">5</span>)
+interval =&gt; next(<span class="hljs-number">6</span>)
+interval =&gt; next(<span class="hljs-number">7</span>)
+...........
+...........
+</code></pre>
+<h3 id="timer">timer</h3>
+<p>&#x521B;&#x5EFA;&#x4E00;&#x4E2A; <code>Observable</code> &#x5728;&#x4E00;&#x6BB5;&#x5EF6;&#x65F6;&#x540E;&#xFF0C;&#x4EA7;&#x751F;&#x552F;&#x4E00;&#x7684;&#x4E00;&#x4E2A;&#x5143;&#x7D20;</p>
+<p><code>timer</code> &#x64CD;&#x4F5C;&#x7B26;&#x5C06;&#x521B;&#x5EFA;&#x4E00;&#x4E2A; <code>Observable</code>&#xFF0C;&#x5B83;&#x5728;&#x7ECF;&#x8FC7;&#x8BBE;&#x5B9A;&#x7684;&#x4E00;&#x6BB5;&#x65F6;&#x95F4;&#x540E;&#xFF0C;&#x4EA7;&#x751F;&#x552F;&#x4E00;&#x7684;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x3002;</p>
+<blockquote>
+<p>&#x26A0;&#xFE0F;&#x6CE8;&#x610F;&#xFF1A;<code>timer(_:period:scheduler:)</code> &#x4E0E; <code>interval(_:scheduler:)</code> &#x7684;&#x533A;&#x522B;</p>
+<p><code>timer(_:period:scheduler:)</code> &#x7684;&#x5B9E;&#x73B0;&#xFF1A;</p>
+<pre><code class="lang-swift"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">timer</span><span class="hljs-params">(<span class="hljs-number">_</span> dueTime: RxTimeInterval, period: RxTimeInterval? = <span class="hljs-literal">nil</span>, scheduler: SchedulerType)</span></span>
+    -&gt; <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">E</span>&gt; {
+        <span class="hljs-keyword">return</span> <span class="hljs-type">Timer</span>(
+            dueTime: dueTime,
+            period: period,
+            scheduler: scheduler
+        )
+}
+</code></pre>
+<p><code>interval(_:scheduler:)</code> &#x7684;&#x5B9E;&#x73B0;&#xFF1A;</p>
+<pre><code class="lang-swift"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">interval</span><span class="hljs-params">(<span class="hljs-number">_</span> period: RxTimeInterval, scheduler: SchedulerType)</span></span>
+    -&gt; <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">E</span>&gt; {
+        <span class="hljs-keyword">return</span> <span class="hljs-type">Timer</span>(dueTime: period,
+                     period: period,
+                     scheduler: scheduler
+        )
+}
+</code></pre>
+</blockquote>
+<p>eg:</p>
+<pre><code class="lang-swift"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">timer</span><span class="hljs-params">()</span></span> {
+    <span class="hljs-comment">// dueTime: &#x521D;&#x59CB;&#x5EF6;&#x65F6;, period: &#x65F6;&#x95F4;&#x95F4;&#x9694;, scheduler: &#x961F;&#x5217;</span>
+    <span class="hljs-keyword">let</span> timerObservable = <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">Int</span>&gt;.timer(<span class="hljs-number">5.0</span>, period: <span class="hljs-number">1</span>, scheduler: <span class="hljs-type">MainScheduler</span>.instance)
+    timerObservable
+        .debug(<span class="hljs-string">&quot;timer&quot;</span>)
+        .subscribe()
+        .disposed(by: disposeBag)
+}
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-swift"><span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">09</span>:<span class="hljs-number">57</span>:<span class="hljs-number">16.075</span>: timer -&gt; subscribed
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">09</span>:<span class="hljs-number">57</span>:<span class="hljs-number">21.077</span>: timer -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">0</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">09</span>:<span class="hljs-number">57</span>:<span class="hljs-number">22.076</span>: timer -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">1</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">09</span>:<span class="hljs-number">57</span>:<span class="hljs-number">23.077</span>: timer -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">2</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">09</span>:<span class="hljs-number">57</span>:<span class="hljs-number">24.077</span>: timer -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">3</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">09</span>:<span class="hljs-number">57</span>:<span class="hljs-number">25.077</span>: timer -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">4</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">09</span>:<span class="hljs-number">57</span>:<span class="hljs-number">26.077</span>: timer -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">5</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">09</span>:<span class="hljs-number">57</span>:<span class="hljs-number">27.077</span>: timer -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">6</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">09</span>:<span class="hljs-number">57</span>:<span class="hljs-number">28.076</span>: timer -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">7</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">09</span>:<span class="hljs-number">57</span>:<span class="hljs-number">29.076</span>: timer -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">8</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">09</span>:<span class="hljs-number">57</span>:<span class="hljs-number">30.076</span>: timer -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">9</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">09</span>:<span class="hljs-number">57</span>:<span class="hljs-number">31.075</span>: timer -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">10</span>)
+............
+............
+</code></pre>
+<h3 id="timeout">timeout</h3>
+<p>&#x5982;&#x679C;&#x6E90; <code>Observable</code> &#x5728;&#x89C4;&#x5B9A;&#x65F6;&#x95F4;&#x5185;&#x6CA1;&#x6709;&#x53D1;&#x4EFB;&#x4F55;&#x51FA;&#x5143;&#x7D20;&#xFF0C;&#x5C31;&#x4EA7;&#x751F;&#x4E00;&#x4E2A;&#x8D85;&#x65F6;&#x7684; <code>error</code> &#x4E8B;&#x4EF6;</p>
+<p><code>timer</code> &#x64CD;&#x4F5C;&#x7B26;&#x5C06;&#x4F7F;&#x5F97;&#x5E8F;&#x5217;&#x53D1;&#x51FA;&#x4E00;&#x4E2A; <code>error</code> &#x4E8B;&#x4EF6;&#xFF0C;&#x53EA;&#x8981; <code>Observable</code> &#x5728;&#x4E00;&#x6BB5;&#x65F6;&#x95F4;&#x5185;&#x6CA1;&#x6709;&#x4EA7;&#x751F;&#x5143;&#x7D20;&#x3002;</p>
+<p>eg:</p>
+<pre><code class="lang-swift"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">timeout</span><span class="hljs-params">()</span></span> {
+    <span class="hljs-keyword">let</span> observable = <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">Int</span>&gt;.never()
+    observable
+        .timeout(<span class="hljs-number">3</span>, scheduler: <span class="hljs-type">MainScheduler</span>.instance)
+        .debug(<span class="hljs-string">&quot;timeout&quot;</span>)
+        .subscribe()
+        .disposed(by: disposeBag)
+}
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-swift"><span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">16</span>:<span class="hljs-number">44</span>:<span class="hljs-number">32.898</span>: timeout -&gt; subscribed
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">16</span>:<span class="hljs-number">44</span>:<span class="hljs-number">35.899</span>: timeout -&gt; <span class="hljs-type">Event</span> error(<span class="hljs-type">Sequence</span> timeout.)
+<span class="hljs-type">Unhandled</span> error happened: <span class="hljs-type">Sequence</span> timeout.
+ subscription called from:
+<span class="hljs-number">0</span>   <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010b9db58c</span> _T07RxSwift14ObservableTypePAAE9subscribeAA10Disposable_py1EQzcSg6onNext_ys5Error_pcSg0gI0yycSg0G9CompletedAM0G8DisposedtF + <span class="hljs-number">780</span>
+<span class="hljs-number">1</span>   <span class="hljs-type">RxSwiftExample</span>                         <span class="hljs-number">0x000000010b277bae</span> _T011RxSwiftExample8OperatorC7timeoutyyF + <span class="hljs-number">1150</span>
+<span class="hljs-number">2</span>   <span class="hljs-type">RxSwiftExample</span>                         <span class="hljs-number">0x000000010b277e04</span> _T011RxSwiftExample8OperatorC7timeoutyyFTo + <span class="hljs-number">36</span>
+<span class="hljs-number">3</span>   <span class="hljs-type">RxSwiftExample</span>                         <span class="hljs-number">0x000000010b2ac771</span> _T011RxSwiftExample27OperatorTableViewControllerC11viewDidLoadyyFy10Foundation9IndexPathVcfU1_ + <span class="hljs-number">897</span>
+<span class="hljs-number">4</span>   <span class="hljs-type">RxSwiftExample</span>                         <span class="hljs-number">0x000000010b2ac8a7</span> _T011RxSwiftExample27OperatorTableViewControllerC11viewDidLoadyyFy10Foundation9IndexPathVcfU1_TA + <span class="hljs-number">103</span>
+<span class="hljs-number">5</span>   <span class="hljs-type">RxSwiftExample</span>                         <span class="hljs-number">0x000000010b26cdc0</span> _T010Foundation9IndexPathVIxx_ACIxi_TR + <span class="hljs-number">48</span>
+<span class="hljs-number">6</span>   <span class="hljs-type">RxSwiftExample</span>                         <span class="hljs-number">0x000000010b2ac932</span> _T010Foundation9IndexPathVIxx_ACIxi_TRTA + <span class="hljs-number">66</span>
+<span class="hljs-number">7</span>   <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010b9dbd35</span> _T07RxSwift14ObservableTypePAAE9subscribeAA10Disposable_py1EQzcSg6onNext_ys5Error_pcSg0gI0yycSg0G9CompletedAM0G8DisposedtFyAA5EventOyAGGcfU_ + <span class="hljs-number">885</span>
+<span class="hljs-number">8</span>   <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010b9dc28a</span> _T07RxSwift14ObservableTypePAAE9subscribeAA10Disposable_py1EQzcSg6onNext_ys5Error_pcSg0gI0yycSg0G9CompletedAM0G8DisposedtFyAA5EventOyAGGcfU_TA + <span class="hljs-number">282</span>
+<span class="hljs-number">9</span>   <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010b911998</span> _T07RxSwift17AnonymousObserverC6onCoreyAA5EventOyxGF + <span class="hljs-number">408</span>
+<span class="hljs-number">10</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010b9e3026</span> _T07RxSwift12ObserverBaseC2onyAA5EventOyxGF + <span class="hljs-number">742</span>
+<span class="hljs-number">11</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010b9e35be</span> _T07RxSwift12ObserverBaseCyxGAA0C4TypeAAlAaEP2onyAA5EventOy1EQzGFTW + <span class="hljs-number">62</span>
+<span class="hljs-number">12</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010b912c93</span> _T0TA + <span class="hljs-number">115</span>
+<span class="hljs-number">13</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010b91d3a7</span> _T07RxSwift5EventOyxGIxi_ADytIxir_1EQyd__RszAA12ObserverTypeRd__r__lTR + <span class="hljs-number">23</span>
+<span class="hljs-number">14</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010ba2fbc6</span> _T07RxSwift5EventOyxGIxi_ADytIxir_1EQyd__RszAA12ObserverTypeRd__r__lTRTA.<span class="hljs-number">47</span> + <span class="hljs-number">118</span>
+<span class="hljs-number">15</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010b91d770</span> _T07RxSwift5EventOyxGytIxir_ADIxi_lTR + <span class="hljs-number">16</span>
+<span class="hljs-number">16</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010b91f332</span> _T07RxSwift5EventOyxGytIxir_ADIxi_lTRTA.<span class="hljs-number">18</span> + <span class="hljs-number">82</span>
+<span class="hljs-number">17</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010b91e564</span> _T07RxSwift8dispatchyAA3BagVyyAA5EventOyxGcG_AGtlF + <span class="hljs-number">900</span>
+<span class="hljs-number">18</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010ba2992e</span> _T07RxSwift36ShareReplay1WhileConnectedConnection33_E9FE621655D67A613BF2FC2D9B3041FCLLC2onyAA5EventOyxGF + <span class="hljs-number">1230</span>
+<span class="hljs-number">19</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010ba2baeb</span> _T07RxSwift36ShareReplay1WhileConnectedConnection33_E9FE621655D67A613BF2FC2D9B3041FCLLCyxGAA12ObserverTypeAAlAaFP2onyAA5EventOy1EQzGFTW + <span class="hljs-number">43</span>
+<span class="hljs-number">20</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010ba37bcc</span> _T07RxSwift4SinkC9forwardOnyAA5EventOy1EQzGF + <span class="hljs-number">780</span>
+<span class="hljs-number">21</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010b92fff7</span> _T07RxSwift9CatchSink33_7E15DB08AB19A7B882D5C92A393C6F6DLLC2onyAA5EventOy1EQzGF + <span class="hljs-number">823</span>
+<span class="hljs-number">22</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010b930a5b</span> _T07RxSwift9CatchSink33_7E15DB08AB19A7B882D5C92A393C6F6DLLCyxGAA12ObserverTypeA2aFRzlAaFP2onyAA5EventOy1EQzGFTW + <span class="hljs-number">43</span>
+<span class="hljs-number">23</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010b9e0f11</span> _T07RxSwift32ObserveOnSerialDispatchQueueSink33_277A93ABA8477198C125F3F26B2D4B62LLCADyxGAA0efG9SchedulerC9scheduler_x8observerAA10Cancelable_p6canceltcfcAA10Disposable_pAE4sink_AA5EventOy1EQzG5eventtcfU_ + <span class="hljs-number">833</span>
+<span class="hljs-number">24</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010b9e2579</span> _T07RxSwift32ObserveOnSerialDispatchQueueSink33_277A93ABA8477198C125F3F26B2D4B62LLCADyxGAA0efG9SchedulerC9scheduler_x8observerAA10Cancelable_p6canceltcfcAA10Disposable_pAE4sink_AA5EventOy1EQzG5eventtcfU_TA + <span class="hljs-number">9</span>
+<span class="hljs-number">25</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010b9e17d9</span> _T07RxSwift32ObserveOnSerialDispatchQueueSink33_277A93ABA8477198C125F3F26B2D4B62LLCyxGAA5EventOy1EQzGAA10Disposable_pIxxir_AE_AJtAaK_pIxir_AA12ObserverTypeRzlTR + <span class="hljs-number">137</span>
+<span class="hljs-number">26</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010b9e2786</span> _T07RxSwift32ObserveOnSerialDispatchQueueSink33_277A93ABA8477198C125F3F26B2D4B62LLCyxGAA5EventOy1EQzGAA10Disposable_pIxxir_AE_AJtAaK_pIxir_AA12ObserverTypeRzlTRTA + <span class="hljs-number">102</span>
+<span class="hljs-number">27</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010b9ba564</span> _T07RxSwift13MainSchedulerC16scheduleInternalAA10Disposable_px_AaE_pxc6actiontlF + <span class="hljs-number">484</span>
+<span class="hljs-number">28</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010ba26a4d</span> _T07RxSwift28SerialDispatchQueueSchedulerC8scheduleAA10Disposable_px_AaE_pxc6actiontlF + <span class="hljs-number">173</span>
+<span class="hljs-number">29</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010b9e16cc</span> _T07RxSwift32ObserveOnSerialDispatchQueueSink33_277A93ABA8477198C125F3F26B2D4B62LLC6onCoreyAA5EventOy1EQzGF + <span class="hljs-number">1148</span>
+<span class="hljs-number">30</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010b9e3026</span> _T07RxSwift12ObserverBaseC2onyAA5EventOyxGF + <span class="hljs-number">742</span>
+<span class="hljs-number">31</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010b9e35be</span> _T07RxSwift12ObserverBaseCyxGAA0C4TypeAAlAaEP2onyAA5EventOy1EQzGFTW + <span class="hljs-number">62</span>
+<span class="hljs-number">32</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010ba37bcc</span> _T07RxSwift4SinkC9forwardOnyAA5EventOy1EQzGF + <span class="hljs-number">780</span>
+<span class="hljs-number">33</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010ba420e0</span> _T07RxSwift15SubscribeOnSink33_B44C3DD7F62EF81799E6347E59A266A2LLC2onyAA5EventOy1EQzGF + <span class="hljs-number">400</span>
+<span class="hljs-number">34</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010ba42e0b</span> _T07RxSwift15SubscribeOnSink33_B44C3DD7F62EF81799E6347E59A266A2LLCyxq_GAA12ObserverTypeA2A010ObservableP0RzAaFR_1EQy_AHRtzr0_lAaFP2onyAA5EventOyAHQzGFTW + <span class="hljs-number">43</span>
+<span class="hljs-number">35</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010ba37bcc</span> _T07RxSwift4SinkC9forwardOnyAA5EventOy1EQzGF + <span class="hljs-number">780</span>
+<span class="hljs-number">36</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010b9bb695</span> _T07RxSwift7MapSink33_5428EFA9A9B0C0340021B871D2E5AC01LLC2onyAA5EventOyxGF + <span class="hljs-number">1093</span>
+<span class="hljs-number">37</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010b9bbbeb</span> _T07RxSwift7MapSink33_5428EFA9A9B0C0340021B871D2E5AC01LLCyxq_GAA12ObserverTypeA2aFR_r0_lAaFP2onyAA5EventOy1EQzGFTW + <span class="hljs-number">43</span>
+<span class="hljs-number">38</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010ba37bcc</span> _T07RxSwift4SinkC9forwardOnyAA5EventOy1EQzGF + <span class="hljs-number">780</span>
+<span class="hljs-number">39</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010ba420e0</span> _T07RxSwift15SubscribeOnSink33_B44C3DD7F62EF81799E6347E59A266A2LLC2onyAA5EventOy1EQzGF + <span class="hljs-number">400</span>
+<span class="hljs-number">40</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010ba42e0b</span> _T07RxSwift15SubscribeOnSink33_B44C3DD7F62EF81799E6347E59A266A2LLCyxq_GAA12ObserverTypeA2A010ObservableP0RzAaFR_1EQy_AHRtzr0_lAaFP2onyAA5EventOyAHQzGFTW + <span class="hljs-number">43</span>
+<span class="hljs-number">41</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010b912c93</span> _T0TA + <span class="hljs-number">115</span>
+<span class="hljs-number">42</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010b91d3a7</span> _T07RxSwift5EventOyxGIxi_ADytIxir_1EQyd__RszAA12ObserverTypeRd__r__lTR + <span class="hljs-number">23</span>
+<span class="hljs-number">43</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010ba2fa36</span> _T07RxSwift5EventOyxGIxi_ADytIxir_1EQyd__RszAA12ObserverTypeRd__r__lTRTA + <span class="hljs-number">118</span>
+<span class="hljs-number">44</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010b91d770</span> _T07RxSwift5EventOyxGytIxir_ADIxi_lTR + <span class="hljs-number">16</span>
+<span class="hljs-number">45</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010b91f332</span> _T07RxSwift5EventOyxGytIxir_ADIxi_lTRTA.<span class="hljs-number">18</span> + <span class="hljs-number">82</span>
+<span class="hljs-number">46</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010b91e564</span> _T07RxSwift8dispatchyAA3BagVyyAA5EventOyxGcG_AGtlF + <span class="hljs-number">900</span>
+<span class="hljs-number">47</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010ba2ceee</span> _T07RxSwift29ShareWhileConnectedConnection33_E9FE621655D67A613BF2FC2D9B3041FCLLC2onyAA5EventOyxGF + <span class="hljs-number">1230</span>
+<span class="hljs-number">48</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010ba2eabb</span> _T07RxSwift29ShareWhileConnectedConnection33_E9FE621655D67A613BF2FC2D9B3041FCLLCyxGAA12ObserverTypeAAlAaFP2onyAA5EventOy1EQzGFTW + <span class="hljs-number">43</span>
+<span class="hljs-number">49</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010ba37bcc</span> _T07RxSwift4SinkC9forwardOnyAA5EventOy1EQzGF + <span class="hljs-number">780</span>
+<span class="hljs-number">50</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010b9a0dfb</span> _T07RxSwift6DoSink33_51F9E615740E91B2E920965FFBB1EED3LLC2onyAA5EventOy1EQzGF + <span class="hljs-number">843</span>
+<span class="hljs-number">51</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010b9a14eb</span> _T07RxSwift6DoSink33_51F9E615740E91B2E920965FFBB1EED3LLCyxGAA12ObserverTypeA2aFRzlAaFP2onyAA5EventOy1EQzGFTW + <span class="hljs-number">43</span>
+<span class="hljs-number">52</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010b912c93</span> _T0TA + <span class="hljs-number">115</span>
+<span class="hljs-number">53</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010b91d3a7</span> _T07RxSwift5EventOyxGIxi_ADytIxir_1EQyd__RszAA12ObserverTypeRd__r__lTR + <span class="hljs-number">23</span>
+<span class="hljs-number">54</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010b9f7396</span> _T07RxSwift5EventOyxGIxi_ADytIxir_1EQyd__RszAA12ObserverTypeRd__r__lTRTA + <span class="hljs-number">118</span>
+<span class="hljs-number">55</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010b91d770</span> _T07RxSwift5EventOyxGytIxir_ADIxi_lTR + <span class="hljs-number">16</span>
+<span class="hljs-number">56</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010b91f332</span> _T07RxSwift5EventOyxGytIxir_ADIxi_lTRTA.<span class="hljs-number">18</span> + <span class="hljs-number">82</span>
+<span class="hljs-number">57</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010b91e564</span> _T07RxSwift8dispatchyAA3BagVyyAA5EventOyxGcG_AGtlF + <span class="hljs-number">900</span>
+<span class="hljs-number">58</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010b9f51ca</span> _T07RxSwift14PublishSubjectC2onyAA5EventOyxGF + <span class="hljs-number">1018</span>
+<span class="hljs-number">59</span>  <span class="hljs-type">RxCocoa</span>                             <span class="hljs-number">0x000000010b6a6d91</span> _T07RxSwift14PublishSubjectC2onyAA5EventOyxGFTA + <span class="hljs-number">17</span>
+<span class="hljs-number">60</span>  <span class="hljs-type">RxCocoa</span>                             <span class="hljs-number">0x000000010b6a646d</span> _T07RxSwift5EventOySayypGGIxi_AEIxx_TR + <span class="hljs-number">29</span>
+<span class="hljs-number">61</span>  <span class="hljs-type">RxCocoa</span>                             <span class="hljs-number">0x000000010b6a6d6e</span> _T07RxSwift5EventOySayypGGIxi_AEIxx_TRTA + <span class="hljs-number">78</span>
+<span class="hljs-number">62</span>  <span class="hljs-type">RxCocoa</span>                             <span class="hljs-number">0x000000010b6a45eb</span> _T07RxCocoa13DelegateProxyC14_methodInvokedy10ObjectiveC8SelectorV_SayypG13withArgumentstF + <span class="hljs-number">283</span>
+<span class="hljs-number">63</span>  <span class="hljs-type">RxCocoa</span>                             <span class="hljs-number">0x000000010b6a4664</span> _T07RxCocoa13DelegateProxyC14_methodInvokedy10ObjectiveC8SelectorV_SayypG13withArgumentstFTo + <span class="hljs-number">84</span>
+<span class="hljs-number">64</span>  <span class="hljs-type">RxCocoa</span>                             <span class="hljs-number">0x000000010b675588</span> -[_RXDelegateProxy forwardInvocation:] + <span class="hljs-number">536</span>
+<span class="hljs-number">65</span>  <span class="hljs-type">CoreFoundation</span>                      <span class="hljs-number">0x000000010f91bcd8</span> ___forwarding___ + <span class="hljs-number">760</span>
+<span class="hljs-number">66</span>  <span class="hljs-type">CoreFoundation</span>                      <span class="hljs-number">0x000000010f91b958</span> _CF_forwarding_prep_0 + <span class="hljs-number">120</span>
+<span class="hljs-number">67</span>  <span class="hljs-type">UIKit</span>                               <span class="hljs-number">0x000000010cd43839</span> -[<span class="hljs-type">UITableView</span> _selectRowAtIndexPath:animated:scrollPosition:notifyDelegate:] + <span class="hljs-number">1810</span>
+<span class="hljs-number">68</span>  <span class="hljs-type">UIKit</span>                               <span class="hljs-number">0x000000010cd43a54</span> -[<span class="hljs-type">UITableView</span> _userSelectRowAtPendingSelectionIndexPath:] + <span class="hljs-number">344</span>
+<span class="hljs-number">69</span>  <span class="hljs-type">UIKit</span>                               <span class="hljs-number">0x000000010cc0cd59</span> _runAfterCACommitDeferredBlocks + <span class="hljs-number">318</span>
+<span class="hljs-number">70</span>  <span class="hljs-type">UIKit</span>                               <span class="hljs-number">0x000000010cbfbbb1</span> _cleanUpAfterCAFlushAndRunDeferredBlocks + <span class="hljs-number">280</span>
+<span class="hljs-number">71</span>  <span class="hljs-type">UIKit</span>                               <span class="hljs-number">0x000000010cc2b0e0</span> _afterCACommitHandler + <span class="hljs-number">137</span>
+<span class="hljs-number">72</span>  <span class="hljs-type">CoreFoundation</span>                      <span class="hljs-number">0x000000010f93bc07</span> __CFRUNLOOP_IS_CALLING_OUT_TO_AN_OBSERVER_CALLBACK_FUNCTION__ + <span class="hljs-number">23</span>
+<span class="hljs-number">73</span>  <span class="hljs-type">CoreFoundation</span>                      <span class="hljs-number">0x000000010f93bb5e</span> __CFRunLoopDoObservers + <span class="hljs-number">430</span>
+<span class="hljs-number">74</span>  <span class="hljs-type">CoreFoundation</span>                      <span class="hljs-number">0x000000010f920124</span> __CFRunLoopRun + <span class="hljs-number">1572</span>
+<span class="hljs-number">75</span>  <span class="hljs-type">CoreFoundation</span>                      <span class="hljs-number">0x000000010f91f889</span> <span class="hljs-type">CFRunLoopRunSpecific</span> + <span class="hljs-number">409</span>
+<span class="hljs-number">76</span>  <span class="hljs-type">GraphicsServices</span>                    <span class="hljs-number">0x000000011504a9c6</span> <span class="hljs-type">GSEventRunModal</span> + <span class="hljs-number">62</span>
+<span class="hljs-number">77</span>  <span class="hljs-type">UIKit</span>                               <span class="hljs-number">0x000000010cc015d6</span> <span class="hljs-type">UIApplicationMain</span> + <span class="hljs-number">159</span>
+<span class="hljs-number">78</span>  <span class="hljs-type">RxSwiftExample</span>                         <span class="hljs-number">0x000000010b28d597</span> main + <span class="hljs-number">55</span>
+<span class="hljs-number">79</span>  libdyld.dylib                       <span class="hljs-number">0x00000001111f6d81</span> start + <span class="hljs-number">1</span>
+<span class="hljs-number">80</span>  ???                                 <span class="hljs-number">0x0000000000000001</span> <span class="hljs-number">0x0</span> + <span class="hljs-number">1</span>
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">16</span>:<span class="hljs-number">44</span>:<span class="hljs-number">35.902</span>: timeout -&gt; isDisposed
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Connectable.html" class="navigation navigation-prev " aria-label="Previous page: 7.09 连接 Observable 操作符">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="Scheduler.html" class="navigation navigation-next " aria-label="Next page: 7.11 Scheduler Operator">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"7.10 Time Operator","level":"1.8.11","depth":2,"next":{"title":"7.11 Scheduler Operator","level":"1.8.12","depth":2,"path":"RxSwiftStudy/Operator/Scheduler.md","ref":"./RxSwiftStudy/Operator/Scheduler.md","articles":[]},"previous":{"title":"7.09 连接 Observable 操作符","level":"1.8.10","depth":2,"path":"RxSwiftStudy/Operator/Connectable.md","ref":"./RxSwiftStudy/Operator/Connectable.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","search-plus","expandable-chapters-small","editlink","include-codeblock","include-highlight","github-buttons"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"editlink":{"label":"编辑页面","multilingual":false,"base":"https://github.com/ToBeDefined/RxSwiftExample/edit/master"},"include-highlight":{},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"sans"},"highlight":{},"github-buttons":{"repo":"ToBeDefined/RxSwiftExample","types":["star"],"size":"small"},"expandable-chapters-small":{},"include-codeblock":{"check":false,"edit":false,"fixlang":false,"lang":"","template":"default","theme":"chrome","unindent":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"search-plus":{}},"theme":"theme","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"isPdf":false},"title":"RxSwift Example","language":"zh-hans","gitbook":"*","description":null},"file":{"path":"RxSwiftStudy/Operator/Time.md","mtime":"2017-12-28T09:11:22.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-12-28T09:36:07.825Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search-plus/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search-plus/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-editlink/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

@@ -1,0 +1,888 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>7.05 联合 Observable · RxSwift Example</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search-plus/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="ErrorHandling.html" />
+    
+    
+    <link rel="prev" href="Filtering.html" />
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"repo":"ToBeDefined/RxSwiftExample","types":["star"],"size":"small"};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../1.Observable-可被监听的序列.html">
+            
+                <a href="../1.Observable-可被监听的序列.html">
+            
+                    
+                    1. Observable - 可被监听的序列
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../2.Observer-观察者.html">
+            
+                <a href="../2.Observer-观察者.html">
+            
+                    
+                    2. Observer - 观察者
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../3.Observable&Observer-既是可被监听的序列也是观察者.html">
+            
+                <a href="../3.Observable&Observer-既是可被监听的序列也是观察者.html">
+            
+                    
+                    3. Observable & Observer 既是可被监听的序列也是观察者
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../4.Disposable-可被清除的资源.html">
+            
+                <a href="../4.Disposable-可被清除的资源.html">
+            
+                    
+                    4. Disposable - 可被清除的资源
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../5.Schedulers-调度器.html">
+            
+                <a href="../5.Schedulers-调度器.html">
+            
+                    
+                    5. Schedulers - 调度器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../6.ErrorHandling-错误处理.html">
+            
+                <a href="../6.ErrorHandling-错误处理.html">
+            
+                    
+                    6. Error Handling - 错误处理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../7.Operator-操作符.html">
+            
+                <a href="../7.Operator-操作符.html">
+            
+                    
+                    7. Operator - 操作符
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="Prepare.html">
+            
+                <a href="Prepare.html">
+            
+                    
+                    7.00 准备测试使用的方法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="Debug.html">
+            
+                <a href="Debug.html">
+            
+                    
+                    7.01 Debug Operator
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" data-path="Create.html">
+            
+                <a href="Create.html">
+            
+                    
+                    7.02 创建 Observable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4" data-path="Transforming.html">
+            
+                <a href="Transforming.html">
+            
+                    
+                    7.03 变换 Observable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5" data-path="Filtering.html">
+            
+                <a href="Filtering.html">
+            
+                    
+                    7.04 过滤 Observable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.8.6" data-path="Combining.html">
+            
+                <a href="Combining.html">
+            
+                    
+                    7.05 联合 Observable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.7" data-path="ErrorHandling.html">
+            
+                <a href="ErrorHandling.html">
+            
+                    
+                    7.06 错误处理操作符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.8" data-path="Conditional_and_Boolean.html">
+            
+                <a href="Conditional_and_Boolean.html">
+            
+                    
+                    7.07 条件和 Bool 操作符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.9" data-path="Mathematical_and_Aggregate.html">
+            
+                <a href="Mathematical_and_Aggregate.html">
+            
+                    
+                    7.08 数学和聚合操作符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.10" data-path="Connectable.html">
+            
+                <a href="Connectable.html">
+            
+                    
+                    7.09 连接 Observable 操作符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.11" data-path="Time.html">
+            
+                <a href="Time.html">
+            
+                    
+                    7.10 Time Operator
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.12" data-path="Scheduler.html">
+            
+                <a href="Scheduler.html">
+            
+                    
+                    7.11 Scheduler Operator
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.13" data-path="Materialize.html">
+            
+                <a href="Materialize.html">
+            
+                    
+                    7.12 Materialize Operator
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.14" data-path="Using.html">
+            
+                <a href="Using.html">
+            
+                    
+                    7.13 Using Operator
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../8.其他相关资料.html">
+            
+                <a href="../8.其他相关资料.html">
+            
+                    
+                    8. 其他相关资料
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >7.05 联合 Observable</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div class="search-plus" id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="&#x8054;&#x5408;-observable---combining-operator">&#x8054;&#x5408; Observable - Combining Operator</h2>
+<h3 id="startwith">startWith</h3>
+<p><code>startWith</code> &#x64CD;&#x4F5C;&#x7B26;&#x4F1A;&#x5728; <code>Observable</code> &#x5934;&#x90E8;&#x63D2;&#x5165;&#x4E00;&#x4E9B;&#x5143;&#x7D20;&#x3002;&#xFF08;&#x5982;&#x679C;&#x4F60;&#x60F3;&#x5728;&#x5C3E;&#x90E8;&#x52A0;&#x5165;&#x4E00;&#x4E9B;&#x5143;&#x7D20;&#x53EF;&#x4EE5;&#x7528;concat&#xFF09;</p>
+<p>eg:</p>
+<pre><code class="lang-swift"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">startWith</span><span class="hljs-params">()</span></span> {
+    <span class="hljs-type">Observable</span>.of(<span class="hljs-string">&quot;&#x1F436;&quot;</span>, <span class="hljs-string">&quot;&#x1F431;&quot;</span>, <span class="hljs-string">&quot;&#x1F42D;&quot;</span>, <span class="hljs-string">&quot;&#x1F439;&quot;</span>)
+        .startWith(<span class="hljs-string">&quot;First&quot;</span>)
+        .startWith(<span class="hljs-string">&quot;Second&quot;</span>)
+        .startWith(<span class="hljs-string">&quot;Third&quot;</span>)
+        .startWith(<span class="hljs-string">&quot;1&quot;</span>, <span class="hljs-string">&quot;2&quot;</span>, <span class="hljs-string">&quot;3&quot;</span>)
+        .debug(<span class="hljs-string">&quot;startWith&quot;</span>)
+        .subscribe()
+        .disposed(by: disposeBag)
+}
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-swift"><span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">42</span>:<span class="hljs-number">41.259</span>: startWith -&gt; subscribed
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">42</span>:<span class="hljs-number">41.259</span>: startWith -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">1</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">42</span>:<span class="hljs-number">41.259</span>: startWith -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">2</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">42</span>:<span class="hljs-number">41.259</span>: startWith -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">3</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">42</span>:<span class="hljs-number">41.259</span>: startWith -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">Third</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">42</span>:<span class="hljs-number">41.259</span>: startWith -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">Second</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">42</span>:<span class="hljs-number">41.259</span>: startWith -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">First</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">42</span>:<span class="hljs-number">41.259</span>: startWith -&gt; <span class="hljs-type">Event</span> next(&#x1F436;)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">42</span>:<span class="hljs-number">41.259</span>: startWith -&gt; <span class="hljs-type">Event</span> next(&#x1F431;)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">42</span>:<span class="hljs-number">41.259</span>: startWith -&gt; <span class="hljs-type">Event</span> next(&#x1F42D;)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">42</span>:<span class="hljs-number">41.259</span>: startWith -&gt; <span class="hljs-type">Event</span> next(&#x1F439;)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">42</span>:<span class="hljs-number">41.260</span>: startWith -&gt; <span class="hljs-type">Event</span> completed
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">42</span>:<span class="hljs-number">41.260</span>: startWith -&gt; isDisposed
+</code></pre>
+<h3 id="combinelatest">combineLatest</h3>
+<p><code>combineLatest</code> &#x64CD;&#x4F5C;&#x7B26;&#x5C06;&#x591A;&#x4E2A; <code>Observables</code> &#x4E2D;&#x6700;&#x65B0;&#x7684;&#x5143;&#x7D20;&#x901A;&#x8FC7;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#x7EC4;&#x5408;&#x8D77;&#x6765;&#xFF0C;&#x7136;&#x540E;&#x5C06;&#x8FD9;&#x4E2A;&#x7EC4;&#x5408;&#x7684;&#x7ED3;&#x679C;&#x53D1;&#x51FA;&#x6765;&#x3002;</p>
+<p><strong>&#x8FD9;&#x4E9B;&#x6E90; <code>Observables</code> &#x4E2D;&#x4EFB;&#x4F55;&#x4E00;&#x4E2A;&#x53D1;&#x51FA;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#xFF0C;&#x4ED6;&#x90FD;&#x4F1A;&#x53D1;&#x51FA;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#xFF08;&#x524D;&#x63D0;&#x662F;&#xFF0C;&#x8FD9;&#x4E9B; <code>Observables</code> &#x66FE;&#x7ECF;&#x53D1;&#x51FA;&#x8FC7;&#x5143;&#x7D20;&#xFF09;&#x3002;</strong></p>
+<p>eg:</p>
+<pre><code class="lang-swift"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">combineLatest</span><span class="hljs-params">()</span></span> {
+    <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">String</span>&gt;
+        .combineLatest(getFirstObservable(), getSecondObservable(), resultSelector: { (fstr, sstr) -&gt; <span class="hljs-type">String</span> <span class="hljs-keyword">in</span>
+            <span class="hljs-keyword">return</span> fstr + <span class="hljs-string">&quot; | &quot;</span> + sstr
+        })
+        .debug(<span class="hljs-string">&quot;combineLatest&quot;</span>)
+        .subscribe()
+        .disposed(by: disposeBag)
+}
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x5982;&#x4E0B;</p>
+<pre><code class="lang-swift"><span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">45</span>:<span class="hljs-number">26.780</span>: combineLatest -&gt; subscribed
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">45</span>:<span class="hljs-number">27.782</span>: combineLatest -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">1</span>|<span class="hljs-type">A</span> | <span class="hljs-type">Second</span> -&gt; <span class="hljs-number">1</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">45</span>:<span class="hljs-number">27.782</span>: combineLatest -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">1</span>|<span class="hljs-type">B</span> | <span class="hljs-type">Second</span> -&gt; <span class="hljs-number">1</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">45</span>:<span class="hljs-number">27.782</span>: combineLatest -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">1</span>|<span class="hljs-type">C</span> | <span class="hljs-type">Second</span> -&gt; <span class="hljs-number">1</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">45</span>:<span class="hljs-number">30.886</span>: combineLatest -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">1</span>|<span class="hljs-type">C</span> | <span class="hljs-type">Second</span> -&gt; <span class="hljs-number">2</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">45</span>:<span class="hljs-number">31.781</span>: combineLatest -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">2</span>|<span class="hljs-type">A</span> | <span class="hljs-type">Second</span> -&gt; <span class="hljs-number">2</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">45</span>:<span class="hljs-number">31.782</span>: combineLatest -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">2</span>|<span class="hljs-type">B</span> | <span class="hljs-type">Second</span> -&gt; <span class="hljs-number">2</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">45</span>:<span class="hljs-number">31.782</span>: combineLatest -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">2</span>|<span class="hljs-type">C</span> | <span class="hljs-type">Second</span> -&gt; <span class="hljs-number">2</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">45</span>:<span class="hljs-number">34.886</span>: combineLatest -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">2</span>|<span class="hljs-type">C</span> | <span class="hljs-type">Second</span> -&gt; <span class="hljs-number">3</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">45</span>:<span class="hljs-number">35.781</span>: combineLatest -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">3</span>|<span class="hljs-type">A</span> | <span class="hljs-type">Second</span> -&gt; <span class="hljs-number">3</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">45</span>:<span class="hljs-number">35.781</span>: combineLatest -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">3</span>|<span class="hljs-type">B</span> | <span class="hljs-type">Second</span> -&gt; <span class="hljs-number">3</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">45</span>:<span class="hljs-number">35.781</span>: combineLatest -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">3</span>|<span class="hljs-type">C</span> | <span class="hljs-type">Second</span> -&gt; <span class="hljs-number">3</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">45</span>:<span class="hljs-number">35.781</span>: combineLatest -&gt; <span class="hljs-type">Event</span> completed
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">45</span>:<span class="hljs-number">35.782</span>: combineLatest -&gt; isDisposed
+</code></pre>
+<h3 id="zip">zip</h3>
+<p>&#x901A;&#x8FC7;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#x5C06;&#x591A;&#x4E2A; <code>Observables</code> &#x7684;&#x5143;&#x7D20;&#x7EC4;&#x5408;&#x8D77;&#x6765;&#xFF0C;&#x7136;&#x540E;&#x5C06;&#x6BCF;&#x4E00;&#x4E2A;&#x7EC4;&#x5408;&#x7684;&#x7ED3;&#x679C;&#x53D1;&#x51FA;&#x6765;&#x3002;</p>
+<p><code>zip</code> &#x64CD;&#x4F5C;&#x7B26;&#x5C06;&#x591A;&#x4E2A;(&#x6700;&#x591A;&#x4E0D;&#x8D85;&#x8FC7;8&#x4E2A;) <code>Observables</code> &#x7684;&#x5143;&#x7D20;&#x901A;&#x8FC7;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#x7EC4;&#x5408;&#x8D77;&#x6765;&#xFF0C;&#x7136;&#x540E;&#x5C06;&#x8FD9;&#x4E2A;&#x7EC4;&#x5408;&#x7684;&#x7ED3;&#x679C;&#x53D1;&#x51FA;&#x6765;&#x3002;&#x5B83;&#x4F1A;&#x4E25;&#x683C;&#x7684;&#x6309;&#x7167;&#x5E8F;&#x5217;&#x7684;&#x7D22;&#x5F15;&#x6570;&#x8FDB;&#x884C;&#x7EC4;&#x5408;&#x3002;</p>
+<p>&#x4F8B;&#x5982;&#xFF0C;&#x8FD4;&#x56DE;&#x7684; <code>Observable</code> &#x7684;<code>&#x7B2C;&#x4E00;&#x4E2A;&#x5143;&#x7D20;</code>&#xFF0C;&#x662F;&#x7531;<code>&#x6BCF;&#x4E00;&#x4E2A;&#x6E90; Observables</code> &#x7684;<code>&#x7B2C;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x7EC4;&#x5408;</code>&#x51FA;&#x6765;&#x7684;&#x3002;&#x5B83;&#x7684;<code>&#x7B2C;&#x4E8C;&#x4E2A;&#x5143;&#x7D20;</code> &#xFF0C;&#x662F;&#x7531;<code>&#x6BCF;&#x4E00;&#x4E2A;&#x6E90; Observables</code> &#x7684;<code>&#x7B2C;&#x4E8C;&#x4E2A;&#x5143;&#x7D20;&#x7EC4;&#x5408;</code>&#x51FA;&#x6765;&#x7684;&#x3002;&#x5B83;&#x7684;<code>&#x7B2C;&#x4E09;&#x4E2A;&#x5143;&#x7D20;</code> &#xFF0C;&#x662F;&#x7531;<code>&#x6BCF;&#x4E00;&#x4E2A;&#x6E90; Observables</code> &#x7684;<code>&#x7B2C;&#x4E09;&#x4E2A;&#x5143;&#x7D20;&#x7EC4;&#x5408;</code>&#x51FA;&#x6765;&#x7684;&#xFF0C;&#x4EE5;&#x6B64;&#x7C7B;&#x63A8;&#x3002;</p>
+<p>&#x5B83;&#x7684;<strong>&#x5143;&#x7D20;&#x6570;&#x91CF;&#x7B49;&#x4E8E;&#x6E90; Observables &#x4E2D;&#x5143;&#x7D20;&#x6570;&#x91CF;&#x6700;&#x5C11;&#x7684;&#x90A3;&#x4E2A;</strong>&#x3002;</p>
+<p>eg:</p>
+<pre><code class="lang-swift"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">zip</span><span class="hljs-params">()</span></span>  {
+    <span class="hljs-keyword">let</span> disposeBag = <span class="hljs-type">DisposeBag</span>()
+    <span class="hljs-keyword">let</span> first = <span class="hljs-type">PublishSubject</span>&lt;<span class="hljs-type">String</span>&gt;()
+    <span class="hljs-keyword">let</span> second = <span class="hljs-type">PublishSubject</span>&lt;<span class="hljs-type">String</span>&gt;()
+
+    <span class="hljs-type">Observable</span>
+        .<span class="hljs-built_in">zip</span>(first, second) { $<span class="hljs-number">0</span> + $<span class="hljs-number">1</span> }
+        .subscribe(onNext: { <span class="hljs-built_in">print</span>($<span class="hljs-number">0</span>) })
+        .disposed(by: disposeBag)
+
+    first.onNext(<span class="hljs-string">&quot;1&quot;</span>)
+    second.onNext(<span class="hljs-string">&quot;A&quot;</span>)
+
+    first.onNext(<span class="hljs-string">&quot;2&quot;</span>)
+    second.onNext(<span class="hljs-string">&quot;B&quot;</span>)
+
+    second.onNext(<span class="hljs-string">&quot;C&quot;</span>)
+    second.onNext(<span class="hljs-string">&quot;D&quot;</span>)
+    first.onNext(<span class="hljs-string">&quot;3&quot;</span>)
+    first.onNext(<span class="hljs-string">&quot;4&quot;</span>)
+    first.onNext(<span class="hljs-string">&quot;5&quot;</span>)
+}
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-swift">1A
+2B
+3C
+4D
+</code></pre>
+<h3 id="withlatestfrom">withLatestFrom</h3>
+<p>&#x5C06;&#x4E24; <code>Observables</code> &#x6700;&#x65B0;&#x7684;&#x5143;&#x7D20;&#x901A;&#x8FC7;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#x7EC4;&#x5408;&#x4EE5;&#x6765;&#xFF0C;&#x5F53;&#x7B2C;&#x4E00;&#x4E2A; <code>Observable</code> &#x53D1;&#x51FA;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#xFF0C;&#x5C31;&#x5C06;&#x7EC4;&#x5408;&#x540E;&#x7684;&#x5143;&#x7D20;&#x53D1;&#x9001;&#x51FA;&#x6765;</p>
+<p><code>withLatestFrom</code> &#x64CD;&#x4F5C;&#x7B26;&#x5C06;&#x4E24;&#x4E2A; Observables &#x4E2D;&#x6700;&#x65B0;&#x7684;&#x5143;&#x7D20;&#x901A;&#x8FC7;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#x7EC4;&#x5408;&#x8D77;&#x6765;&#xFF0C;&#x7136;&#x540E;&#x5C06;&#x8FD9;&#x4E2A;&#x7EC4;&#x5408;&#x7684;&#x7ED3;&#x679C;&#x53D1;&#x51FA;&#x6765;&#x3002;</p>
+<p>&#x5F53;&#x7B2C;&#x4E00;&#x4E2A; <code>Observable</code> &#x53D1;&#x51FA;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x65F6;&#xFF0C;&#x5C31;&#x7ACB;&#x5373;&#x53D6;&#x51FA;&#x7B2C;&#x4E8C;&#x4E2A; <code>Observable</code> &#x4E2D;&#x6700;&#x65B0;&#x7684;&#x5143;&#x7D20;&#xFF0C;&#x901A;&#x8FC7;&#x4E00;&#x4E2A;&#x7EC4;&#x5408;&#x51FD;&#x6570;&#x5C06;&#x4E24;&#x4E2A;&#x6700;&#x65B0;&#x7684;&#x5143;&#x7D20;&#x5408;&#x5E76;&#x540E;&#x53D1;&#x9001;&#x51FA;&#x53BB;&#x3002;</p>
+<p>eg:</p>
+<pre><code class="lang-swift"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">withLatestFrom</span><span class="hljs-params">()</span></span> {
+    <span class="hljs-comment">// &#x5F53;&#x7B2C;&#x4E00;&#x4E2A; Observable &#x53D1;&#x51FA;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x65F6;&#xFF0C;&#x5C31;&#x7ACB;&#x5373;&#x53D6;&#x51FA;&#x7B2C;&#x4E8C;&#x4E2A; Observable &#x4E2D;&#x6700;&#x65B0;&#x7684;&#x5143;&#x7D20;&#xFF0C;</span>
+    <span class="hljs-comment">// &#x7136;&#x540E;&#x628A;&#x7B2C;&#x4E8C;&#x4E2A; Observable &#x4E2D;&#x6700;&#x65B0;&#x7684;&#x5143;&#x7D20;&#x53D1;&#x9001;&#x51FA;&#x53BB;&#x3002;</span>
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;============================First============================&quot;</span>)
+    getFirstObservable()
+        .withLatestFrom(getSecondObservable())
+        .debug(<span class="hljs-string">&quot;withLatestFrom&quot;</span>)
+        .subscribe()
+        .disposed(by: disposeBag)
+
+    <span class="hljs-comment">// &#x5F53;&#x7B2C;&#x4E00;&#x4E2A; Observable &#x53D1;&#x51FA;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x65F6;&#xFF0C;&#x5C31;&#x7ACB;&#x5373;&#x53D6;&#x51FA;&#x7B2C;&#x4E8C;&#x4E2A; Observable &#x4E2D;&#x6700;&#x65B0;&#x7684;&#x5143;&#x7D20;&#xFF0C;</span>
+    <span class="hljs-comment">// &#x7136;&#x540E;&#x628A;&#x7B2C;&#x4E00;&#x4E2A; Observable &#x4E2D;&#x6700;&#x65B0;&#x7684;&#x5143;&#x7D20;first&#x548C;&#x7136;&#x540E;&#x628A;&#x7B2C;&#x4E8C;&#x4E2A; Observable &#x4E2D;&#x6700;&#x65B0;&#x7684;&#x5143;&#x7D20;second&#x7EC4;&#x5408;first+second&#x53D1;&#x9001;&#x51FA;&#x53BB;&#x3002;</span>
+    delayTime(<span class="hljs-number">10</span>) {
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;============================Second============================&quot;</span>)
+        <span class="hljs-keyword">self</span>.getFirstObservable()
+            .withLatestFrom(<span class="hljs-keyword">self</span>.getSecondObservable(), resultSelector: { (first, second) -&gt; <span class="hljs-type">String</span> <span class="hljs-keyword">in</span>
+                <span class="hljs-keyword">return</span> first + <span class="hljs-string">&quot; &lt;====&gt; &quot;</span> + second
+            })
+            .debug(<span class="hljs-string">&quot;withLatestFrom &amp; Function&quot;</span>)
+            .subscribe()
+            .disposed(by: <span class="hljs-keyword">self</span>.disposeBag)
+    }
+}
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-swift">============================<span class="hljs-type">First</span>============================
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">50</span>:<span class="hljs-number">16.250</span>: withLatestFrom -&gt; subscribed
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">50</span>:<span class="hljs-number">17.253</span>: withLatestFrom -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">Second</span> -&gt; <span class="hljs-number">1</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">50</span>:<span class="hljs-number">17.253</span>: withLatestFrom -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">Second</span> -&gt; <span class="hljs-number">1</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">50</span>:<span class="hljs-number">17.253</span>: withLatestFrom -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">Second</span> -&gt; <span class="hljs-number">1</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">50</span>:<span class="hljs-number">21.750</span>: withLatestFrom -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">Second</span> -&gt; <span class="hljs-number">2</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">50</span>:<span class="hljs-number">21.750</span>: withLatestFrom -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">Second</span> -&gt; <span class="hljs-number">2</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">50</span>:<span class="hljs-number">21.750</span>: withLatestFrom -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">Second</span> -&gt; <span class="hljs-number">2</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">50</span>:<span class="hljs-number">26.144</span>: withLatestFrom -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">Second</span> -&gt; <span class="hljs-number">3</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">50</span>:<span class="hljs-number">26.144</span>: withLatestFrom -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">Second</span> -&gt; <span class="hljs-number">3</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">50</span>:<span class="hljs-number">26.144</span>: withLatestFrom -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">Second</span> -&gt; <span class="hljs-number">3</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">50</span>:<span class="hljs-number">26.145</span>: withLatestFrom -&gt; <span class="hljs-type">Event</span> completed
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">50</span>:<span class="hljs-number">26.145</span>: withLatestFrom -&gt; isDisposed
+============================<span class="hljs-type">Second</span>============================
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">50</span>:<span class="hljs-number">26.253</span>: withLatestFrom &amp; <span class="hljs-type">Function</span> -&gt; subscribed
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">50</span>:<span class="hljs-number">27.254</span>: withLatestFrom &amp; <span class="hljs-type">Function</span> -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">1</span>|<span class="hljs-type">A</span> &lt;====&gt; <span class="hljs-type">Second</span> -&gt; <span class="hljs-number">1</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">50</span>:<span class="hljs-number">27.255</span>: withLatestFrom &amp; <span class="hljs-type">Function</span> -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">1</span>|<span class="hljs-type">B</span> &lt;====&gt; <span class="hljs-type">Second</span> -&gt; <span class="hljs-number">1</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">50</span>:<span class="hljs-number">27.255</span>: withLatestFrom &amp; <span class="hljs-type">Function</span> -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">1</span>|<span class="hljs-type">C</span> &lt;====&gt; <span class="hljs-type">Second</span> -&gt; <span class="hljs-number">1</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">50</span>:<span class="hljs-number">31.254</span>: withLatestFrom &amp; <span class="hljs-type">Function</span> -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">2</span>|<span class="hljs-type">A</span> &lt;====&gt; <span class="hljs-type">Second</span> -&gt; <span class="hljs-number">2</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">50</span>:<span class="hljs-number">31.254</span>: withLatestFrom &amp; <span class="hljs-type">Function</span> -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">2</span>|<span class="hljs-type">B</span> &lt;====&gt; <span class="hljs-type">Second</span> -&gt; <span class="hljs-number">2</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">50</span>:<span class="hljs-number">31.254</span>: withLatestFrom &amp; <span class="hljs-type">Function</span> -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">2</span>|<span class="hljs-type">C</span> &lt;====&gt; <span class="hljs-type">Second</span> -&gt; <span class="hljs-number">2</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">50</span>:<span class="hljs-number">35.253</span>: withLatestFrom &amp; <span class="hljs-type">Function</span> -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">3</span>|<span class="hljs-type">A</span> &lt;====&gt; <span class="hljs-type">Second</span> -&gt; <span class="hljs-number">3</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">50</span>:<span class="hljs-number">35.253</span>: withLatestFrom &amp; <span class="hljs-type">Function</span> -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">3</span>|<span class="hljs-type">B</span> &lt;====&gt; <span class="hljs-type">Second</span> -&gt; <span class="hljs-number">3</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">50</span>:<span class="hljs-number">35.253</span>: withLatestFrom &amp; <span class="hljs-type">Function</span> -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">3</span>|<span class="hljs-type">C</span> &lt;====&gt; <span class="hljs-type">Second</span> -&gt; <span class="hljs-number">3</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">50</span>:<span class="hljs-number">35.254</span>: withLatestFrom &amp; <span class="hljs-type">Function</span> -&gt; <span class="hljs-type">Event</span> completed
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">50</span>:<span class="hljs-number">35.254</span>: withLatestFrom &amp; <span class="hljs-type">Function</span> -&gt; isDisposed
+</code></pre>
+<h3 id="merge">merge</h3>
+<p>&#x901A;&#x8FC7;&#x4F7F;&#x7528; <code>merge</code> &#x64CD;&#x4F5C;&#x7B26;&#x4F60;&#x53EF;&#x4EE5;&#x5C06;&#x591A;&#x4E2A; <code>Observables</code> &#x5408;&#x5E76;&#x6210;&#x4E00;&#x4E2A;&#xFF0C;&#x5F53;&#x67D0;&#x4E00;&#x4E2A; <code>Observable</code> &#x53D1;&#x51FA;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x65F6;&#xFF0C;&#x4ED6;&#x5C31;&#x5C06;&#x8FD9;&#x4E2A;&#x5143;&#x7D20;&#x53D1;&#x51FA;&#x3002;</p>
+<p>&#x5982;&#x679C;&#xFF0C;&#x67D0;&#x4E00;&#x4E2A; <code>Observable</code> &#x53D1;&#x51FA;&#x4E00;&#x4E2A; <code>onError</code> &#x4E8B;&#x4EF6;&#xFF0C;&#x90A3;&#x4E48;&#x88AB;&#x5408;&#x5E76;&#x7684; <code>Observable</code> &#x4E5F;&#x4F1A;&#x5C06;&#x5B83;&#x53D1;&#x51FA;&#xFF0C;&#x5E76;&#x4E14;&#x7ACB;&#x5373;&#x7EC8;&#x6B62;&#x5E8F;&#x5217;&#x3002;</p>
+<p>eg:</p>
+<pre><code class="lang-swift"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">merge</span><span class="hljs-params">()</span></span> {
+    <span class="hljs-keyword">let</span> subject1 = <span class="hljs-type">PublishSubject</span>&lt;<span class="hljs-type">String</span>&gt;()
+    <span class="hljs-keyword">let</span> subject2 = <span class="hljs-type">PublishSubject</span>&lt;<span class="hljs-type">String</span>&gt;()
+
+    <span class="hljs-type">Observable</span>.of(subject1, subject2)
+        .merge()
+        .subscribe(onNext: { <span class="hljs-built_in">print</span>($<span class="hljs-number">0</span>) })
+        .disposed(by: disposeBag)
+    subject1.onNext(<span class="hljs-string">&quot;&#x1F170;&#xFE0F;&quot;</span>)
+    subject1.onNext(<span class="hljs-string">&quot;&#x1F171;&#xFE0F;&quot;</span>)
+    subject2.onNext(<span class="hljs-string">&quot;1&#xFE0F;&#x20E3;&quot;</span>)
+    subject2.onNext(<span class="hljs-string">&quot;2&#xFE0F;&#x20E3;&quot;</span>)
+    subject1.onNext(<span class="hljs-string">&quot;&#x1F18E;&quot;</span>)
+    subject2.onNext(<span class="hljs-string">&quot;3&#xFE0F;&#x20E3;&quot;</span>)
+    <span class="hljs-keyword">let</span> err = <span class="hljs-type">TError</span>.<span class="hljs-keyword">init</span>(errorCode: <span class="hljs-number">0</span>, errorString: <span class="hljs-string">&quot;Test Error&quot;</span>, errorData: <span class="hljs-literal">nil</span>)
+    subject1.onError(err)
+    subject2.onNext(<span class="hljs-string">&quot;4&#xFE0F;&#x20E3;&quot;</span>)
+    subject2.onNext(<span class="hljs-string">&quot;5&#xFE0F;&#x20E3;&quot;</span>)
+}
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-swift"><span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">56</span>:<span class="hljs-number">10.984</span>: merge -&gt; subscribed
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">56</span>:<span class="hljs-number">10.986</span>: merge -&gt; <span class="hljs-type">Event</span> next(&#x1F170;&#xFE0F;)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">56</span>:<span class="hljs-number">10.986</span>: merge -&gt; <span class="hljs-type">Event</span> next(&#x1F171;&#xFE0F;)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">56</span>:<span class="hljs-number">10.987</span>: merge -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">1</span>&#xFE0F;&#x20E3;)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">56</span>:<span class="hljs-number">10.987</span>: merge -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">2</span>&#xFE0F;&#x20E3;)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">56</span>:<span class="hljs-number">10.987</span>: merge -&gt; <span class="hljs-type">Event</span> next(&#x1F18E;)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">56</span>:<span class="hljs-number">10.987</span>: merge -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">3</span>&#xFE0F;&#x20E3;)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">56</span>:<span class="hljs-number">10.988</span>: merge -&gt; <span class="hljs-type">Event</span> error(<span class="hljs-type">TError</span>(errorCode: <span class="hljs-number">0</span>, errorString: <span class="hljs-string">&quot;Test Error&quot;</span>, errorData: <span class="hljs-literal">nil</span>))
+<span class="hljs-type">Unhandled</span> error happened: <span class="hljs-type">TError</span>(errorCode: <span class="hljs-number">0</span>, errorString: <span class="hljs-string">&quot;Test Error&quot;</span>, errorData: <span class="hljs-literal">nil</span>)
+ subscription called from:
+<span class="hljs-number">0</span>   <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x0000000109fa158c</span> _T07RxSwift14ObservableTypePAAE9subscribeAA10Disposable_py1EQzcSg6onNext_ys5Error_pcSg0gI0yycSg0G9CompletedAM0G8DisposedtF + <span class="hljs-number">780</span>
+<span class="hljs-number">1</span>   <span class="hljs-type">RxSwiftExample</span>                         <span class="hljs-number">0x0000000109853023</span> _T011RxSwiftExample8OperatorC5mergeyyF + <span class="hljs-number">1427</span>
+<span class="hljs-number">2</span>   <span class="hljs-type">RxSwiftExample</span>                         <span class="hljs-number">0x0000000109853884</span> _T011RxSwiftExample8OperatorC5mergeyyFTo + <span class="hljs-number">36</span>
+<span class="hljs-number">3</span>   <span class="hljs-type">RxSwiftExample</span>                         <span class="hljs-number">0x0000000109877de1</span> _T011RxSwiftExample27OperatorTableViewControllerC11viewDidLoadyyFy10Foundation9IndexPathVcfU1_ + <span class="hljs-number">897</span>
+<span class="hljs-number">4</span>   <span class="hljs-type">RxSwiftExample</span>                         <span class="hljs-number">0x0000000109877f17</span> _T011RxSwiftExample27OperatorTableViewControllerC11viewDidLoadyyFy10Foundation9IndexPathVcfU1_TA + <span class="hljs-number">103</span>
+<span class="hljs-number">5</span>   <span class="hljs-type">RxSwiftExample</span>                         <span class="hljs-number">0x0000000109838da0</span> _T010Foundation9IndexPathVIxx_ACIxi_TR + <span class="hljs-number">48</span>
+<span class="hljs-number">6</span>   <span class="hljs-type">RxSwiftExample</span>                         <span class="hljs-number">0x0000000109877fa2</span> _T010Foundation9IndexPathVIxx_ACIxi_TRTA + <span class="hljs-number">66</span>
+<span class="hljs-number">7</span>   <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x0000000109fa1d35</span> _T07RxSwift14ObservableTypePAAE9subscribeAA10Disposable_py1EQzcSg6onNext_ys5Error_pcSg0gI0yycSg0G9CompletedAM0G8DisposedtFyAA5EventOyAGGcfU_ + <span class="hljs-number">885</span>
+<span class="hljs-number">8</span>   <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x0000000109fa228a</span> _T07RxSwift14ObservableTypePAAE9subscribeAA10Disposable_py1EQzcSg6onNext_ys5Error_pcSg0gI0yycSg0G9CompletedAM0G8DisposedtFyAA5EventOyAGGcfU_TA + <span class="hljs-number">282</span>
+<span class="hljs-number">9</span>   <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x0000000109ed7998</span> _T07RxSwift17AnonymousObserverC6onCoreyAA5EventOyxGF + <span class="hljs-number">408</span>
+<span class="hljs-number">10</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x0000000109fa9026</span> _T07RxSwift12ObserverBaseC2onyAA5EventOyxGF + <span class="hljs-number">742</span>
+<span class="hljs-number">11</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x0000000109fa95be</span> _T07RxSwift12ObserverBaseCyxGAA0C4TypeAAlAaEP2onyAA5EventOy1EQzGFTW + <span class="hljs-number">62</span>
+<span class="hljs-number">12</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x0000000109ed8c93</span> _T0TA + <span class="hljs-number">115</span>
+<span class="hljs-number">13</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x0000000109ee33a7</span> _T07RxSwift5EventOyxGIxi_ADytIxir_1EQyd__RszAA12ObserverTypeRd__r__lTR + <span class="hljs-number">23</span>
+<span class="hljs-number">14</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x0000000109ff5bc6</span> _T07RxSwift5EventOyxGIxi_ADytIxir_1EQyd__RszAA12ObserverTypeRd__r__lTRTA.<span class="hljs-number">47</span> + <span class="hljs-number">118</span>
+<span class="hljs-number">15</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x0000000109ee3770</span> _T07RxSwift5EventOyxGytIxir_ADIxi_lTR + <span class="hljs-number">16</span>
+<span class="hljs-number">16</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x0000000109ee5332</span> _T07RxSwift5EventOyxGytIxir_ADIxi_lTRTA.<span class="hljs-number">18</span> + <span class="hljs-number">82</span>
+<span class="hljs-number">17</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x0000000109ee4564</span> _T07RxSwift8dispatchyAA3BagVyyAA5EventOyxGcG_AGtlF + <span class="hljs-number">900</span>
+<span class="hljs-number">18</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x0000000109fef92e</span> _T07RxSwift36ShareReplay1WhileConnectedConnection33_E9FE621655D67A613BF2FC2D9B3041FCLLC2onyAA5EventOyxGF + <span class="hljs-number">1230</span>
+<span class="hljs-number">19</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x0000000109ff1aeb</span> _T07RxSwift36ShareReplay1WhileConnectedConnection33_E9FE621655D67A613BF2FC2D9B3041FCLLCyxGAA12ObserverTypeAAlAaFP2onyAA5EventOy1EQzGFTW + <span class="hljs-number">43</span>
+<span class="hljs-number">20</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x0000000109ffdbcc</span> _T07RxSwift4SinkC9forwardOnyAA5EventOy1EQzGF + <span class="hljs-number">780</span>
+<span class="hljs-number">21</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x0000000109ef5ff7</span> _T07RxSwift9CatchSink33_7E15DB08AB19A7B882D5C92A393C6F6DLLC2onyAA5EventOy1EQzGF + <span class="hljs-number">823</span>
+<span class="hljs-number">22</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x0000000109ef6a5b</span> _T07RxSwift9CatchSink33_7E15DB08AB19A7B882D5C92A393C6F6DLLCyxGAA12ObserverTypeA2aFRzlAaFP2onyAA5EventOy1EQzGFTW + <span class="hljs-number">43</span>
+<span class="hljs-number">23</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x0000000109fa6f11</span> _T07RxSwift32ObserveOnSerialDispatchQueueSink33_277A93ABA8477198C125F3F26B2D4B62LLCADyxGAA0efG9SchedulerC9scheduler_x8observerAA10Cancelable_p6canceltcfcAA10Disposable_pAE4sink_AA5EventOy1EQzG5eventtcfU_ + <span class="hljs-number">833</span>
+<span class="hljs-number">24</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x0000000109fa8579</span> _T07RxSwift32ObserveOnSerialDispatchQueueSink33_277A93ABA8477198C125F3F26B2D4B62LLCADyxGAA0efG9SchedulerC9scheduler_x8observerAA10Cancelable_p6canceltcfcAA10Disposable_pAE4sink_AA5EventOy1EQzG5eventtcfU_TA + <span class="hljs-number">9</span>
+<span class="hljs-number">25</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x0000000109fa77d9</span> _T07RxSwift32ObserveOnSerialDispatchQueueSink33_277A93ABA8477198C125F3F26B2D4B62LLCyxGAA5EventOy1EQzGAA10Disposable_pIxxir_AE_AJtAaK_pIxir_AA12ObserverTypeRzlTR + <span class="hljs-number">137</span>
+<span class="hljs-number">26</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x0000000109fa8786</span> _T07RxSwift32ObserveOnSerialDispatchQueueSink33_277A93ABA8477198C125F3F26B2D4B62LLCyxGAA5EventOy1EQzGAA10Disposable_pIxxir_AE_AJtAaK_pIxir_AA12ObserverTypeRzlTRTA + <span class="hljs-number">102</span>
+<span class="hljs-number">27</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x0000000109f80564</span> _T07RxSwift13MainSchedulerC16scheduleInternalAA10Disposable_px_AaE_pxc6actiontlF + <span class="hljs-number">484</span>
+<span class="hljs-number">28</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x0000000109feca4d</span> _T07RxSwift28SerialDispatchQueueSchedulerC8scheduleAA10Disposable_px_AaE_pxc6actiontlF + <span class="hljs-number">173</span>
+<span class="hljs-number">29</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x0000000109fa76cc</span> _T07RxSwift32ObserveOnSerialDispatchQueueSink33_277A93ABA8477198C125F3F26B2D4B62LLC6onCoreyAA5EventOy1EQzGF + <span class="hljs-number">1148</span>
+<span class="hljs-number">30</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x0000000109fa9026</span> _T07RxSwift12ObserverBaseC2onyAA5EventOyxGF + <span class="hljs-number">742</span>
+<span class="hljs-number">31</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x0000000109fa95be</span> _T07RxSwift12ObserverBaseCyxGAA0C4TypeAAlAaEP2onyAA5EventOy1EQzGFTW + <span class="hljs-number">62</span>
+<span class="hljs-number">32</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x0000000109ffdbcc</span> _T07RxSwift4SinkC9forwardOnyAA5EventOy1EQzGF + <span class="hljs-number">780</span>
+<span class="hljs-number">33</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010a0080e0</span> _T07RxSwift15SubscribeOnSink33_B44C3DD7F62EF81799E6347E59A266A2LLC2onyAA5EventOy1EQzGF + <span class="hljs-number">400</span>
+<span class="hljs-number">34</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010a008e0b</span> _T07RxSwift15SubscribeOnSink33_B44C3DD7F62EF81799E6347E59A266A2LLCyxq_GAA12ObserverTypeA2A010ObservableP0RzAaFR_1EQy_AHRtzr0_lAaFP2onyAA5EventOyAHQzGFTW + <span class="hljs-number">43</span>
+<span class="hljs-number">35</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x0000000109ffdbcc</span> _T07RxSwift4SinkC9forwardOnyAA5EventOy1EQzGF + <span class="hljs-number">780</span>
+<span class="hljs-number">36</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x0000000109f81695</span> _T07RxSwift7MapSink33_5428EFA9A9B0C0340021B871D2E5AC01LLC2onyAA5EventOyxGF + <span class="hljs-number">1093</span>
+<span class="hljs-number">37</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x0000000109f81beb</span> _T07RxSwift7MapSink33_5428EFA9A9B0C0340021B871D2E5AC01LLCyxq_GAA12ObserverTypeA2aFR_r0_lAaFP2onyAA5EventOy1EQzGFTW + <span class="hljs-number">43</span>
+<span class="hljs-number">38</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x0000000109ffdbcc</span> _T07RxSwift4SinkC9forwardOnyAA5EventOy1EQzGF + <span class="hljs-number">780</span>
+<span class="hljs-number">39</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010a0080e0</span> _T07RxSwift15SubscribeOnSink33_B44C3DD7F62EF81799E6347E59A266A2LLC2onyAA5EventOy1EQzGF + <span class="hljs-number">400</span>
+<span class="hljs-number">40</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x000000010a008e0b</span> _T07RxSwift15SubscribeOnSink33_B44C3DD7F62EF81799E6347E59A266A2LLCyxq_GAA12ObserverTypeA2A010ObservableP0RzAaFR_1EQy_AHRtzr0_lAaFP2onyAA5EventOyAHQzGFTW + <span class="hljs-number">43</span>
+<span class="hljs-number">41</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x0000000109ed8c93</span> _T0TA + <span class="hljs-number">115</span>
+<span class="hljs-number">42</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x0000000109ee33a7</span> _T07RxSwift5EventOyxGIxi_ADytIxir_1EQyd__RszAA12ObserverTypeRd__r__lTR + <span class="hljs-number">23</span>
+<span class="hljs-number">43</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x0000000109ff5a36</span> _T07RxSwift5EventOyxGIxi_ADytIxir_1EQyd__RszAA12ObserverTypeRd__r__lTRTA + <span class="hljs-number">118</span>
+<span class="hljs-number">44</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x0000000109ee3770</span> _T07RxSwift5EventOyxGytIxir_ADIxi_lTR + <span class="hljs-number">16</span>
+<span class="hljs-number">45</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x0000000109ee5332</span> _T07RxSwift5EventOyxGytIxir_ADIxi_lTRTA.<span class="hljs-number">18</span> + <span class="hljs-number">82</span>
+<span class="hljs-number">46</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x0000000109ee4564</span> _T07RxSwift8dispatchyAA3BagVyyAA5EventOyxGcG_AGtlF + <span class="hljs-number">900</span>
+<span class="hljs-number">47</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x0000000109ff2eee</span> _T07RxSwift29ShareWhileConnectedConnection33_E9FE621655D67A613BF2FC2D9B3041FCLLC2onyAA5EventOyxGF + <span class="hljs-number">1230</span>
+<span class="hljs-number">48</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x0000000109ff4abb</span> _T07RxSwift29ShareWhileConnectedConnection33_E9FE621655D67A613BF2FC2D9B3041FCLLCyxGAA12ObserverTypeAAlAaFP2onyAA5EventOy1EQzGFTW + <span class="hljs-number">43</span>
+<span class="hljs-number">49</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x0000000109ffdbcc</span> _T07RxSwift4SinkC9forwardOnyAA5EventOy1EQzGF + <span class="hljs-number">780</span>
+<span class="hljs-number">50</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x0000000109f66dfb</span> _T07RxSwift6DoSink33_51F9E615740E91B2E920965FFBB1EED3LLC2onyAA5EventOy1EQzGF + <span class="hljs-number">843</span>
+<span class="hljs-number">51</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x0000000109f674eb</span> _T07RxSwift6DoSink33_51F9E615740E91B2E920965FFBB1EED3LLCyxGAA12ObserverTypeA2aFRzlAaFP2onyAA5EventOy1EQzGFTW + <span class="hljs-number">43</span>
+<span class="hljs-number">52</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x0000000109ed8c93</span> _T0TA + <span class="hljs-number">115</span>
+<span class="hljs-number">53</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x0000000109ee33a7</span> _T07RxSwift5EventOyxGIxi_ADytIxir_1EQyd__RszAA12ObserverTypeRd__r__lTR + <span class="hljs-number">23</span>
+<span class="hljs-number">54</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x0000000109fbd396</span> _T07RxSwift5EventOyxGIxi_ADytIxir_1EQyd__RszAA12ObserverTypeRd__r__lTRTA + <span class="hljs-number">118</span>
+<span class="hljs-number">55</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x0000000109ee3770</span> _T07RxSwift5EventOyxGytIxir_ADIxi_lTR + <span class="hljs-number">16</span>
+<span class="hljs-number">56</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x0000000109ee5332</span> _T07RxSwift5EventOyxGytIxir_ADIxi_lTRTA.<span class="hljs-number">18</span> + <span class="hljs-number">82</span>
+<span class="hljs-number">57</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x0000000109ee4564</span> _T07RxSwift8dispatchyAA3BagVyyAA5EventOyxGcG_AGtlF + <span class="hljs-number">900</span>
+<span class="hljs-number">58</span>  <span class="hljs-type">RxSwift</span>                             <span class="hljs-number">0x0000000109fbb1ca</span> _T07RxSwift14PublishSubjectC2onyAA5EventOyxGF + <span class="hljs-number">1018</span>
+<span class="hljs-number">59</span>  <span class="hljs-type">RxCocoa</span>                             <span class="hljs-number">0x0000000109c6cd91</span> _T07RxSwift14PublishSubjectC2onyAA5EventOyxGFTA + <span class="hljs-number">17</span>
+<span class="hljs-number">60</span>  <span class="hljs-type">RxCocoa</span>                             <span class="hljs-number">0x0000000109c6c46d</span> _T07RxSwift5EventOySayypGGIxi_AEIxx_TR + <span class="hljs-number">29</span>
+<span class="hljs-number">61</span>  <span class="hljs-type">RxCocoa</span>                             <span class="hljs-number">0x0000000109c6cd6e</span> _T07RxSwift5EventOySayypGGIxi_AEIxx_TRTA + <span class="hljs-number">78</span>
+<span class="hljs-number">62</span>  <span class="hljs-type">RxCocoa</span>                             <span class="hljs-number">0x0000000109c6a5eb</span> _T07RxCocoa13DelegateProxyC14_methodInvokedy10ObjectiveC8SelectorV_SayypG13withArgumentstF + <span class="hljs-number">283</span>
+<span class="hljs-number">63</span>  <span class="hljs-type">RxCocoa</span>                             <span class="hljs-number">0x0000000109c6a664</span> _T07RxCocoa13DelegateProxyC14_methodInvokedy10ObjectiveC8SelectorV_SayypG13withArgumentstFTo + <span class="hljs-number">84</span>
+<span class="hljs-number">64</span>  <span class="hljs-type">RxCocoa</span>                             <span class="hljs-number">0x0000000109c3b588</span> -[_RXDelegateProxy forwardInvocation:] + <span class="hljs-number">536</span>
+<span class="hljs-number">65</span>  <span class="hljs-type">CoreFoundation</span>                      <span class="hljs-number">0x000000010dee1cd8</span> ___forwarding___ + <span class="hljs-number">760</span>
+<span class="hljs-number">66</span>  <span class="hljs-type">CoreFoundation</span>                      <span class="hljs-number">0x000000010dee1958</span> _CF_forwarding_prep_0 + <span class="hljs-number">120</span>
+<span class="hljs-number">67</span>  <span class="hljs-type">UIKit</span>                               <span class="hljs-number">0x000000010b309839</span> -[<span class="hljs-type">UITableView</span> _selectRowAtIndexPath:animated:scrollPosition:notifyDelegate:] + <span class="hljs-number">1810</span>
+<span class="hljs-number">68</span>  <span class="hljs-type">UIKit</span>                               <span class="hljs-number">0x000000010b309a54</span> -[<span class="hljs-type">UITableView</span> _userSelectRowAtPendingSelectionIndexPath:] + <span class="hljs-number">344</span>
+<span class="hljs-number">69</span>  <span class="hljs-type">UIKit</span>                               <span class="hljs-number">0x000000010b1d2d59</span> _runAfterCACommitDeferredBlocks + <span class="hljs-number">318</span>
+<span class="hljs-number">70</span>  <span class="hljs-type">UIKit</span>                               <span class="hljs-number">0x000000010b1c1bb1</span> _cleanUpAfterCAFlushAndRunDeferredBlocks + <span class="hljs-number">280</span>
+<span class="hljs-number">71</span>  <span class="hljs-type">UIKit</span>                               <span class="hljs-number">0x000000010b1f10e0</span> _afterCACommitHandler + <span class="hljs-number">137</span>
+<span class="hljs-number">72</span>  <span class="hljs-type">CoreFoundation</span>                      <span class="hljs-number">0x000000010df01c07</span> __CFRUNLOOP_IS_CALLING_OUT_TO_AN_OBSERVER_CALLBACK_FUNCTION__ + <span class="hljs-number">23</span>
+<span class="hljs-number">73</span>  <span class="hljs-type">CoreFoundation</span>                      <span class="hljs-number">0x000000010df01b5e</span> __CFRunLoopDoObservers + <span class="hljs-number">430</span>
+<span class="hljs-number">74</span>  <span class="hljs-type">CoreFoundation</span>                      <span class="hljs-number">0x000000010dee6124</span> __CFRunLoopRun + <span class="hljs-number">1572</span>
+<span class="hljs-number">75</span>  <span class="hljs-type">CoreFoundation</span>                      <span class="hljs-number">0x000000010dee5889</span> <span class="hljs-type">CFRunLoopRunSpecific</span> + <span class="hljs-number">409</span>
+<span class="hljs-number">76</span>  <span class="hljs-type">GraphicsServices</span>                    <span class="hljs-number">0x00000001136149c6</span> <span class="hljs-type">GSEventRunModal</span> + <span class="hljs-number">62</span>
+<span class="hljs-number">77</span>  <span class="hljs-type">UIKit</span>                               <span class="hljs-number">0x000000010b1c75d6</span> <span class="hljs-type">UIApplicationMain</span> + <span class="hljs-number">159</span>
+<span class="hljs-number">78</span>  <span class="hljs-type">RxSwiftExample</span>                         <span class="hljs-number">0x0000000109858c07</span> main + <span class="hljs-number">55</span>
+<span class="hljs-number">79</span>  libdyld.dylib                       <span class="hljs-number">0x000000010f7bcd81</span> start + <span class="hljs-number">1</span>
+<span class="hljs-number">80</span>  ???                                 <span class="hljs-number">0x0000000000000001</span> <span class="hljs-number">0x0</span> + <span class="hljs-number">1</span>
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">56</span>:<span class="hljs-number">10.991</span>: merge -&gt; isDisposed
+</code></pre>
+<h3 id="switchlatest">switchLatest</h3>
+<p>&#x5F53;&#x4F60;&#x7684;&#x4E8B;&#x4EF6;&#x5E8F;&#x5217;&#x662F;&#x4E00;&#x4E2A;&#x4E8B;&#x4EF6;&#x5E8F;&#x5217;&#x7684;&#x5E8F;&#x5217; (<code>Observable&lt;Observable&lt;T&gt;&gt;</code>) &#x7684;&#x65F6;&#x5019;&#xFF0C;&#xFF08;&#x53EF;&#x4EE5;&#x7406;&#x89E3;&#x6210;&#x4E8C;&#x7EF4;&#x5E8F;&#x5217;&#xFF09;</p>
+<p>&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>switch</code> &#x5C06;&#x5E8F;&#x5217;&#x7684;&#x5E8F;&#x5217;&#x5E73;&#x94FA;&#x6210;&#x4E00;&#x7EF4;&#xFF0C;&#x5E76;&#x4E14;&#x5728;&#x51FA;&#x73B0;&#x65B0;&#x7684;&#x5E8F;&#x5217;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x81EA;&#x52A8;&#x5207;&#x6362;&#x5230;&#x6700;&#x65B0;&#x7684;&#x90A3;&#x4E2A;&#x5E8F;&#x5217;&#x4E0A;&#x3002;</p>
+<p>&#x548C; <code>merge</code> &#x76F8;&#x4F3C;&#x7684;&#x662F;&#xFF0C;&#x5B83;&#x4E5F;&#x662F;&#x8D77;&#x5230;&#x4E86;&#x5C06;&#x591A;&#x4E2A;&#x5E8F;&#x5217;<code>&#x62CD;&#x5E73;</code>&#x6210;&#x4E00;&#x6761;&#x5E8F;&#x5217;&#x7684;&#x4F5C;&#x7528;&#x3002;</p>
+<blockquote>
+<p>&#x26A0;&#xFE0F;&#x6CE8;&#x610F;&#xFF1A;&#x5F53;&#x6E90; <code>Observable</code> &#x53D1;&#x51FA;&#x4E00;&#x4E2A;&#x65B0;&#x7684; <code>Observable</code> &#x65F6;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x5F53;&#x65B0;&#x7684; <code>Observable</code> &#x53D1;&#x51FA;&#x4E00;&#x4E2A;&#x9879;&#x76EE;&#x65F6;&#xFF0C;&#x5B83;&#x5C06;&#x4ECE;&#x4E4B;&#x524D;&#x53D1;&#x51FA;&#x7684;Observable&#x4E2D;&#x53D6;&#x6D88;&#x8BA2;&#x9605;&#x3002;</p>
+<blockquote>
+<p>&#x8FD9;&#x610F;&#x5473;&#x7740;&#x5728;&#x540E;&#x9762;&#x7684; <code>Observable</code> &#x88AB;&#x53D1;&#x5C04;&#x7684;&#x65F6;&#x95F4;&#x548C;&#x968F;&#x540E;&#x7684; <code>Observable</code> &#x672C;&#x8EAB;&#x5F00;&#x59CB;&#x53D1;&#x5C04;&#x7684;&#x65F6;&#x95F4;&#x4E4B;&#x95F4;&#xFF0C;&#x524D;&#x4E00;&#x4E2A; <code>Observable</code> &#x53D1;&#x5C04;&#x7684;&#x7269;&#x4F53;&#x5C06;&#x88AB;&#x4E22;&#x5F03;&#x3002;</p>
+</blockquote>
+</blockquote>
+<p>eg:</p>
+<pre><code class="lang-swift"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">switchLatest</span><span class="hljs-params">()</span></span> {
+    <span class="hljs-comment">// &#x7B2C;&#x4E00;&#x4E2A;&#xFF1A; &#x53D1;&#x9001;3&#x4E2A;&#x5143;&#x7D20;</span>
+    <span class="hljs-keyword">let</span> innerObservable_1 = <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">String</span>&gt;.of(<span class="hljs-string">&quot;innerObservable_1: 1&quot;</span>,
+                                                  <span class="hljs-string">&quot;innerObservable_1: 2&quot;</span>,
+                                                  <span class="hljs-string">&quot;innerObservable_1: 3&quot;</span>)
+    <span class="hljs-comment">// &#x6301;&#x7EED;1&#x79D2;&#x53D1;&#x51FA;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#xFF0C;&#x9012;&#x589E;</span>
+    <span class="hljs-keyword">let</span> innerObservable_2 = <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">Int</span>&gt;.interval(<span class="hljs-number">1</span>, scheduler: <span class="hljs-type">MainScheduler</span>.instance).<span class="hljs-built_in">map</span> { (value) -&gt; <span class="hljs-type">String</span> <span class="hljs-keyword">in</span>
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;innerObservable_2 =&gt; Send <span class="hljs-subst">\(value)</span>&quot;</span>)
+        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;innerObservable_2: <span class="hljs-subst">\(value)</span>&quot;</span>
+    }
+    <span class="hljs-comment">// &#x6301;&#x7EED;1&#x79D2;&#x53D1;&#x51FA;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#xFF0C;&#x9012;&#x589E;</span>
+    <span class="hljs-keyword">let</span> innerObservable_3 = <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">Int</span>&gt;.interval(<span class="hljs-number">1</span>, scheduler: <span class="hljs-type">MainScheduler</span>.instance).<span class="hljs-built_in">map</span> { (value) -&gt; <span class="hljs-type">String</span> <span class="hljs-keyword">in</span>
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;innerObservable_3 =&gt; Send <span class="hljs-subst">\(value)</span>&quot;</span>)
+        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;innerObservable_3: <span class="hljs-subst">\(value)</span>&quot;</span>
+    }
+
+    <span class="hljs-keyword">let</span> externalObservable = <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">Observable</span>&lt;<span class="hljs-type">String</span>&gt;&gt;.create({ (observer) -&gt; <span class="hljs-type">Disposable</span> <span class="hljs-keyword">in</span>
+        observer.onNext(innerObservable_1)
+        delayTime(<span class="hljs-number">2</span>, block: {
+            observer.onNext(innerObservable_2)
+        })
+
+        delayTime(<span class="hljs-number">6</span>, block: {
+            observer.onNext(innerObservable_3)
+        })
+        delayTime(<span class="hljs-number">12</span>, block: {
+            <span class="hljs-comment">// &#x4E0D;&#x52A0; observer.onNext(Observable&lt;String&gt;.never()) &#x7684;&#x8BDD;&#xFF0C;innerObservable_3&#x4F1A;&#x6301;&#x7EED;&#x4E0D;&#x65AD;&#x7684;&#x53D1;&#x9001;</span>
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;observer.onNext(Observable&lt;String&gt;.never())&quot;</span>)
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;observer.onCompleted()&quot;</span>)
+            observer.onNext(<span class="hljs-type">Observable</span>&lt;<span class="hljs-type">String</span>&gt;.never())
+            observer.onCompleted()
+        })
+        <span class="hljs-keyword">return</span> <span class="hljs-type">Disposables</span>.create()
+    })
+
+    externalObservable
+        .switchLatest()
+        .debug(<span class="hljs-string">&quot;switchLatest&quot;</span>)
+        .subscribe()
+        .disposed(by: disposeBag)
+}
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-swift"><span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">59</span>:<span class="hljs-number">48.877</span>: switchLatest -&gt; subscribed
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">59</span>:<span class="hljs-number">48.878</span>: switchLatest -&gt; <span class="hljs-type">Event</span> next(innerObservable_1: <span class="hljs-number">1</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">59</span>:<span class="hljs-number">48.878</span>: switchLatest -&gt; <span class="hljs-type">Event</span> next(innerObservable_1: <span class="hljs-number">2</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">59</span>:<span class="hljs-number">48.878</span>: switchLatest -&gt; <span class="hljs-type">Event</span> next(innerObservable_1: <span class="hljs-number">3</span>)
+innerObservable_2 =&gt; <span class="hljs-type">Send</span> <span class="hljs-number">0</span>
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">59</span>:<span class="hljs-number">51.880</span>: switchLatest -&gt; <span class="hljs-type">Event</span> next(innerObservable_2: <span class="hljs-number">0</span>)
+innerObservable_2 =&gt; <span class="hljs-type">Send</span> <span class="hljs-number">1</span>
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">59</span>:<span class="hljs-number">52.881</span>: switchLatest -&gt; <span class="hljs-type">Event</span> next(innerObservable_2: <span class="hljs-number">1</span>)
+innerObservable_2 =&gt; <span class="hljs-type">Send</span> <span class="hljs-number">2</span>
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">59</span>:<span class="hljs-number">53.881</span>: switchLatest -&gt; <span class="hljs-type">Event</span> next(innerObservable_2: <span class="hljs-number">2</span>)
+innerObservable_3 =&gt; <span class="hljs-type">Send</span> <span class="hljs-number">0</span>
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">59</span>:<span class="hljs-number">55.879</span>: switchLatest -&gt; <span class="hljs-type">Event</span> next(innerObservable_3: <span class="hljs-number">0</span>)
+innerObservable_3 =&gt; <span class="hljs-type">Send</span> <span class="hljs-number">1</span>
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">59</span>:<span class="hljs-number">56.879</span>: switchLatest -&gt; <span class="hljs-type">Event</span> next(innerObservable_3: <span class="hljs-number">1</span>)
+innerObservable_3 =&gt; <span class="hljs-type">Send</span> <span class="hljs-number">2</span>
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">59</span>:<span class="hljs-number">57.878</span>: switchLatest -&gt; <span class="hljs-type">Event</span> next(innerObservable_3: <span class="hljs-number">2</span>)
+innerObservable_3 =&gt; <span class="hljs-type">Send</span> <span class="hljs-number">3</span>
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">59</span>:<span class="hljs-number">58.879</span>: switchLatest -&gt; <span class="hljs-type">Event</span> next(innerObservable_3: <span class="hljs-number">3</span>)
+innerObservable_3 =&gt; <span class="hljs-type">Send</span> <span class="hljs-number">4</span>
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">59</span>:<span class="hljs-number">59.878</span>: switchLatest -&gt; <span class="hljs-type">Event</span> next(innerObservable_3: <span class="hljs-number">4</span>)
+observer.onNext(<span class="hljs-type">Observable</span>&lt;<span class="hljs-type">String</span>&gt;.never())
+observer.onCompleted()
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Filtering.html" class="navigation navigation-prev " aria-label="Previous page: 7.04 过滤 Observable">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="ErrorHandling.html" class="navigation navigation-next " aria-label="Next page: 7.06 错误处理操作符">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"7.05 联合 Observable","level":"1.8.6","depth":2,"next":{"title":"7.06 错误处理操作符","level":"1.8.7","depth":2,"path":"RxSwiftStudy/Operator/ErrorHandling.md","ref":"./RxSwiftStudy/Operator/ErrorHandling.md","articles":[]},"previous":{"title":"7.04 过滤 Observable","level":"1.8.5","depth":2,"path":"RxSwiftStudy/Operator/Filtering.md","ref":"./RxSwiftStudy/Operator/Filtering.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","search-plus","expandable-chapters-small","editlink","include-codeblock","include-highlight","github-buttons"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"editlink":{"label":"编辑页面","multilingual":false,"base":"https://github.com/ToBeDefined/RxSwiftExample/edit/master"},"include-highlight":{},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"sans"},"highlight":{},"github-buttons":{"repo":"ToBeDefined/RxSwiftExample","types":["star"],"size":"small"},"expandable-chapters-small":{},"include-codeblock":{"check":false,"edit":false,"fixlang":false,"lang":"","template":"default","theme":"chrome","unindent":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"search-plus":{}},"theme":"theme","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"isPdf":false},"title":"RxSwift Example","language":"zh-hans","gitbook":"*","description":null},"file":{"path":"RxSwiftStudy/Operator/Combining.md","mtime":"2017-12-28T09:11:22.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-12-28T09:36:07.825Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search-plus/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search-plus/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-editlink/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

@@ -1,0 +1,573 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Introduction · RxSwift Example</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search-plus/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="RxSwiftStudy/1.Observable-可被监听的序列.html" />
+    
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"repo":"ToBeDefined/RxSwiftExample","types":["star"],"size":"small"};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter active" data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="RxSwiftStudy/1.Observable-可被监听的序列.html">
+            
+                <a href="RxSwiftStudy/1.Observable-可被监听的序列.html">
+            
+                    
+                    1. Observable - 可被监听的序列
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="RxSwiftStudy/2.Observer-观察者.html">
+            
+                <a href="RxSwiftStudy/2.Observer-观察者.html">
+            
+                    
+                    2. Observer - 观察者
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="RxSwiftStudy/3.Observable&Observer-既是可被监听的序列也是观察者.html">
+            
+                <a href="RxSwiftStudy/3.Observable&Observer-既是可被监听的序列也是观察者.html">
+            
+                    
+                    3. Observable & Observer 既是可被监听的序列也是观察者
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="RxSwiftStudy/4.Disposable-可被清除的资源.html">
+            
+                <a href="RxSwiftStudy/4.Disposable-可被清除的资源.html">
+            
+                    
+                    4. Disposable - 可被清除的资源
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="RxSwiftStudy/5.Schedulers-调度器.html">
+            
+                <a href="RxSwiftStudy/5.Schedulers-调度器.html">
+            
+                    
+                    5. Schedulers - 调度器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="RxSwiftStudy/6.ErrorHandling-错误处理.html">
+            
+                <a href="RxSwiftStudy/6.ErrorHandling-错误处理.html">
+            
+                    
+                    6. Error Handling - 错误处理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="RxSwiftStudy/7.Operator-操作符.html">
+            
+                <a href="RxSwiftStudy/7.Operator-操作符.html">
+            
+                    
+                    7. Operator - 操作符
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="RxSwiftStudy/Operator/Prepare.html">
+            
+                <a href="RxSwiftStudy/Operator/Prepare.html">
+            
+                    
+                    7.00 准备测试使用的方法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="RxSwiftStudy/Operator/Debug.html">
+            
+                <a href="RxSwiftStudy/Operator/Debug.html">
+            
+                    
+                    7.01 Debug Operator
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" data-path="RxSwiftStudy/Operator/Create.html">
+            
+                <a href="RxSwiftStudy/Operator/Create.html">
+            
+                    
+                    7.02 创建 Observable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4" data-path="RxSwiftStudy/Operator/Transforming.html">
+            
+                <a href="RxSwiftStudy/Operator/Transforming.html">
+            
+                    
+                    7.03 变换 Observable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5" data-path="RxSwiftStudy/Operator/Filtering.html">
+            
+                <a href="RxSwiftStudy/Operator/Filtering.html">
+            
+                    
+                    7.04 过滤 Observable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.6" data-path="RxSwiftStudy/Operator/Combining.html">
+            
+                <a href="RxSwiftStudy/Operator/Combining.html">
+            
+                    
+                    7.05 联合 Observable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.7" data-path="RxSwiftStudy/Operator/ErrorHandling.html">
+            
+                <a href="RxSwiftStudy/Operator/ErrorHandling.html">
+            
+                    
+                    7.06 错误处理操作符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.8" data-path="RxSwiftStudy/Operator/Conditional_and_Boolean.html">
+            
+                <a href="RxSwiftStudy/Operator/Conditional_and_Boolean.html">
+            
+                    
+                    7.07 条件和 Bool 操作符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.9" data-path="RxSwiftStudy/Operator/Mathematical_and_Aggregate.html">
+            
+                <a href="RxSwiftStudy/Operator/Mathematical_and_Aggregate.html">
+            
+                    
+                    7.08 数学和聚合操作符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.10" data-path="RxSwiftStudy/Operator/Connectable.html">
+            
+                <a href="RxSwiftStudy/Operator/Connectable.html">
+            
+                    
+                    7.09 连接 Observable 操作符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.11" data-path="RxSwiftStudy/Operator/Time.html">
+            
+                <a href="RxSwiftStudy/Operator/Time.html">
+            
+                    
+                    7.10 Time Operator
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.12" data-path="RxSwiftStudy/Operator/Scheduler.html">
+            
+                <a href="RxSwiftStudy/Operator/Scheduler.html">
+            
+                    
+                    7.11 Scheduler Operator
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.13" data-path="RxSwiftStudy/Operator/Materialize.html">
+            
+                <a href="RxSwiftStudy/Operator/Materialize.html">
+            
+                    
+                    7.12 Materialize Operator
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.14" data-path="RxSwiftStudy/Operator/Using.html">
+            
+                <a href="RxSwiftStudy/Operator/Using.html">
+            
+                    
+                    7.13 Using Operator
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="RxSwiftStudy/8.其他相关资料.html">
+            
+                <a href="RxSwiftStudy/8.其他相关资料.html">
+            
+                    
+                    8. 其他相关资料
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >Introduction</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div class="search-plus" id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="rxswift-example">RxSwift Example</h1>
+<p>&#x4E3B;&#x8981;&#x662F;RxSwift&#x7684;&#x4E00;&#x4E9B;&#x64CD;&#x4F5C;&#x7B26;&#x7684;&#x793A;&#x4F8B;</p>
+<blockquote>
+<p>&#x90E8;&#x5206;&#x5185;&#x5BB9;&#x6458;&#x81EA;<a href="http://reactivex.io/documentation/operators.html" target="_blank">&#x5B98;&#x65B9;&#x6587;&#x6863;</a>&#x4EE5;&#x53CA;&#x7FFB;&#x8BD1;&#x7684;<a href="https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree.html" target="_blank">&#x4E2D;&#x6587;&#x6587;&#x6863;</a></p>
+</blockquote>
+<h2 id="&#x76F8;&#x5173;&#x5730;&#x5740;">&#x76F8;&#x5173;&#x5730;&#x5740;</h2>
+<ul>
+<li>RxSwiftExample Xcode&#x9879;&#x76EE;: <a href="https://github.com/ToBeDefined/RxSwiftExample/" target="_blank">https://github.com/ToBeDefined/RxSwiftExample/</a></li>
+<li>GitBook&#x5730;&#x5740;: <a href="https://swift.rx.tbd.ink/" target="_blank">https://swift.rx.tbd.ink</a></li>
+<li>GitBook&#x5907;&#x7528;&#x5730;&#x5740;: <a href="https://weinanshao.gitbooks.io/rxswift-example/content/" target="_blank">https://weinanshao.gitbooks.io/rxswift-example/content/</a></li>
+</ul>
+<h2 id="&#x76EE;&#x5F55;">&#x76EE;&#x5F55;</h2>
+<ul>
+<li><a href="RxSwiftStudy/1.Observable-&#x53EF;&#x88AB;&#x76D1;&#x542C;&#x7684;&#x5E8F;&#x5217;.html">1. Observable - &#x53EF;&#x88AB;&#x76D1;&#x542C;&#x7684;&#x5E8F;&#x5217;</a></li>
+<li><a href="RxSwiftStudy/2.Observer-&#x89C2;&#x5BDF;&#x8005;.html">2. Observer - &#x89C2;&#x5BDF;&#x8005;</a></li>
+<li><a href="RxSwiftStudy/3.Observable&amp;Observer-&#x65E2;&#x662F;&#x53EF;&#x88AB;&#x76D1;&#x542C;&#x7684;&#x5E8F;&#x5217;&#x4E5F;&#x662F;&#x89C2;&#x5BDF;&#x8005;.html">3. Observable &amp; Observer &#x65E2;&#x662F;&#x53EF;&#x88AB;&#x76D1;&#x542C;&#x7684;&#x5E8F;&#x5217;&#x4E5F;&#x662F;&#x89C2;&#x5BDF;&#x8005;</a></li>
+<li><a href="RxSwiftStudy/4.Disposable-&#x53EF;&#x88AB;&#x6E05;&#x9664;&#x7684;&#x8D44;&#x6E90;.html">4. Disposable - &#x53EF;&#x88AB;&#x6E05;&#x9664;&#x7684;&#x8D44;&#x6E90;</a></li>
+<li><a href="RxSwiftStudy/5.Schedulers-&#x8C03;&#x5EA6;&#x5668;.html">5. Schedulers - &#x8C03;&#x5EA6;&#x5668;</a></li>
+<li><a href="RxSwiftStudy/6.ErrorHandling-&#x9519;&#x8BEF;&#x5904;&#x7406;.html">6. Error Handling - &#x9519;&#x8BEF;&#x5904;&#x7406;</a></li>
+<li><a href="RxSwiftStudy/7.Operator-&#x64CD;&#x4F5C;&#x7B26;.html">7. Operator - &#x64CD;&#x4F5C;&#x7B26;</a><ul>
+<li><a href="RxSwiftStudy/Operator/Prepare.html">7.00 &#x51C6;&#x5907;&#x6D4B;&#x8BD5;&#x4F7F;&#x7528;&#x7684;&#x65B9;&#x6CD5;</a></li>
+<li><a href="RxSwiftStudy/Operator/Debug.html">7.01 Debug Operator</a></li>
+<li><a href="RxSwiftStudy/Operator/Create.html">7.02 &#x521B;&#x5EFA; Observable</a></li>
+<li><a href="RxSwiftStudy/Operator/Transforming.html">7.03 &#x53D8;&#x6362; Observable</a></li>
+<li><a href="RxSwiftStudy/Operator/Filtering.html">7.04 &#x8FC7;&#x6EE4; Observable</a></li>
+<li><a href="RxSwiftStudy/Operator/Combining.html">7.05 &#x8054;&#x5408; Observable</a></li>
+<li><a href="RxSwiftStudy/Operator/ErrorHandling.html">7.06 &#x9519;&#x8BEF;&#x5904;&#x7406;&#x64CD;&#x4F5C;&#x7B26;</a></li>
+<li><a href="RxSwiftStudy/Operator/Conditional_and_Boolean.html">7.07 &#x6761;&#x4EF6;&#x548C; Bool &#x64CD;&#x4F5C;&#x7B26;</a></li>
+<li><a href="RxSwiftStudy/Operator/Mathematical_and_Aggregate.html">7.08 &#x6570;&#x5B66;&#x548C;&#x805A;&#x5408;&#x64CD;&#x4F5C;&#x7B26;</a></li>
+<li><a href="RxSwiftStudy/Operator/Connectable.html">7.09 &#x8FDE;&#x63A5; Observable &#x64CD;&#x4F5C;&#x7B26;</a></li>
+<li><a href="RxSwiftStudy/Operator/Time.html">7.10 Time Operator</a></li>
+<li><a href="RxSwiftStudy/Operator/Scheduler.html">7.11 Scheduler Operator</a></li>
+<li><a href="RxSwiftStudy/Operator/Materialize.html">7.12 Materialize Operator</a></li>
+<li><a href="RxSwiftStudy/Operator/Using.html">7.13 Using Operator</a></li>
+</ul>
+</li>
+<li><a href="RxSwiftStudy/8.&#x5176;&#x4ED6;&#x76F8;&#x5173;&#x8D44;&#x6599;.html">8. &#x5176;&#x4ED6;&#x76F8;&#x5173;&#x8D44;&#x6599;</a></li>
+</ul>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                
+                <a href="RxSwiftStudy/1.Observable-可被监听的序列.html" class="navigation navigation-next navigation-unique" aria-label="Next page: 1. Observable - 可被监听的序列">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"next":{"title":"1. Observable - 可被监听的序列","level":"1.2","depth":1,"path":"RxSwiftStudy/1.Observable-可被监听的序列.md","ref":"./RxSwiftStudy/1.Observable-可被监听的序列.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","search-plus","expandable-chapters-small","editlink","include-codeblock","include-highlight","github-buttons"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"editlink":{"label":"编辑页面","multilingual":false,"base":"https://github.com/ToBeDefined/RxSwiftExample/edit/master"},"include-highlight":{},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"sans"},"highlight":{},"github-buttons":{"repo":"ToBeDefined/RxSwiftExample","types":["star"],"size":"small"},"expandable-chapters-small":{},"include-codeblock":{"check":false,"edit":false,"fixlang":false,"lang":"","template":"default","theme":"chrome","unindent":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"search-plus":{}},"theme":"theme","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"isPdf":false},"title":"RxSwift Example","language":"zh-hans","gitbook":"*","description":null},"file":{"path":"README.md","mtime":"2017-12-28T09:11:22.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-12-28T09:36:07.825Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-search-plus/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search-plus/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-editlink/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

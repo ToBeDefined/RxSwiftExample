@@ -1,0 +1,929 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>7.04 过滤 Observable · RxSwift Example</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search-plus/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="Combining.html" />
+    
+    
+    <link rel="prev" href="Transforming.html" />
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"repo":"ToBeDefined/RxSwiftExample","types":["star"],"size":"small"};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../1.Observable-可被监听的序列.html">
+            
+                <a href="../1.Observable-可被监听的序列.html">
+            
+                    
+                    1. Observable - 可被监听的序列
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../2.Observer-观察者.html">
+            
+                <a href="../2.Observer-观察者.html">
+            
+                    
+                    2. Observer - 观察者
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../3.Observable&Observer-既是可被监听的序列也是观察者.html">
+            
+                <a href="../3.Observable&Observer-既是可被监听的序列也是观察者.html">
+            
+                    
+                    3. Observable & Observer 既是可被监听的序列也是观察者
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../4.Disposable-可被清除的资源.html">
+            
+                <a href="../4.Disposable-可被清除的资源.html">
+            
+                    
+                    4. Disposable - 可被清除的资源
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../5.Schedulers-调度器.html">
+            
+                <a href="../5.Schedulers-调度器.html">
+            
+                    
+                    5. Schedulers - 调度器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../6.ErrorHandling-错误处理.html">
+            
+                <a href="../6.ErrorHandling-错误处理.html">
+            
+                    
+                    6. Error Handling - 错误处理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../7.Operator-操作符.html">
+            
+                <a href="../7.Operator-操作符.html">
+            
+                    
+                    7. Operator - 操作符
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="Prepare.html">
+            
+                <a href="Prepare.html">
+            
+                    
+                    7.00 准备测试使用的方法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="Debug.html">
+            
+                <a href="Debug.html">
+            
+                    
+                    7.01 Debug Operator
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" data-path="Create.html">
+            
+                <a href="Create.html">
+            
+                    
+                    7.02 创建 Observable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4" data-path="Transforming.html">
+            
+                <a href="Transforming.html">
+            
+                    
+                    7.03 变换 Observable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.8.5" data-path="Filtering.html">
+            
+                <a href="Filtering.html">
+            
+                    
+                    7.04 过滤 Observable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.6" data-path="Combining.html">
+            
+                <a href="Combining.html">
+            
+                    
+                    7.05 联合 Observable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.7" data-path="ErrorHandling.html">
+            
+                <a href="ErrorHandling.html">
+            
+                    
+                    7.06 错误处理操作符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.8" data-path="Conditional_and_Boolean.html">
+            
+                <a href="Conditional_and_Boolean.html">
+            
+                    
+                    7.07 条件和 Bool 操作符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.9" data-path="Mathematical_and_Aggregate.html">
+            
+                <a href="Mathematical_and_Aggregate.html">
+            
+                    
+                    7.08 数学和聚合操作符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.10" data-path="Connectable.html">
+            
+                <a href="Connectable.html">
+            
+                    
+                    7.09 连接 Observable 操作符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.11" data-path="Time.html">
+            
+                <a href="Time.html">
+            
+                    
+                    7.10 Time Operator
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.12" data-path="Scheduler.html">
+            
+                <a href="Scheduler.html">
+            
+                    
+                    7.11 Scheduler Operator
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.13" data-path="Materialize.html">
+            
+                <a href="Materialize.html">
+            
+                    
+                    7.12 Materialize Operator
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.14" data-path="Using.html">
+            
+                <a href="Using.html">
+            
+                    
+                    7.13 Using Operator
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../8.其他相关资料.html">
+            
+                <a href="../8.其他相关资料.html">
+            
+                    
+                    8. 其他相关资料
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >7.04 过滤 Observable</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div class="search-plus" id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="&#x8FC7;&#x6EE4;-observable---filtering-operator">&#x8FC7;&#x6EE4; Observable - Filtering Operator</h2>
+<h3 id="ignoreelements">ignoreElements</h3>
+<p>&#x5FFD;&#x7565;&#x6389;&#x6240;&#x6709;&#x7684;&#x5143;&#x7D20;&#xFF0C;&#x53EA;&#x53D1;&#x51FA; <code>error</code> &#x6216; <code>completed</code> &#x4E8B;&#x4EF6;</p>
+<p><code>ignoreElements</code> &#x64CD;&#x4F5C;&#x7B26;&#x5C06;&#x963B;&#x6B62; <code>Observable</code> &#x53D1;&#x51FA; <code>next</code> &#x4E8B;&#x4EF6;&#xFF0C;&#x4F46;&#x662F;&#x5141;&#x8BB8;&#x4ED6;&#x53D1;&#x51FA; <code>error</code> &#x6216; <code>completed</code> &#x4E8B;&#x4EF6;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x4F60;&#x5E76;&#x4E0D;&#x5173;&#x5FC3; <code>Observable</code> &#x7684;&#x4EFB;&#x4F55;&#x5143;&#x7D20;&#xFF0C;&#x4F60;&#x53EA;&#x60F3;&#x77E5;&#x9053; <code>Observable</code> &#x5728;&#x4EC0;&#x4E48;&#x65F6;&#x5019;&#x7EC8;&#x6B62;&#xFF0C;&#x90A3;&#x5C31;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>ignoreElements</code> &#x64CD;&#x4F5C;&#x7B26;&#x3002;</p>
+<p>eg:</p>
+<pre><code class="lang-swift"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">ignoreElements</span><span class="hljs-params">()</span></span> {
+    <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">Int</span>&gt;.of(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>)
+        .ignoreElements()
+        .debug(<span class="hljs-string">&quot;ignoreElements&quot;</span>)
+        .subscribe()
+        .disposed(by: disposeBag)
+}
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-swift"><span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">12</span>:<span class="hljs-number">47.786</span>: ignoreElements -&gt; subscribed
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">12</span>:<span class="hljs-number">47.787</span>: ignoreElements -&gt; <span class="hljs-type">Event</span> completed
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">12</span>:<span class="hljs-number">47.787</span>: ignoreElements -&gt; isDisposed
+</code></pre>
+<h3 id="elementat">elementAt</h3>
+<p><code>elementAt</code> &#x64CD;&#x4F5C;&#x7B26;&#x5C06;&#x62C9;&#x53D6; <code>Observable</code> &#x5E8F;&#x5217;&#x4E2D;&#x6307;&#x5B9A;&#x7D22;&#x5F15;&#x6570;&#x7684;&#x5143;&#x7D20;&#xFF0C;&#x7136;&#x540E;&#x5C06;&#x5B83;&#x4F5C;&#x4E3A;&#x552F;&#x4E00;&#x7684;&#x5143;&#x7D20;&#x53D1;&#x51FA;&#x3002;</p>
+<p>eg:</p>
+<pre><code class="lang-swift"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">elementAt</span><span class="hljs-params">()</span></span> {
+    <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">Int</span>&gt;.of(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>)
+        .elementAt(<span class="hljs-number">1</span>)
+        .subscribe({ (e) <span class="hljs-keyword">in</span>
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;elementAt subscribe -&gt; <span class="hljs-subst">\(e.debugDescription)</span>&quot;</span>)
+        })
+        .disposed(by: disposeBag)
+}
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code>elementAt subscribe -&gt; next(2)
+elementAt subscribe -&gt; completed
+</code></pre><h3 id="filter">filter</h3>
+<p><code>filter</code> &#x64CD;&#x4F5C;&#x7B26;&#x5C06;&#x901A;&#x8FC7;&#x4F60;&#x63D0;&#x4F9B;&#x7684;&#x5224;&#x5B9A;&#x65B9;&#x6CD5;&#x8FC7;&#x6EE4;&#x4E00;&#x4E2A; <code>Observable</code>&#x3002;&#x4EC5;&#x4EC5;&#x53D1;&#x51FA; <code>Observable</code> &#x4E2D;&#x901A;&#x8FC7;&#x5224;&#x5B9A;&#x7684;&#x5143;&#x7D20;&#x3002;</p>
+<p>eg:</p>
+<pre><code class="lang-swift"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">filter</span><span class="hljs-params">()</span></span> {
+    <span class="hljs-type">Observable</span>
+        .of(<span class="hljs-number">21</span>, <span class="hljs-number">3</span>, <span class="hljs-number">15</span>, <span class="hljs-number">50</span>, <span class="hljs-number">4</span>, <span class="hljs-number">23</span>, <span class="hljs-number">90</span>, <span class="hljs-number">11</span>)
+        .debug(<span class="hljs-string">&quot;Filter    : &quot;</span>)
+        .<span class="hljs-built_in">filter</span>({ (value) -&gt; <span class="hljs-type">Bool</span> <span class="hljs-keyword">in</span>
+            <span class="hljs-keyword">return</span> value &gt;= <span class="hljs-number">20</span>
+        })
+        .debug(<span class="hljs-string">&quot;Subscribe : &quot;</span>)
+        .subscribe()
+        .disposed(by: disposeBag)
+}
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-swift"><span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">16</span>:<span class="hljs-number">48.888</span>: <span class="hljs-type">Subscribe</span> :  -&gt; subscribed
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">16</span>:<span class="hljs-number">48.888</span>: <span class="hljs-type">Filter</span>    :  -&gt; subscribed
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">16</span>:<span class="hljs-number">48.888</span>: <span class="hljs-type">Filter</span>    :  -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">21</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">16</span>:<span class="hljs-number">48.888</span>: <span class="hljs-type">Subscribe</span> :  -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">21</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">16</span>:<span class="hljs-number">48.888</span>: <span class="hljs-type">Filter</span>    :  -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">3</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">16</span>:<span class="hljs-number">48.888</span>: <span class="hljs-type">Filter</span>    :  -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">15</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">16</span>:<span class="hljs-number">48.888</span>: <span class="hljs-type">Filter</span>    :  -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">50</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">16</span>:<span class="hljs-number">48.888</span>: <span class="hljs-type">Subscribe</span> :  -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">50</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">16</span>:<span class="hljs-number">48.888</span>: <span class="hljs-type">Filter</span>    :  -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">4</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">16</span>:<span class="hljs-number">48.888</span>: <span class="hljs-type">Filter</span>    :  -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">23</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">16</span>:<span class="hljs-number">48.888</span>: <span class="hljs-type">Subscribe</span> :  -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">23</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">16</span>:<span class="hljs-number">48.888</span>: <span class="hljs-type">Filter</span>    :  -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">90</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">16</span>:<span class="hljs-number">48.888</span>: <span class="hljs-type">Subscribe</span> :  -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">90</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">16</span>:<span class="hljs-number">48.888</span>: <span class="hljs-type">Filter</span>    :  -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">11</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">16</span>:<span class="hljs-number">48.888</span>: <span class="hljs-type">Filter</span>    :  -&gt; <span class="hljs-type">Event</span> completed
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">16</span>:<span class="hljs-number">48.888</span>: <span class="hljs-type">Subscribe</span> :  -&gt; <span class="hljs-type">Event</span> completed
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">16</span>:<span class="hljs-number">48.889</span>: <span class="hljs-type">Subscribe</span> :  -&gt; isDisposed
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">16</span>:<span class="hljs-number">48.889</span>: <span class="hljs-type">Filter</span>    :  -&gt; isDisposed
+</code></pre>
+<h3 id="debounce">debounce</h3>
+<p>&#x7528;&#x4E8E;&#x8FC7;&#x6EE4;&#x4E00;&#x5B9A;&#x65F6;&#x95F4;&#x5185;&#x53D1;&#x51FA;&#x7684;&#x9AD8;&#x9891;&#x5143;&#x7D20;&#xFF0C;&#x53EA;&#x53D1;&#x9001;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x3002;<code>debounce</code> &#x64CD;&#x4F5C;&#x7B26;&#x5C06;&#x53D1;&#x51FA;&#x8FD9;&#x79CD;&#x5143;&#x7D20;&#xFF0C;&#x5728; <code>Observable</code> &#x4EA7;&#x751F;&#x8FD9;&#x79CD;&#x5143;&#x7D20;&#x540E;&#xFF0C;&#x4E00;&#x6BB5;&#x65F6;&#x95F4;&#x5185;&#x6CA1;&#x6709;&#x65B0;&#x5143;&#x7D20;&#x4EA7;&#x751F;&#x3002;</p>
+<p>eg:</p>
+<pre><code class="lang-swift"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">debounce</span><span class="hljs-params">()</span></span> {
+    getFirstObservable()
+        .debounce(<span class="hljs-number">1</span>, scheduler: <span class="hljs-type">MainScheduler</span>.instance)
+        .subscribe({ (e) <span class="hljs-keyword">in</span>
+            <span class="hljs-built_in">print</span>(e)
+        })
+        .disposed(by: disposeBag)
+}
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-swift">next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">1</span>|<span class="hljs-type">C</span>)
+next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">2</span>|<span class="hljs-type">C</span>)
+next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">3</span>|<span class="hljs-type">C</span>)
+completed
+</code></pre>
+<h3 id="throttle">throttle</h3>
+<p>&#x8FD4;&#x56DE;&#x5728;&#x6307;&#x5B9A;&#x8FDE;&#x7EED;&#x65F6;&#x95F4;&#x7A97;&#x53E3;&#x671F;&#x95F4;&#x4E2D;&#xFF0C;&#x7531;&#x6E90; <code>Observable</code> &#x53D1;&#x51FA;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x548C;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x3002;&#x8FD9;&#x4E2A;&#x8FD0;&#x7B97;&#x7B26;&#x786E;&#x4FDD;&#x6CA1;&#x6709;&#x4E24;&#x4E2A;&#x5143;&#x7D20;&#x5728;&#x5C11;&#x4E8E; <code>dueTime</code> &#x7684;&#x65F6;&#x95F4;&#x53D1;&#x9001;&#x3002;</p>
+<p>eg:</p>
+<pre><code class="lang-swift"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">throttle</span><span class="hljs-params">()</span></span> {
+    <span class="hljs-keyword">let</span> subject = <span class="hljs-type">BehaviorSubject</span>&lt;<span class="hljs-type">Int</span>&gt;.<span class="hljs-keyword">init</span>(value: <span class="hljs-number">0</span>)
+    subject
+        .asObserver()
+        <span class="hljs-comment">// 1&#x79D2;&#x5185;&#x7B2C;&#x4E00;&#x4E2A;&#x548C;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x53D1;&#x51FA;&#x7684;&#x5143;&#x7D20;</span>
+        .throttle(<span class="hljs-number">2</span>, latest: <span class="hljs-literal">true</span>, scheduler: <span class="hljs-type">MainScheduler</span>.instance)
+        .subscribe({ (e) <span class="hljs-keyword">in</span>
+            <span class="hljs-built_in">print</span>(e)
+        })
+        .disposed(by: disposeBag)
+
+    subject.onNext(<span class="hljs-number">1</span>)
+    subject.onNext(<span class="hljs-number">2</span>)
+    subject.onNext(<span class="hljs-number">3</span>)
+    delayTime(<span class="hljs-number">3</span>) {
+        <span class="hljs-comment">// &#x4E0D;&#x4F1A;&#x53D1;&#x9001;onNext(4)&#xFF0C;&#x56E0;&#x4E3A;onNext(3)&#x5728;&#x4E0A;&#x4E00;&#x4E2A;2&#x79D2;&#x7684;&#x7A97;&#x53E3;&#x4E2D;&#xFF0C;&#x6700;&#x540E;&#x5EF6;&#x8FDF;&#x5230;2&#x79D2;&#x53D1;&#x9001;&#x51FA;&#x6765;&#xFF0C;</span>
+        <span class="hljs-comment">// onNext(4)&#x662F;&#x5728;&#x7B2C;3&#x79D2;&#x8FDB;&#x884C;&#x53D1;&#x9001;&#xFF0C;&#x6B64;&#x65F6; onNext(4)&#x7684;&#x53D1;&#x9001;&#x65F6;&#x95F4;&#x51CF;&#x53BB;onNext(3)&#x53D1;&#x9001;&#x65F6;&#x95F4;&#x5C0F;&#x4E8E;2&#xFF0C;&#x6240;&#x4EE5;&#x88AB;&#x5FFD;&#x7565;</span>
+        <span class="hljs-comment">// &#x56E0;&#x4E3A;throttle&#x4F1A;&#x786E;&#x4FDD;&#x6CA1;&#x6709;&#x4E24;&#x4E2A;&#x5143;&#x7D20;&#x5728;&#x5C11;&#x4E8E;dueTime&#x7684;&#x65F6;&#x95F4;</span>
+        subject.onNext(<span class="hljs-number">4</span>)
+        subject.onNext(<span class="hljs-number">5</span>)
+        subject.onNext(<span class="hljs-number">6</span>)
+    }
+
+    delayTime(<span class="hljs-number">8.2</span>) {
+        subject.onNext(<span class="hljs-number">7</span>)
+    }
+
+    delayTime(<span class="hljs-number">12.2</span>) {
+        subject.onNext(<span class="hljs-number">8</span>)
+        subject.onNext(<span class="hljs-number">9</span>)
+        subject.onNext(<span class="hljs-number">10</span>)
+        subject.onCompleted()
+    }
+}
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-swift">next(<span class="hljs-number">0</span>)
+next(<span class="hljs-number">3</span>)
+next(<span class="hljs-number">6</span>)
+next(<span class="hljs-number">7</span>)
+next(<span class="hljs-number">8</span>)
+next(<span class="hljs-number">10</span>)
+completed
+</code></pre>
+<h3 id="distinctuntilchanged">distinctUntilChanged</h3>
+<p><code>distinctUntilChanged</code> &#x64CD;&#x4F5C;&#x7B26;&#x5C06;&#x963B;&#x6B62; <code>Observable</code> &#x53D1;&#x51FA;&#x76F8;&#x540C;&#x7684;&#x5143;&#x7D20;&#x3002;&#x5982;&#x679C;&#x540E;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x548C;&#x524D;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x662F;&#x76F8;&#x540C;&#x7684;&#xFF0C;&#x90A3;&#x4E48;&#x8FD9;&#x4E2A;&#x5143;&#x7D20;&#x5C06;&#x4E0D;&#x4F1A;&#x88AB;&#x53D1;&#x51FA;&#x6765;&#x3002;&#x5982;&#x679C;&#x540E;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x548C;&#x524D;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x4E0D;&#x76F8;&#x540C;&#xFF0C;&#x90A3;&#x4E48;&#x8FD9;&#x4E2A;&#x5143;&#x7D20;&#x624D;&#x4F1A;&#x88AB;&#x53D1;&#x51FA;&#x6765;&#x3002;</p>
+<p>eg:</p>
+<pre><code class="lang-swift"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">distinctUntilChanged</span><span class="hljs-params">()</span></span> {
+    <span class="hljs-keyword">let</span> observable = <span class="hljs-type">Observable</span>.of(<span class="hljs-string">&quot;&#x1F431;&quot;</span>, <span class="hljs-string">&quot;&#x1F437;&quot;</span>, <span class="hljs-string">&quot;&#x1F431;&quot;</span>, <span class="hljs-string">&quot;&#x1F431;&quot;</span>, <span class="hljs-string">&quot;&#x1F431;&quot;</span>, <span class="hljs-string">&quot;&#x1F435;&quot;</span>, <span class="hljs-string">&quot;&#x1F435;&quot;</span>, <span class="hljs-string">&quot;&#x1F435;&quot;</span>, <span class="hljs-string">&quot;&#x1F435;&quot;</span>, <span class="hljs-string">&quot;&#x1F431;&quot;</span>)
+    observable
+        .distinctUntilChanged()
+        .debug(<span class="hljs-string">&quot;distinctUntilChanged&quot;</span>)
+        .subscribe()
+        .disposed(by: disposeBag)
+}
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-swift"><span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">23</span>:<span class="hljs-number">01.265</span>: distinctUntilChanged -&gt; subscribed
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">23</span>:<span class="hljs-number">01.269</span>: distinctUntilChanged -&gt; <span class="hljs-type">Event</span> next(&#x1F431;)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">23</span>:<span class="hljs-number">01.270</span>: distinctUntilChanged -&gt; <span class="hljs-type">Event</span> next(&#x1F437;)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">23</span>:<span class="hljs-number">01.270</span>: distinctUntilChanged -&gt; <span class="hljs-type">Event</span> next(&#x1F431;)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">23</span>:<span class="hljs-number">01.270</span>: distinctUntilChanged -&gt; <span class="hljs-type">Event</span> next(&#x1F435;)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">23</span>:<span class="hljs-number">01.270</span>: distinctUntilChanged -&gt; <span class="hljs-type">Event</span> next(&#x1F431;)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">23</span>:<span class="hljs-number">01.270</span>: distinctUntilChanged -&gt; <span class="hljs-type">Event</span> completed
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">23</span>:<span class="hljs-number">01.270</span>: distinctUntilChanged -&gt; isDisposed
+</code></pre>
+<h3 id="sample">sample</h3>
+<p><code>sample</code> &#x64CD;&#x4F5C;&#x7B26;&#x5C06;&#x4E0D;&#x5B9A;&#x671F;&#x7684;&#x5BF9;&#x6E90; <code>Observable</code> &#x8FDB;&#x884C;&#x53D6;&#x6837;&#x64CD;&#x4F5C;&#x3002;</p>
+<p>&#x901A;&#x8FC7;&#x7B2C;&#x4E8C;&#x4E2A; <code>Observable</code> &#x6765;&#x63A7;&#x5236;&#x53D6;&#x6837;&#x65F6;&#x673A;&#x3002;&#x4E00;&#x65E6;&#x7B2C;&#x4E8C;&#x4E2A; <code>Observable</code> &#x53D1;&#x51FA;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#xFF0C;&#x5C31;&#x4ECE;&#x6E90;(&#x7B2C;&#x4E00;&#x4E2A;) <code>Observable</code> &#x4E2D;&#x53D6;&#x51FA;&#x6700;&#x540E;&#x4EA7;&#x751F;&#x7684;&#x5143;&#x7D20;&#xFF08;&#x5982;&#x679C;&#x8FD9;&#x6BB5;&#x65F6;&#x95F4;&#x5185;&#x6CA1;&#x53D1;&#x51FA;&#x5143;&#x7D20;&#xFF0C;&#x5219;&#x4E0D;&#x53D6;&#xFF09;&#x3002;</p>
+<p>eg:</p>
+<pre><code class="lang-swift"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">sample</span><span class="hljs-params">()</span></span> {
+    <span class="hljs-keyword">let</span> sampleObservable = <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">Int</span>&gt;.interval(<span class="hljs-number">1</span>, scheduler: <span class="hljs-type">MainScheduler</span>.instance)
+    <span class="hljs-keyword">let</span> observable = getFirstObservable()
+        .sample(sampleObservable)
+    observable
+        .debug(<span class="hljs-string">&quot;sample&quot;</span>)
+        .subscribe()
+        .disposed(by: disposeBag)
+}
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-swift"><span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">24</span>:<span class="hljs-number">47.642</span>: sample -&gt; subscribed
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">24</span>:<span class="hljs-number">48.643</span>: sample -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">1</span>|<span class="hljs-type">C</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">24</span>:<span class="hljs-number">52.644</span>: sample -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">2</span>|<span class="hljs-type">C</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">24</span>:<span class="hljs-number">56.643</span>: sample -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">3</span>|<span class="hljs-type">C</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">24</span>:<span class="hljs-number">56.643</span>: sample -&gt; <span class="hljs-type">Event</span> completed
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">24</span>:<span class="hljs-number">56.643</span>: sample -&gt; isDisposed
+</code></pre>
+<h3 id="skip">skip</h3>
+<p><code>skip</code> &#x64CD;&#x4F5C;&#x7B26;&#x53EF;&#x4EE5;&#x8BA9;&#x4F60;&#x8DF3;&#x8FC7; <code>Observable</code> &#x4E2D;&#x5934; <code>n</code> &#x4E2A;&#x5143;&#x7D20;&#xFF0C;&#x53EA;&#x5173;&#x6CE8;&#x540E;&#x9762;&#x7684;&#x5143;&#x7D20;&#x3002;</p>
+<p>eg:</p>
+<pre><code class="lang-swift"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">skip</span><span class="hljs-params">()</span></span> {
+    <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">Int</span>&gt;
+        .of(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>)
+        .skip(<span class="hljs-number">4</span>)
+        .debug(<span class="hljs-string">&quot;skip&quot;</span>)
+        .subscribe()
+        .disposed(by: disposeBag)
+}
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-swift"><span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">33</span>:<span class="hljs-number">49.559</span>: skip -&gt; subscribed
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">33</span>:<span class="hljs-number">49.559</span>: skip -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">1</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">33</span>:<span class="hljs-number">49.559</span>: skip -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">2</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">33</span>:<span class="hljs-number">49.559</span>: skip -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">3</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">33</span>:<span class="hljs-number">49.559</span>: skip -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">4</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">33</span>:<span class="hljs-number">49.559</span>: skip -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">5</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">33</span>:<span class="hljs-number">49.559</span>: skip -&gt; <span class="hljs-type">Event</span> completed
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">33</span>:<span class="hljs-number">49.559</span>: skip -&gt; isDisposed
+</code></pre>
+<h3 id="skipwhile">skipWhile</h3>
+<p>&#x8DF3;&#x8FC7; <code>Observable</code> &#x4E2D;&#x5934;&#x51E0;&#x4E2A;&#x5143;&#x7D20;&#xFF0C;&#x76F4;&#x5230;&#x5143;&#x7D20;&#x7684;&#x5224;&#x5B9A;&#x4E3A;&#x5426;&#xFF0C;&#x95ED;&#x5305;&#x8FD4;&#x56DE; <code>true</code> &#x5219;<code>&#x8DF3;&#x8FC7;(skip)</code>&#xFF0C;<code>skipWhile</code> &#x64CD;&#x4F5C;&#x7B26;&#x53EF;&#x4EE5;&#x8BA9;&#x4F60;&#x5FFD;&#x7565;&#x6E90; <code>Observable</code> &#x4E2D; <code>&#x5934;&#x51E0;&#x4E2A;</code> &#x5143;&#x7D20;&#xFF0C;&#x76F4;&#x5230;&#x5143;&#x7D20;&#x7684;&#x5224;&#x5B9A;&#x4E3A; <code>false</code> &#x540E;&#xFF0C;&#x5B83;&#x624D;&#x955C;&#x50CF;&#x6E90; <code>Observable</code>&#xFF0C;<strong>&#x4E00;&#x65E6;&#x6709; <code>false</code> &#x4EA7;&#x751F;&#xFF0C;&#x540E;&#x9762;&#x7684;&#x5143;&#x7D20;&#x4E0D;&#x4F1A;&#x518D;&#x8FDB;&#x884C;&#x5224;&#x65AD;</strong>&#x3002;</p>
+<p>eg:</p>
+<pre><code class="lang-swift"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">skipWhile</span><span class="hljs-params">()</span></span> {
+    <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">Int</span>&gt;
+        .of(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, -<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">10</span>)
+        .skipWhile({ (value) -&gt; <span class="hljs-type">Bool</span> <span class="hljs-keyword">in</span>
+            <span class="hljs-keyword">return</span> value == <span class="hljs-number">0</span>
+        })
+        .debug(<span class="hljs-string">&quot;skipWhile&quot;</span>)
+        .subscribe()
+        .disposed(by: disposeBag)
+}
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-swift"><span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">35</span>:<span class="hljs-number">43.512</span>: skipWhile -&gt; subscribed
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">35</span>:<span class="hljs-number">43.512</span>: skipWhile -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">1</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">35</span>:<span class="hljs-number">43.512</span>: skipWhile -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">2</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">35</span>:<span class="hljs-number">43.513</span>: skipWhile -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">3</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">35</span>:<span class="hljs-number">43.513</span>: skipWhile -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">4</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">35</span>:<span class="hljs-number">43.513</span>: skipWhile -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">5</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">35</span>:<span class="hljs-number">43.513</span>: skipWhile -&gt; <span class="hljs-type">Event</span> next(-<span class="hljs-number">1</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">35</span>:<span class="hljs-number">43.513</span>: skipWhile -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">0</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">35</span>:<span class="hljs-number">43.513</span>: skipWhile -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">0</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">35</span>:<span class="hljs-number">43.513</span>: skipWhile -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">10</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">35</span>:<span class="hljs-number">43.513</span>: skipWhile -&gt; <span class="hljs-type">Event</span> completed
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">11</span>:<span class="hljs-number">35</span>:<span class="hljs-number">43.513</span>: skipWhile -&gt; isDisposed
+</code></pre>
+<h3 id="skipuntil">skipUntil</h3>
+<p>&#x8DF3;&#x8FC7; <code>Observable</code> &#x4E2D;&#x5934;&#x51E0;&#x4E2A;&#x5143;&#x7D20;&#xFF0C;&#x76F4;&#x5230;&#x53E6;&#x4E00;&#x4E2A; <code>Observable</code> &#x53D1;&#x51FA;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#xFF0C;<code>skipUntil</code> &#x64CD;&#x4F5C;&#x7B26;&#x53EF;&#x4EE5;&#x8BA9;&#x4F60;&#x5FFD;&#x7565;&#x6E90; <code>Observable</code> &#x4E2D;&#x5934;&#x51E0;&#x4E2A;&#x5143;&#x7D20;&#xFF0C;&#x76F4;&#x5230;&#x53E6;&#x4E00;&#x4E2A; <code>Observable</code> &#x53D1;&#x51FA;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x540E;&#xFF0C;&#x5B83;&#x624D;&#x955C;&#x50CF;&#x6E90; <code>Observable</code>&#x3002;</p>
+<p>eg:</p>
+<pre><code class="lang-swift"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">skipUntil</span><span class="hljs-params">()</span></span> {
+    <span class="hljs-keyword">let</span> skipUntilObservable = <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">Int</span>&gt;.create { (observer) -&gt; <span class="hljs-type">Disposable</span> <span class="hljs-keyword">in</span>
+        delayTime(<span class="hljs-number">3</span>, block: {
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;skipUntilObservable =&gt; onNext(0)&quot;</span>)
+            observer.onNext(<span class="hljs-number">0</span>)
+        })
+        <span class="hljs-keyword">return</span> <span class="hljs-type">Disposables</span>.create()
+    }
+    getFirstObservable()
+        .skipUntil(skipUntilObservable)
+        .debug(<span class="hljs-string">&quot;skipUntil&quot;</span>)
+        .subscribe()
+        .disposed(by: disposeBag)
+}
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-swift"><span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">25</span>:<span class="hljs-number">42.199</span>: skipUntil -&gt; subscribed
+skipUntilObservable =&gt; onNext(<span class="hljs-number">0</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">25</span>:<span class="hljs-number">47.199</span>: skipUntil -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">2</span>|<span class="hljs-type">A</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">25</span>:<span class="hljs-number">47.200</span>: skipUntil -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">2</span>|<span class="hljs-type">B</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">25</span>:<span class="hljs-number">47.200</span>: skipUntil -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">2</span>|<span class="hljs-type">C</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">25</span>:<span class="hljs-number">51.201</span>: skipUntil -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">3</span>|<span class="hljs-type">A</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">25</span>:<span class="hljs-number">51.201</span>: skipUntil -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">3</span>|<span class="hljs-type">B</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">25</span>:<span class="hljs-number">51.201</span>: skipUntil -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">3</span>|<span class="hljs-type">C</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">25</span>:<span class="hljs-number">51.201</span>: skipUntil -&gt; <span class="hljs-type">Event</span> completed
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">25</span>:<span class="hljs-number">51.201</span>: skipUntil -&gt; isDisposed
+</code></pre>
+<h3 id="take">take</h3>
+<p>&#x901A;&#x8FC7; <code>take</code> &#x64CD;&#x4F5C;&#x7B26;&#x4F60;&#x53EF;&#x4EE5;&#x53EA;&#x53D1;&#x51FA;&#x5934; <code>n</code> &#x4E2A;&#x5143;&#x7D20;&#x3002;&#x5E76;&#x4E14;&#x5FFD;&#x7565;&#x6389;&#x540E;&#x9762;&#x7684;&#x5143;&#x7D20;&#xFF0C;&#x76F4;&#x63A5;&#x7ED3;&#x675F;&#x5E8F;&#x5217;&#x3002;</p>
+<p>eg:</p>
+<pre><code class="lang-swift"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">take</span><span class="hljs-params">()</span></span> {
+    <span class="hljs-type">Observable</span>.of(<span class="hljs-string">&quot;&#x1F431;&quot;</span>, <span class="hljs-string">&quot;&#x1F430;&quot;</span>, <span class="hljs-string">&quot;&#x1F436;&quot;</span>, <span class="hljs-string">&quot;&#x1F438;&quot;</span>, <span class="hljs-string">&quot;&#x1F437;&quot;</span>, <span class="hljs-string">&quot;&#x1F435;&quot;</span>)
+        .take(<span class="hljs-number">3</span>)
+        .debug(<span class="hljs-string">&quot;take&quot;</span>)
+        .subscribe()
+        .disposed(by: disposeBag)
+}
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-swift"><span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">28</span>:<span class="hljs-number">14.822</span>: take -&gt; subscribed
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">28</span>:<span class="hljs-number">14.822</span>: take -&gt; <span class="hljs-type">Event</span> next(&#x1F431;)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">28</span>:<span class="hljs-number">14.822</span>: take -&gt; <span class="hljs-type">Event</span> next(&#x1F430;)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">28</span>:<span class="hljs-number">14.822</span>: take -&gt; <span class="hljs-type">Event</span> next(&#x1F436;)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">28</span>:<span class="hljs-number">14.822</span>: take -&gt; <span class="hljs-type">Event</span> completed
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">28</span>:<span class="hljs-number">14.822</span>: take -&gt; isDisposed
+</code></pre>
+<h3 id="takelast">takeLast</h3>
+<p>&#x901A;&#x8FC7; <code>takeLast</code> &#x64CD;&#x4F5C;&#x7B26;&#x4F60;&#x53EF;&#x4EE5;&#x53EA;&#x53D1;&#x51FA;&#x5C3E;&#x90E8; <code>n</code> &#x4E2A;&#x5143;&#x7D20;&#x3002;&#x5E76;&#x4E14;&#x5FFD;&#x7565;&#x6389;&#x524D;&#x9762;&#x7684;&#x5143;&#x7D20;&#x3002;</p>
+<p>&#x5728; <code>onCompleted()</code> &#x4E4B;&#x540E;&#x53D6;&#x51FA;&#x6700;&#x540E;n&#x4E2A;&#x5143;&#x7D20;&#x4E00;&#x6B21;&#x6027;&#x53D1;&#x51FA;&#x3002;</p>
+<p>eg:</p>
+<pre><code class="lang-swift"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">takeLast</span><span class="hljs-params">()</span></span> {
+    getFirstObservable()
+        .takeLast(<span class="hljs-number">5</span>)
+        .debug(<span class="hljs-string">&quot;takeLast&quot;</span>)
+        .subscribe()
+        .disposed(by: disposeBag)
+}
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-swift"><span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">30</span>:<span class="hljs-number">13.992</span>: takeLast -&gt; subscribed
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">30</span>:<span class="hljs-number">22.994</span>: takeLast -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">2</span>|<span class="hljs-type">B</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">30</span>:<span class="hljs-number">22.994</span>: takeLast -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">2</span>|<span class="hljs-type">C</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">30</span>:<span class="hljs-number">22.994</span>: takeLast -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">3</span>|<span class="hljs-type">A</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">30</span>:<span class="hljs-number">22.994</span>: takeLast -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">3</span>|<span class="hljs-type">B</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">30</span>:<span class="hljs-number">22.994</span>: takeLast -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">3</span>|<span class="hljs-type">C</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">30</span>:<span class="hljs-number">22.995</span>: takeLast -&gt; <span class="hljs-type">Event</span> completed
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">30</span>:<span class="hljs-number">22.995</span>: takeLast -&gt; isDisposed
+</code></pre>
+<h3 id="takewhile">takeWhile</h3>
+<p>&#x955C;&#x50CF;&#x4E00;&#x4E2A; <code>Observable</code> &#x76F4;&#x5230;&#x67D0;&#x4E2A;&#x5143;&#x7D20;&#x7684;&#x5224;&#x5B9A;&#x4E3A; <code>false</code></p>
+<p>&#x95ED;&#x5305;&#x8FD4;&#x56DE; <code>true</code> &#x5219;&#x653E;&#x884C;&#xFF0C;&#x8FD4;&#x56DE; <code>false</code> &#x5219;&#x7ED3;&#x675F;</p>
+<p><code>takeWhile</code> &#x64CD;&#x4F5C;&#x7B26;&#x5C06;&#x955C;&#x50CF;&#x6E90; <code>Observable</code> &#x76F4;&#x5230;&#x67D0;&#x4E2A;&#x5143;&#x7D20;&#x7684;&#x5224;&#x5B9A;&#x4E3A; <code>false</code>&#x3002;&#x6B64;&#x65F6;&#xFF0C;&#x8FD9;&#x4E2A;&#x955C;&#x50CF;&#x7684; <code>Observable</code> &#x5C06;&#x7ACB;&#x5373;&#x7EC8;&#x6B62;&#x3002;</p>
+<p>eg:</p>
+<pre><code class="lang-swift"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">takeWhile</span><span class="hljs-params">()</span></span> {
+    <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">Int</span>&gt;
+        .of(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, -<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">10</span>)
+        .takeWhile({ (value) -&gt; <span class="hljs-type">Bool</span> <span class="hljs-keyword">in</span>
+            <span class="hljs-keyword">return</span> value &gt;= <span class="hljs-number">0</span>
+        })
+        .debug(<span class="hljs-string">&quot;skipWhile&quot;</span>)
+        .subscribe()
+        .disposed(by: disposeBag)
+}
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-swift"><span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">32</span>:<span class="hljs-number">42.491</span>: skipWhile -&gt; subscribed
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">32</span>:<span class="hljs-number">42.492</span>: skipWhile -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">0</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">32</span>:<span class="hljs-number">42.492</span>: skipWhile -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">0</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">32</span>:<span class="hljs-number">42.492</span>: skipWhile -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">0</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">32</span>:<span class="hljs-number">42.492</span>: skipWhile -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">0</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">32</span>:<span class="hljs-number">42.492</span>: skipWhile -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">1</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">32</span>:<span class="hljs-number">42.492</span>: skipWhile -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">2</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">32</span>:<span class="hljs-number">42.492</span>: skipWhile -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">3</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">32</span>:<span class="hljs-number">42.492</span>: skipWhile -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">4</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">32</span>:<span class="hljs-number">42.492</span>: skipWhile -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">5</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">32</span>:<span class="hljs-number">42.492</span>: skipWhile -&gt; <span class="hljs-type">Event</span> completed
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">32</span>:<span class="hljs-number">42.492</span>: skipWhile -&gt; isDisposed
+</code></pre>
+<h3 id="takeuntil">takeUntil</h3>
+<p>&#x5FFD;&#x7565;&#x4E00;&#x90E8;&#x5206;&#x5143;&#x7D20;&#xFF0C;&#x8FD9;&#x4E9B;&#x5143;&#x7D20;&#x662F;&#x5728;&#x7B2C;&#x4E8C;&#x4E2A; <code>Observable</code> &#x4EA7;&#x751F;&#x4E8B;&#x4EF6;&#x540E;&#x53D1;&#x51FA;&#x7684;(&#x5219;&#x88AB;&#x5FFD;&#x7565;)&#x3002;</p>
+<p><code>takeUntil</code> &#x64CD;&#x4F5C;&#x7B26;&#x5C06;&#x955C;&#x50CF;&#x6E90; <code>Observable</code>&#xFF0C;&#x5B83;&#x540C;&#x65F6;&#x89C2;&#x6D4B;&#x7B2C;&#x4E8C;&#x4E2A; <code>Observable</code>&#x3002;&#x4E00;&#x65E6;&#x7B2C;&#x4E8C;&#x4E2A; <code>Observable</code> &#x53D1;&#x51FA;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x6216;&#x8005;&#x4EA7;&#x751F;&#x4E00;&#x4E2A;&#x7EC8;&#x6B62;&#x4E8B;&#x4EF6;&#xFF0C;&#x90A3;&#x4E2A;&#x955C;&#x50CF;&#x7684; <code>Observable</code> &#x5C06;&#x7ACB;&#x5373;&#x7EC8;&#x6B62;&#x3002;</p>
+<p>eg:</p>
+<pre><code class="lang-swift"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">takeUntil</span><span class="hljs-params">()</span></span> {
+    <span class="hljs-keyword">let</span> takeUntilObservable = <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">Int</span>&gt;.create { (observer) -&gt; <span class="hljs-type">Disposable</span> <span class="hljs-keyword">in</span>
+        delayTime(<span class="hljs-number">3</span>, block: {
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;takeUntilObservable =&gt; onNext(0)&quot;</span>)
+            observer.onNext(<span class="hljs-number">0</span>)
+        })
+        <span class="hljs-keyword">return</span> <span class="hljs-type">Disposables</span>.create()
+    }
+    getFirstObservable()
+        .takeUntil(takeUntilObservable)
+        .debug(<span class="hljs-string">&quot;takeUntil&quot;</span>)
+        .subscribe()
+        .disposed(by: disposeBag)
+}
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-swift"><span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">36</span>:<span class="hljs-number">41.994</span>: takeUntil -&gt; subscribed
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">36</span>:<span class="hljs-number">42.996</span>: takeUntil -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">1</span>|<span class="hljs-type">A</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">36</span>:<span class="hljs-number">42.996</span>: takeUntil -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">1</span>|<span class="hljs-type">B</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">36</span>:<span class="hljs-number">42.996</span>: takeUntil -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">1</span>|<span class="hljs-type">C</span>)
+takeUntilObservable =&gt; onNext(<span class="hljs-number">0</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">36</span>:<span class="hljs-number">44.995</span>: takeUntil -&gt; <span class="hljs-type">Event</span> completed
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">12</span>:<span class="hljs-number">36</span>:<span class="hljs-number">44.995</span>: takeUntil -&gt; isDisposed
+</code></pre>
+<h3 id="single">single</h3>
+<p>&#x9650;&#x5236; <code>Observable</code> &#x53EA;&#x6709;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#xFF0C;&#x5426;&#x51FA;&#x53D1;&#x51FA;&#x4E00;&#x4E2A; <code>error</code> &#x4E8B;&#x4EF6;&#xFF0C;<code>single</code> &#x64CD;&#x4F5C;&#x7B26;&#x5C06;&#x9650;&#x5236; <code>Observable</code> &#x53EA;&#x4EA7;&#x751F;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x3002;</p>
+<ul>
+<li>&#x5982;&#x679C; <code>Observable</code> &#x53EA;&#x6709;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#xFF0C;&#x5B83;&#x5C06;&#x955C;&#x50CF;&#x8FD9;&#x4E2A; <code>Observable</code> &#x3002;</li>
+<li>&#x5982;&#x679C; <code>Observable</code> &#x6CA1;&#x6709;&#x5143;&#x7D20;&#x6216;&#x8005;&#x5143;&#x7D20;&#x6570;&#x91CF;&#x5927;&#x4E8E;&#x4E00;&#xFF0C;&#x5B83;&#x5C06;&#x4EA7;&#x751F;&#x4E00;&#x4E2A; <code>error</code> &#x4E8B;&#x4EF6;&#x3002;</li>
+</ul>
+<p>eg:</p>
+<pre><code class="lang-swift"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">single</span><span class="hljs-params">()</span></span> {
+    <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">Int</span>&gt;
+        .just(<span class="hljs-number">1</span>)
+        .single()
+        .subscribe({ e <span class="hljs-keyword">in</span>
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;single 1 =&gt; <span class="hljs-subst">\(e.debugDescription)</span>&quot;</span>)
+        })
+        .disposed(by: disposeBag)
+
+    <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">Int</span>&gt;
+        .of(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>)
+        .single()
+        .subscribe({ (e) <span class="hljs-keyword">in</span>
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;single 2 =&gt; <span class="hljs-subst">\(e.debugDescription)</span>&quot;</span>)
+        })
+        .disposed(by: disposeBag)
+}
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-swift">single <span class="hljs-number">1</span> =&gt; next(<span class="hljs-number">1</span>)
+single <span class="hljs-number">1</span> =&gt; completed
+single <span class="hljs-number">2</span> =&gt; next(<span class="hljs-number">1</span>)
+single <span class="hljs-number">2</span> =&gt; error(<span class="hljs-type">Sequence</span> <span class="hljs-built_in">contains</span> more than one element.)
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Transforming.html" class="navigation navigation-prev " aria-label="Previous page: 7.03 变换 Observable">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="Combining.html" class="navigation navigation-next " aria-label="Next page: 7.05 联合 Observable">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"7.04 过滤 Observable","level":"1.8.5","depth":2,"next":{"title":"7.05 联合 Observable","level":"1.8.6","depth":2,"path":"RxSwiftStudy/Operator/Combining.md","ref":"./RxSwiftStudy/Operator/Combining.md","articles":[]},"previous":{"title":"7.03 变换 Observable","level":"1.8.4","depth":2,"path":"RxSwiftStudy/Operator/Transforming.md","ref":"./RxSwiftStudy/Operator/Transforming.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","search-plus","expandable-chapters-small","editlink","include-codeblock","include-highlight","github-buttons"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"editlink":{"label":"编辑页面","multilingual":false,"base":"https://github.com/ToBeDefined/RxSwiftExample/edit/master"},"include-highlight":{},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"sans"},"highlight":{},"github-buttons":{"repo":"ToBeDefined/RxSwiftExample","types":["star"],"size":"small"},"expandable-chapters-small":{},"include-codeblock":{"check":false,"edit":false,"fixlang":false,"lang":"","template":"default","theme":"chrome","unindent":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"search-plus":{}},"theme":"theme","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"isPdf":false},"title":"RxSwift Example","language":"zh-hans","gitbook":"*","description":null},"file":{"path":"RxSwiftStudy/Operator/Filtering.md","mtime":"2017-12-28T09:11:22.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-12-28T09:36:07.825Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search-plus/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search-plus/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-editlink/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

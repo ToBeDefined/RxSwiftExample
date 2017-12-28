@@ -1,0 +1,946 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>7.03 变换 Observable · RxSwift Example</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search-plus/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="Filtering.html" />
+    
+    
+    <link rel="prev" href="Create.html" />
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"repo":"ToBeDefined/RxSwiftExample","types":["star"],"size":"small"};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../1.Observable-可被监听的序列.html">
+            
+                <a href="../1.Observable-可被监听的序列.html">
+            
+                    
+                    1. Observable - 可被监听的序列
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../2.Observer-观察者.html">
+            
+                <a href="../2.Observer-观察者.html">
+            
+                    
+                    2. Observer - 观察者
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../3.Observable&Observer-既是可被监听的序列也是观察者.html">
+            
+                <a href="../3.Observable&Observer-既是可被监听的序列也是观察者.html">
+            
+                    
+                    3. Observable & Observer 既是可被监听的序列也是观察者
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../4.Disposable-可被清除的资源.html">
+            
+                <a href="../4.Disposable-可被清除的资源.html">
+            
+                    
+                    4. Disposable - 可被清除的资源
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../5.Schedulers-调度器.html">
+            
+                <a href="../5.Schedulers-调度器.html">
+            
+                    
+                    5. Schedulers - 调度器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../6.ErrorHandling-错误处理.html">
+            
+                <a href="../6.ErrorHandling-错误处理.html">
+            
+                    
+                    6. Error Handling - 错误处理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../7.Operator-操作符.html">
+            
+                <a href="../7.Operator-操作符.html">
+            
+                    
+                    7. Operator - 操作符
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="Prepare.html">
+            
+                <a href="Prepare.html">
+            
+                    
+                    7.00 准备测试使用的方法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="Debug.html">
+            
+                <a href="Debug.html">
+            
+                    
+                    7.01 Debug Operator
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" data-path="Create.html">
+            
+                <a href="Create.html">
+            
+                    
+                    7.02 创建 Observable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.8.4" data-path="Transforming.html">
+            
+                <a href="Transforming.html">
+            
+                    
+                    7.03 变换 Observable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5" data-path="Filtering.html">
+            
+                <a href="Filtering.html">
+            
+                    
+                    7.04 过滤 Observable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.6" data-path="Combining.html">
+            
+                <a href="Combining.html">
+            
+                    
+                    7.05 联合 Observable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.7" data-path="ErrorHandling.html">
+            
+                <a href="ErrorHandling.html">
+            
+                    
+                    7.06 错误处理操作符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.8" data-path="Conditional_and_Boolean.html">
+            
+                <a href="Conditional_and_Boolean.html">
+            
+                    
+                    7.07 条件和 Bool 操作符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.9" data-path="Mathematical_and_Aggregate.html">
+            
+                <a href="Mathematical_and_Aggregate.html">
+            
+                    
+                    7.08 数学和聚合操作符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.10" data-path="Connectable.html">
+            
+                <a href="Connectable.html">
+            
+                    
+                    7.09 连接 Observable 操作符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.11" data-path="Time.html">
+            
+                <a href="Time.html">
+            
+                    
+                    7.10 Time Operator
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.12" data-path="Scheduler.html">
+            
+                <a href="Scheduler.html">
+            
+                    
+                    7.11 Scheduler Operator
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.13" data-path="Materialize.html">
+            
+                <a href="Materialize.html">
+            
+                    
+                    7.12 Materialize Operator
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.14" data-path="Using.html">
+            
+                <a href="Using.html">
+            
+                    
+                    7.13 Using Operator
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../8.其他相关资料.html">
+            
+                <a href="../8.其他相关资料.html">
+            
+                    
+                    8. 其他相关资料
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >7.03 变换 Observable</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div class="search-plus" id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="&#x53D8;&#x6362;-observable---transforming-operator">&#x53D8;&#x6362; Observable - Transforming Operator</h2>
+<h3 id="toarray">toArray</h3>
+<p>&#x5C06; <code>Observable</code> &#x4E2D;&#x7684;&#x5355;&#x4E2A;&#x5143;&#x7D20;&#x8F6C;&#x6362;&#x6210; <code>Array</code> &#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x7684; <code>Observable</code> &#x8FDB;&#x884C;&#x53D1;&#x9001;</p>
+<p>eg:</p>
+<pre><code class="lang-swift"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">toArray</span><span class="hljs-params">()</span></span> {
+    <span class="hljs-keyword">let</span> observable = <span class="hljs-type">Observable</span>.of(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>)
+    observable
+        .toArray()
+        .debug(<span class="hljs-string">&quot;toArray&quot;</span>)
+        .subscribe()
+        .disposed(by: disposeBag)
+}
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-swift"><span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">10</span>:<span class="hljs-number">05</span>:<span class="hljs-number">30.889</span>: toArray -&gt; subscribed
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">10</span>:<span class="hljs-number">05</span>:<span class="hljs-number">30.893</span>: toArray -&gt; <span class="hljs-type">Event</span> next([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>])
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">10</span>:<span class="hljs-number">05</span>:<span class="hljs-number">30.893</span>: toArray -&gt; <span class="hljs-type">Event</span> completed
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">10</span>:<span class="hljs-number">05</span>:<span class="hljs-number">30.893</span>: toArray -&gt; isDisposed
+</code></pre>
+<h3 id="map">map</h3>
+<p>&#x901A;&#x8FC7;&#x4E00;&#x4E2A;&#x8F6C;&#x6362;&#x51FD;&#x6570;&#xFF0C;&#x5C06; <code>Observable</code> &#x7684;&#x6BCF;&#x4E2A;&#x5143;&#x7D20;&#x8F6C;&#x6362;&#x4E00;&#x904D;&#xFF0C;<code>map</code> &#x64CD;&#x4F5C;&#x7B26;&#x5C06;&#x6E90; <code>Observable</code> &#x7684;&#x6BCF;&#x4E2A;&#x5143;&#x7D20;&#x5E94;&#x7528;&#x4F60;&#x63D0;&#x4F9B;&#x7684;&#x8F6C;&#x6362;&#x65B9;&#x6CD5;&#xFF0C;&#x7136;&#x540E;&#x8FD4;&#x56DE;&#x542B;&#x6709;&#x8F6C;&#x6362;&#x7ED3;&#x679C;&#x7684; <code>Observable</code>&#x3002;</p>
+<pre><code class="lang-swift"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">map</span><span class="hljs-params">()</span></span> {
+    <span class="hljs-keyword">let</span> disposeBag = <span class="hljs-type">DisposeBag</span>()
+    <span class="hljs-type">Observable</span>.of(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>)
+        .<span class="hljs-built_in">map</span>({ (value) -&gt; <span class="hljs-type">String</span> <span class="hljs-keyword">in</span>
+            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Value is <span class="hljs-subst">\(value * <span class="hljs-number">10</span>)</span>&quot;</span>
+        })
+        .subscribe({ e <span class="hljs-keyword">in</span>
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;map =&gt; <span class="hljs-subst">\(e.debugDescription)</span>&quot;</span>)
+        })
+        .disposed(by: disposeBag)
+}
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-swift"><span class="hljs-built_in">map</span> =&gt; next(<span class="hljs-type">Value</span> <span class="hljs-keyword">is</span> <span class="hljs-number">10</span>)
+<span class="hljs-built_in">map</span> =&gt; next(<span class="hljs-type">Value</span> <span class="hljs-keyword">is</span> <span class="hljs-number">20</span>)
+<span class="hljs-built_in">map</span> =&gt; next(<span class="hljs-type">Value</span> <span class="hljs-keyword">is</span> <span class="hljs-number">30</span>)
+<span class="hljs-built_in">map</span> =&gt; completed
+</code></pre>
+<h3 id="scan">scan</h3>
+<p>&#x6301;&#x7EED;&#x7684;&#x5C06; <code>Observable</code> &#x7684;&#x6BCF;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x5E94;&#x7528;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#xFF0C;&#x7136;&#x540E;&#x53D1;&#x51FA;&#x6BCF;&#x4E00;&#x6B21;&#x51FD;&#x6570;&#x8FD4;&#x56DE;&#x7684;&#x7ED3;&#x679C;&#x3002;</p>
+<p><code>scan</code> &#x64CD;&#x4F5C;&#x7B26;&#x5C06;&#x5BF9;&#x7B2C;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x5E94;&#x7528;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#xFF0C;&#x5C06;&#x7ED3;&#x679C;&#x4F5C;&#x4E3A;&#x7B2C;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x53D1;&#x51FA;&#x3002;&#x7136;&#x540E;&#xFF0C;&#x5C06;&#x7ED3;&#x679C;&#x4F5C;&#x4E3A;&#x53C2;&#x6570;&#x586B;&#x5165;&#x5230;&#x7B2C;&#x4E8C;&#x4E2A;&#x5143;&#x7D20;&#x7684;&#x5E94;&#x7528;&#x51FD;&#x6570;&#x4E2D;&#xFF0C;&#x521B;&#x5EFA;&#x7B2C;&#x4E8C;&#x4E2A;&#x5143;&#x7D20;&#x3002;&#x4EE5;&#x6B64;&#x7C7B;&#x63A8;&#xFF0C;&#x76F4;&#x5230;&#x904D;&#x5386;&#x5B8C;&#x5168;&#x90E8;&#x7684;&#x5143;&#x7D20;&#x3002;(&#x8FD9;&#x79CD;&#x64CD;&#x4F5C;&#x7B26;&#x5728;&#x5176;&#x4ED6;&#x5730;&#x65B9;&#x6709;&#x65F6;&#x5019;&#x88AB;&#x79F0;&#x4F5C;&#x662F; <code>accumulator</code>&#x3002;)</p>
+<blockquote>
+<p>&#x4E0E; <code>reduce</code> &#x7C7B;&#x4F3C;&#xFF0C;<code>reduce</code> &#x53D1;&#x9001;&#x6700;&#x7EC8;&#x7ED3;&#x679C;&#xFF0C;<code>scan</code> &#x53D1;&#x9001;&#x6BCF;&#x4E2A;&#x6B65;&#x9AA4;</p>
+</blockquote>
+<p>eg:</p>
+<pre><code class="lang-swift"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">scan</span><span class="hljs-params">()</span></span> {
+    <span class="hljs-keyword">let</span> observable = <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">Int</span>&gt;.of(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">8</span>, <span class="hljs-number">16</span>, <span class="hljs-number">32</span>, <span class="hljs-number">64</span>, <span class="hljs-number">128</span>, <span class="hljs-number">256</span>, <span class="hljs-number">512</span>)
+    observable
+        .scan(<span class="hljs-number">0</span>, accumulator: { (l, r) -&gt; <span class="hljs-type">Int</span> <span class="hljs-keyword">in</span>
+            <span class="hljs-keyword">return</span> l + r
+        })
+        .debug(<span class="hljs-string">&quot;Scan&quot;</span>)
+        .subscribe()
+        .disposed(by: disposeBag)
+}
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-swift"><span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">10</span>:<span class="hljs-number">09</span>:<span class="hljs-number">36.991</span>: <span class="hljs-type">Scan</span> -&gt; subscribed
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">10</span>:<span class="hljs-number">09</span>:<span class="hljs-number">36.991</span>: <span class="hljs-type">Scan</span> -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">1</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">10</span>:<span class="hljs-number">09</span>:<span class="hljs-number">36.991</span>: <span class="hljs-type">Scan</span> -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">3</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">10</span>:<span class="hljs-number">09</span>:<span class="hljs-number">36.991</span>: <span class="hljs-type">Scan</span> -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">7</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">10</span>:<span class="hljs-number">09</span>:<span class="hljs-number">36.991</span>: <span class="hljs-type">Scan</span> -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">15</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">10</span>:<span class="hljs-number">09</span>:<span class="hljs-number">36.991</span>: <span class="hljs-type">Scan</span> -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">31</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">10</span>:<span class="hljs-number">09</span>:<span class="hljs-number">36.991</span>: <span class="hljs-type">Scan</span> -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">63</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">10</span>:<span class="hljs-number">09</span>:<span class="hljs-number">36.991</span>: <span class="hljs-type">Scan</span> -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">127</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">10</span>:<span class="hljs-number">09</span>:<span class="hljs-number">36.991</span>: <span class="hljs-type">Scan</span> -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">255</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">10</span>:<span class="hljs-number">09</span>:<span class="hljs-number">36.991</span>: <span class="hljs-type">Scan</span> -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">511</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">10</span>:<span class="hljs-number">09</span>:<span class="hljs-number">36.991</span>: <span class="hljs-type">Scan</span> -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-number">1023</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">10</span>:<span class="hljs-number">09</span>:<span class="hljs-number">36.991</span>: <span class="hljs-type">Scan</span> -&gt; <span class="hljs-type">Event</span> completed
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">10</span>:<span class="hljs-number">09</span>:<span class="hljs-number">36.991</span>: <span class="hljs-type">Scan</span> -&gt; isDisposed
+</code></pre>
+<h3 id="flatmap">flatMap</h3>
+<p>&#x5C06; <code>Observable</code> &#x7684;&#x5143;&#x7D20;&#x8F6C;&#x6362;&#x6210;&#x5176;&#x4ED6;&#x7684; <code>Observable</code>&#xFF0C;&#x7136;&#x540E;&#x5C06;&#x8FD9;&#x4E9B; <code>Observables</code> &#x5408;&#x5E76;&#xFF0C;<code>flatMap</code> &#x64CD;&#x4F5C;&#x7B26;&#x5C06;&#x6E90; <code>Observable</code> &#x7684;&#x6BCF;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x5E94;&#x7528;&#x4E00;&#x4E2A;&#x8F6C;&#x6362;&#x65B9;&#x6CD5;&#xFF0C;&#x5C06;&#x4ED6;&#x4EEC;&#x8F6C;&#x6362;&#x6210; <code>Observables</code>&#x3002;&#x7136;&#x540E;&#x5C06;&#x8FD9;&#x4E9B; <code>Observables</code> &#x7684;&#x5143;&#x7D20;&#x5408;&#x5E76;&#x4E4B;&#x540E;&#x518D;&#x53D1;&#x9001;&#x51FA;&#x6765;&#x3002;</p>
+<p>&#x8FD9;&#x4E2A;&#x64CD;&#x4F5C;&#x7B26;&#x662F;&#x975E;&#x5E38;&#x6709;&#x7528;&#x7684;&#xFF0C;&#x4F8B;&#x5982;&#xFF0C;&#x5F53; <code>Observable</code> &#x7684;&#x5143;&#x7D20;&#x672C;&#x751F;&#x62E5;&#x6709;&#x5176;&#x4ED6;&#x7684; <code>Observable</code> &#x65F6;&#xFF0C;&#x4F60;<strong>&#x53EF;&#x4EE5;&#x5C06;&#x6240;&#x6709;&#x5B50; <code>Observables</code> &#x7684;&#x5143;&#x7D20;&#x53D1;&#x9001;&#x51FA;&#x6765;</strong>&#x3002;</p>
+<pre><code class="lang-swift"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">flatMap</span><span class="hljs-params">()</span></span> {
+    <span class="hljs-keyword">let</span> first = <span class="hljs-type">BehaviorSubject</span>(value: <span class="hljs-string">&quot;First =&gt; &#x1F466;&#x1F3FB;&quot;</span>)
+    <span class="hljs-keyword">let</span> second = <span class="hljs-type">BehaviorSubject</span>(value: <span class="hljs-string">&quot;Second =&gt; &#x1F60A;&quot;</span>)
+    <span class="hljs-keyword">let</span> variable = <span class="hljs-type">Variable</span>(first)
+
+    variable
+        .asObservable()
+        .flatMap { $<span class="hljs-number">0</span> }
+        .subscribe(onNext: { <span class="hljs-built_in">print</span>($<span class="hljs-number">0</span>) })
+        .disposed(by: disposeBag)
+
+    first.onNext(<span class="hljs-string">&quot;First =&gt; &#x1F431;&quot;</span>)
+    variable.value = second
+    second.onNext(<span class="hljs-string">&quot;Second =&gt; &#x1F622;&quot;</span>)
+    first.onNext(<span class="hljs-string">&quot;First =&gt; &#x1F436;&quot;</span>)
+    first.onNext(<span class="hljs-string">&quot;First =&gt; &#x1F431;&quot;</span>)
+    second.onNext(<span class="hljs-string">&quot;Second =&gt; &#x1F602;&quot;</span>)
+}
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-swift"><span class="hljs-type">First</span> =&gt; &#x1F466;&#x1F3FB;
+<span class="hljs-type">First</span> =&gt; &#x1F431;
+<span class="hljs-type">Second</span> =&gt; &#x1F60A;
+<span class="hljs-type">Second</span> =&gt; &#x1F622;
+<span class="hljs-type">First</span> =&gt; &#x1F436;
+<span class="hljs-type">First</span> =&gt; &#x1F431;
+<span class="hljs-type">Second</span> =&gt; &#x1F602;
+</code></pre>
+<h3 id="flatmapfirst">flatMapFirst</h3>
+<p>&#x5C06; <code>Observable</code> &#x7684;&#x5143;&#x7D20;&#x8F6C;&#x6362;&#x6210;&#x5176;&#x4ED6;&#x7684; <code>Observable</code>&#xFF0C;&#x7136;&#x540E;&#x53D6;&#x8FD9;&#x4E9B; <code>Observables</code> &#x4E2D;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x3002;</p>
+<p><strong>&#x53EA;&#x53D1;&#x7B2C;&#x4E00;&#x4E2A; <code>Observables</code> &#x7684;&#x5143;&#x7D20;&#xFF0C;&#x5176;&#x4ED6;&#x7684; <code>Observables</code> &#x7684;&#x5143;&#x7D20;&#x5C06;&#x88AB;&#x5FFD;&#x7565;&#x6389;&#x3002;</strong></p>
+<p>eg:</p>
+<pre><code class="lang-swift"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">flatMapFirst</span><span class="hljs-params">()</span></span> {
+    <span class="hljs-keyword">let</span> first = <span class="hljs-type">BehaviorSubject</span>(value: <span class="hljs-string">&quot;First =&gt; &#x1F466;&#x1F3FB;&quot;</span>)
+    <span class="hljs-keyword">let</span> second = <span class="hljs-type">BehaviorSubject</span>(value: <span class="hljs-string">&quot;Second =&gt; &#x1F60A;&quot;</span>)
+    <span class="hljs-keyword">let</span> variable = <span class="hljs-type">Variable</span>(first)
+
+    variable
+        .asObservable()
+        .flatMapFirst{ $<span class="hljs-number">0</span> }
+        .subscribe(onNext: { <span class="hljs-built_in">print</span>($<span class="hljs-number">0</span>) })
+        .disposed(by: disposeBag)
+
+    first.onNext(<span class="hljs-string">&quot;First =&gt; &#x1F431;&quot;</span>)
+    variable.value = second
+    second.onNext(<span class="hljs-string">&quot;Second =&gt; &#x1F622;&quot;</span>)
+    first.onNext(<span class="hljs-string">&quot;First =&gt; &#x1F436;&quot;</span>)
+    first.onNext(<span class="hljs-string">&quot;First =&gt; &#x1F431;&quot;</span>)
+    second.onNext(<span class="hljs-string">&quot;Second =&gt; &#x1F602;&quot;</span>)
+}
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-swift"><span class="hljs-type">First</span> =&gt; &#x1F466;&#x1F3FB;
+<span class="hljs-type">First</span> =&gt; &#x1F431;
+<span class="hljs-type">First</span> =&gt; &#x1F436;
+<span class="hljs-type">First</span> =&gt; &#x1F431;
+</code></pre>
+<h3 id="flatmaplatest">flatMapLatest</h3>
+<p>&#x5C06; <code>Observable</code> &#x7684;&#x5143;&#x7D20;&#x8F6C;&#x6362;&#x6210;&#x5176;&#x4ED6;&#x7684; <code>Observable</code>&#xFF0C;&#x7136;&#x540E;&#x53D6;&#x8FD9;&#x4E9B; <code>Observables</code> &#x4E2D;&#x6700;&#x65B0;&#x7684;&#x4E00;&#x4E2A;&#x3002;</p>
+<p><strong>&#x4E00;&#x65E6;&#x8F6C;&#x6362;&#x51FA;&#x4E00;&#x4E2A;&#x65B0;&#x7684; <code>Observable</code>&#xFF0C;&#x5C31;&#x53EA;&#x53D1;&#x51FA;&#x5B83;&#x7684;&#x5143;&#x7D20;&#xFF0C;&#x65E7;&#x7684; <code>Observables</code> &#x7684;&#x5143;&#x7D20;&#x5C06;&#x88AB;&#x5FFD;&#x7565;&#x6389;&#x3002;</strong></p>
+<p>eg:</p>
+<pre><code class="lang-swift"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">flatMapLatest</span><span class="hljs-params">()</span></span> {
+    <span class="hljs-keyword">let</span> first = <span class="hljs-type">BehaviorSubject</span>(value: <span class="hljs-string">&quot;First =&gt; &#x1F466;&#x1F3FB;&quot;</span>)
+    <span class="hljs-keyword">let</span> second = <span class="hljs-type">BehaviorSubject</span>(value: <span class="hljs-string">&quot;Second =&gt; &#x1F60A;&quot;</span>)
+    <span class="hljs-keyword">let</span> variable = <span class="hljs-type">Variable</span>(first)
+
+    variable
+        .asObservable()
+        .flatMapLatest { $<span class="hljs-number">0</span> }
+        .subscribe(onNext: { <span class="hljs-built_in">print</span>($<span class="hljs-number">0</span>) })
+        .disposed(by: disposeBag)
+
+    first.onNext(<span class="hljs-string">&quot;First =&gt; &#x1F431;&quot;</span>)
+    variable.value = second
+    second.onNext(<span class="hljs-string">&quot;Second =&gt; &#x1F622;&quot;</span>)
+    first.onNext(<span class="hljs-string">&quot;First =&gt; &#x1F436;&quot;</span>)
+    first.onNext(<span class="hljs-string">&quot;First =&gt; &#x1F431;&quot;</span>)
+    second.onNext(<span class="hljs-string">&quot;Second =&gt; &#x1F602;&quot;</span>)
+}
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code>First =&gt; &#x1F466;&#x1F3FB;
+First =&gt; &#x1F431;
+Second =&gt; &#x1F60A;
+Second =&gt; &#x1F622;
+Second =&gt; &#x1F602;
+</code></pre><h3 id="flatmapwithindex">flatMapWithIndex</h3>
+<blockquote>
+<p><code>@available(*, deprecated, message: &quot;Please use enumerated().flatMap()&quot;)</code></p>
+</blockquote>
+<p><code>flatMapWithIndex</code>&#xFF08; <code>.enumerated().flatMap(_:)</code> &#xFF09; &#x64CD;&#x4F5C;&#x7B26;&#x5C06; <code>Observable</code> &#x7684;&#x5143;&#x7D20;&#x8F6C;&#x6362;&#x6210;&#x5176;&#x4ED6;&#x7684; <code>Observable</code>&#xFF0C;&#x7136;&#x540E;&#x53D6;&#x8FD9;&#x4E9B; <code>Observables</code> &#x4E2D;&#x6307;&#x5B9A;&#x7684;&#x4E00;&#x4E2A;&#x6216;&#x8005;&#x51E0;&#x4E2A;&#x3002;</p>
+<p><strong>&#x53EA;&#x53D1;&#x51FA;&#x6307;&#x5B9A;&#x5141;&#x8BB8;&#x7684; <code>index</code> &#x7684; <code>Observable</code> &#x4E2D;&#x4EA7;&#x751F;&#x7684;&#x5143;&#x7D20;&#xFF0C;&#x5176;&#x4ED6;&#x7684; <code>Observables</code> &#x7684;&#x5143;&#x7D20;&#x5C06;&#x88AB;&#x5FFD;&#x7565;&#x6389;&#x3002;</strong></p>
+<p>eg:</p>
+<pre><code class="lang-swift"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">flatMapWithIndex</span><span class="hljs-params">()</span></span> {
+    <span class="hljs-comment">// @available(*, deprecated, message: &quot;Please use enumerated().flatMap()&quot;)</span>
+
+    <span class="hljs-keyword">let</span> first = <span class="hljs-type">BehaviorSubject</span>(value: <span class="hljs-string">&quot;First =&gt; &#x1F466;&#x1F3FB;&quot;</span>)
+    <span class="hljs-keyword">let</span> second = <span class="hljs-type">BehaviorSubject</span>(value: <span class="hljs-string">&quot;Second =&gt; &#x1F60A;&quot;</span>)
+    <span class="hljs-keyword">let</span> variable = <span class="hljs-type">Variable</span>(first)
+
+    variable
+        .asObservable()
+        .enumerated()
+        .flatMap({ (tuple) -&gt; <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">String</span>&gt; <span class="hljs-keyword">in</span>
+            <span class="hljs-keyword">let</span> (index, subject) = tuple
+            <span class="hljs-keyword">if</span> index == <span class="hljs-number">1</span> {
+                <span class="hljs-keyword">return</span> subject
+            }
+            <span class="hljs-keyword">return</span> <span class="hljs-type">BehaviorSubject</span>&lt;<span class="hljs-type">String</span>&gt;.empty()
+        })
+        <span class="hljs-comment">// .enumerated().flatMap(_:) &#x4EE5;&#x524D;&#x662F;</span>
+        <span class="hljs-comment">// .flatMapWithIndex({ (subject, index) -&gt; Observable&lt;String&gt; in</span>
+        <span class="hljs-comment">//     if index == 1 {</span>
+        <span class="hljs-comment">//         return subject</span>
+        <span class="hljs-comment">//     }</span>
+        <span class="hljs-comment">//     return BehaviorSubject&lt;String&gt;.empty()</span>
+        <span class="hljs-comment">// })</span>
+        .subscribe(onNext: { <span class="hljs-built_in">print</span>($<span class="hljs-number">0</span>) })
+        .disposed(by: disposeBag)
+
+    first.onNext(<span class="hljs-string">&quot;First =&gt; &#x1F431;&quot;</span>)
+    variable.value = second
+    second.onNext(<span class="hljs-string">&quot;Second =&gt; &#x1F622;&quot;</span>)
+    first.onNext(<span class="hljs-string">&quot;First =&gt; &#x1F436;&quot;</span>)
+    first.onNext(<span class="hljs-string">&quot;First =&gt; &#x1F431;&quot;</span>)
+    second.onNext(<span class="hljs-string">&quot;Second =&gt; &#x1F602;&quot;</span>)
+}
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-swift"><span class="hljs-type">Second</span> =&gt; &#x1F60A;
+<span class="hljs-type">Second</span> =&gt; &#x1F622;
+<span class="hljs-type">Second</span> =&gt; &#x1F602;
+</code></pre>
+<h3 id="concatmap">concatMap</h3>
+<p><code>concatMap</code> &#x64CD;&#x4F5C;&#x7B26;&#x5C06;&#x6E90; <code>Observable</code> &#x7684;&#x6BCF;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x5E94;&#x7528;&#x4E00;&#x4E2A;&#x8F6C;&#x6362;&#x65B9;&#x6CD5;&#xFF0C;&#x5C06;&#x5143;&#x7D20;&#x8F6C;&#x6362;&#x6210; <code>Observable</code>&#x3002;</p>
+<p>eg:</p>
+<pre><code class="lang-swift"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">concatMap</span><span class="hljs-params">()</span></span> {
+    getFirstObservable()
+        .concatMap({ (str) -&gt; <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">String</span>&gt; <span class="hljs-keyword">in</span>
+            <span class="hljs-keyword">return</span> <span class="hljs-type">Observable</span>.of(<span class="hljs-string">&quot;<span class="hljs-subst">\(str)</span> + 1&#xFE0F;&#x20E3;&quot;</span>, <span class="hljs-string">&quot;<span class="hljs-subst">\(str)</span> + 2&#xFE0F;&#x20E3;&quot;</span>, <span class="hljs-string">&quot;<span class="hljs-subst">\(str)</span> + 3&#xFE0F;&#x20E3;&quot;</span>, <span class="hljs-string">&quot;======================&quot;</span>)
+        })
+        .subscribe({ (e) <span class="hljs-keyword">in</span>
+            <span class="hljs-built_in">print</span>(e)
+        })
+        .disposed(by: disposeBag)
+}
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-swift">next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">1</span>|<span class="hljs-type">A</span> + <span class="hljs-number">1</span>&#xFE0F;&#x20E3;)
+next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">1</span>|<span class="hljs-type">A</span> + <span class="hljs-number">2</span>&#xFE0F;&#x20E3;)
+next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">1</span>|<span class="hljs-type">A</span> + <span class="hljs-number">3</span>&#xFE0F;&#x20E3;)
+next(======================)
+next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">1</span>|<span class="hljs-type">B</span> + <span class="hljs-number">1</span>&#xFE0F;&#x20E3;)
+next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">1</span>|<span class="hljs-type">B</span> + <span class="hljs-number">2</span>&#xFE0F;&#x20E3;)
+next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">1</span>|<span class="hljs-type">B</span> + <span class="hljs-number">3</span>&#xFE0F;&#x20E3;)
+next(======================)
+next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">1</span>|<span class="hljs-type">C</span> + <span class="hljs-number">1</span>&#xFE0F;&#x20E3;)
+next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">1</span>|<span class="hljs-type">C</span> + <span class="hljs-number">2</span>&#xFE0F;&#x20E3;)
+next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">1</span>|<span class="hljs-type">C</span> + <span class="hljs-number">3</span>&#xFE0F;&#x20E3;)
+next(======================)
+next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">2</span>|<span class="hljs-type">A</span> + <span class="hljs-number">1</span>&#xFE0F;&#x20E3;)
+next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">2</span>|<span class="hljs-type">A</span> + <span class="hljs-number">2</span>&#xFE0F;&#x20E3;)
+next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">2</span>|<span class="hljs-type">A</span> + <span class="hljs-number">3</span>&#xFE0F;&#x20E3;)
+next(======================)
+next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">2</span>|<span class="hljs-type">B</span> + <span class="hljs-number">1</span>&#xFE0F;&#x20E3;)
+next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">2</span>|<span class="hljs-type">B</span> + <span class="hljs-number">2</span>&#xFE0F;&#x20E3;)
+next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">2</span>|<span class="hljs-type">B</span> + <span class="hljs-number">3</span>&#xFE0F;&#x20E3;)
+next(======================)
+next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">2</span>|<span class="hljs-type">C</span> + <span class="hljs-number">1</span>&#xFE0F;&#x20E3;)
+next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">2</span>|<span class="hljs-type">C</span> + <span class="hljs-number">2</span>&#xFE0F;&#x20E3;)
+next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">2</span>|<span class="hljs-type">C</span> + <span class="hljs-number">3</span>&#xFE0F;&#x20E3;)
+next(======================)
+next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">3</span>|<span class="hljs-type">A</span> + <span class="hljs-number">1</span>&#xFE0F;&#x20E3;)
+next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">3</span>|<span class="hljs-type">A</span> + <span class="hljs-number">2</span>&#xFE0F;&#x20E3;)
+next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">3</span>|<span class="hljs-type">A</span> + <span class="hljs-number">3</span>&#xFE0F;&#x20E3;)
+next(======================)
+next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">3</span>|<span class="hljs-type">B</span> + <span class="hljs-number">1</span>&#xFE0F;&#x20E3;)
+next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">3</span>|<span class="hljs-type">B</span> + <span class="hljs-number">2</span>&#xFE0F;&#x20E3;)
+next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">3</span>|<span class="hljs-type">B</span> + <span class="hljs-number">3</span>&#xFE0F;&#x20E3;)
+next(======================)
+next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">3</span>|<span class="hljs-type">C</span> + <span class="hljs-number">1</span>&#xFE0F;&#x20E3;)
+next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">3</span>|<span class="hljs-type">C</span> + <span class="hljs-number">2</span>&#xFE0F;&#x20E3;)
+next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">3</span>|<span class="hljs-type">C</span> + <span class="hljs-number">3</span>&#xFE0F;&#x20E3;)
+next(======================)
+completed
+</code></pre>
+<h3 id="buffer">buffer</h3>
+<p><code>buffer</code> &#x64CD;&#x4F5C;&#x7B26;&#x5C06;&#x7F13;&#x5B58; <code>Observable</code> &#x4E2D;&#x53D1;&#x51FA;&#x7684;&#x65B0;&#x5143;&#x7D20;&#xFF0C;&#x5F53;&#x5143;&#x7D20;&#x8FBE;&#x5230;&#x67D0;&#x4E2A;&#x6570;&#x91CF;&#xFF0C;&#x6216;&#x8005;&#x7ECF;&#x8FC7;&#x4E86;&#x7279;&#x5B9A;&#x7684;&#x65F6;&#x95F4;&#xFF0C;&#x5B83;&#x5C31;&#x4F1A;&#x5C06;&#x8FD9;&#x4E2A;&#x5143;&#x7D20;&#x96C6;&#x5408;&#x53D1;&#x9001;&#x51FA;&#x6765;&#x3002;</p>
+<p>eg:</p>
+<pre><code class="lang-swift"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">buffer</span><span class="hljs-params">()</span></span> {
+    getFirstObservable()
+        .buffer(timeSpan: <span class="hljs-number">1</span>, <span class="hljs-built_in">count</span>: <span class="hljs-number">2</span>, scheduler: <span class="hljs-type">MainScheduler</span>.instance)
+        .subscribe(onNext: { (strArr) <span class="hljs-keyword">in</span>
+            <span class="hljs-built_in">print</span>(strArr)
+        })
+        .disposed(by: disposeBag)
+}
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-swift">[]
+[<span class="hljs-string">&quot;First -&gt; 1|A&quot;</span>, <span class="hljs-string">&quot;First -&gt; 1|B&quot;</span>]
+[<span class="hljs-string">&quot;First -&gt; 1|C&quot;</span>]
+[]
+[]
+[<span class="hljs-string">&quot;First -&gt; 2|A&quot;</span>, <span class="hljs-string">&quot;First -&gt; 2|B&quot;</span>]
+[<span class="hljs-string">&quot;First -&gt; 2|C&quot;</span>]
+[]
+[]
+[<span class="hljs-string">&quot;First -&gt; 3|A&quot;</span>, <span class="hljs-string">&quot;First -&gt; 3|B&quot;</span>]
+[<span class="hljs-string">&quot;First -&gt; 3|C&quot;</span>]
+</code></pre>
+<h3 id="window">window</h3>
+<p>&#x5C06; <code>Observable</code> &#x5206;&#x89E3;&#x4E3A;&#x591A;&#x4E2A;&#x5B50; <code>Observable</code>&#xFF0C;&#x5468;&#x671F;&#x6027;&#x7684;&#x5C06;&#x5B50; <code>Observable</code> &#x53D1;&#x51FA;&#x6765;</p>
+<blockquote>
+<p><code>window</code> &#x64CD;&#x4F5C;&#x7B26;&#x548C; <code>buffer</code> &#x5341;&#x5206;&#x76F8;&#x4F3C;:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">\</th>
+<th style="text-align:center">&#x53D1;&#x9001;&#x51FA;&#x7684;&#x5185;&#x5BB9;&#x5F62;&#x6001;</th>
+<th style="text-align:center">&#x53D1;&#x9001;&#x7684;&#x65F6;&#x673A;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>buffer</code></td>
+<td style="text-align:center">&#x5468;&#x671F;&#x6027;&#x7684;&#x5C06;&#x7F13;&#x5B58;&#x7684;&#x5143;&#x7D20;&#x96C6;&#x5408;&#x53D1;&#x9001;&#x51FA;&#x6765;</td>
+<td style="text-align:center">&#x8981;&#x7B49;&#x5230;&#x5143;&#x7D20;&#x641C;&#x96C6;&#x5B8C;&#x6BD5;&#x540E;&#xFF0C;&#x624D;&#x4F1A;&#x53D1;&#x51FA;&#x5143;&#x7D20;&#x5E8F;&#x5217;</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>window</code></td>
+<td style="text-align:center">&#x5468;&#x671F;&#x6027;&#x7684;&#x5C06;&#x5143;&#x7D20;&#x96C6;&#x5408;&#x4EE5; <code>Observable</code> &#x7684;&#x5F62;&#x6001;&#x53D1;&#x9001;&#x51FA;&#x6765;</td>
+<td style="text-align:center">&#x53EF;&#x4EE5;&#x5B9E;&#x65F6;&#x53D1;&#x51FA;&#x5143;&#x7D20;&#x5E8F;&#x5217;</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<p>eg:</p>
+<pre><code class="lang-swift"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">window</span><span class="hljs-params">()</span></span> {
+    getFirstObservable()
+        .window(timeSpan: <span class="hljs-number">2</span>, <span class="hljs-built_in">count</span>: <span class="hljs-number">3</span>, scheduler: <span class="hljs-type">MainScheduler</span>.instance)
+        .subscribe(onNext: { [<span class="hljs-keyword">unowned</span> <span class="hljs-keyword">self</span>] (observable) <span class="hljs-keyword">in</span>
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;window =&gt; onNext(<span class="hljs-subst">\(observable)</span>)&quot;</span>)
+            observable
+                .subscribe({ (e) <span class="hljs-keyword">in</span>
+                    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;window|onNext =&gt; <span class="hljs-subst">\(e)</span>&quot;</span>)
+                })
+                .disposed(by: <span class="hljs-keyword">self</span>.disposeBag)
+            }, onError: { (err) <span class="hljs-keyword">in</span>
+                <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;window =&gt; onError begin&quot;</span>)
+                err.printLog()
+                <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;window =&gt; onError end&quot;</span>)
+        }, onCompleted: {
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;window =&gt; onCompleted&quot;</span>)
+        })
+        .disposed(by: disposeBag)
+}
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-swift">window =&gt; onNext(<span class="hljs-type">RxSwift</span>.<span class="hljs-type">AddRef</span>&lt;<span class="hljs-type">Swift</span>.<span class="hljs-type">String</span>&gt;)
+window|onNext =&gt; next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">1</span>|<span class="hljs-type">A</span>)
+window|onNext =&gt; next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">1</span>|<span class="hljs-type">B</span>)
+window|onNext =&gt; next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">1</span>|<span class="hljs-type">C</span>)
+window|onNext =&gt; completed
+window =&gt; onNext(<span class="hljs-type">RxSwift</span>.<span class="hljs-type">AddRef</span>&lt;<span class="hljs-type">Swift</span>.<span class="hljs-type">String</span>&gt;)
+window|onNext =&gt; completed
+window =&gt; onNext(<span class="hljs-type">RxSwift</span>.<span class="hljs-type">AddRef</span>&lt;<span class="hljs-type">Swift</span>.<span class="hljs-type">String</span>&gt;)
+window|onNext =&gt; next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">2</span>|<span class="hljs-type">A</span>)
+window|onNext =&gt; next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">2</span>|<span class="hljs-type">B</span>)
+window|onNext =&gt; next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">2</span>|<span class="hljs-type">C</span>)
+window|onNext =&gt; completed
+window =&gt; onNext(<span class="hljs-type">RxSwift</span>.<span class="hljs-type">AddRef</span>&lt;<span class="hljs-type">Swift</span>.<span class="hljs-type">String</span>&gt;)
+window|onNext =&gt; completed
+window =&gt; onNext(<span class="hljs-type">RxSwift</span>.<span class="hljs-type">AddRef</span>&lt;<span class="hljs-type">Swift</span>.<span class="hljs-type">String</span>&gt;)
+window|onNext =&gt; next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">3</span>|<span class="hljs-type">A</span>)
+window|onNext =&gt; next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">3</span>|<span class="hljs-type">B</span>)
+window|onNext =&gt; next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">3</span>|<span class="hljs-type">C</span>)
+window|onNext =&gt; completed
+window =&gt; onNext(<span class="hljs-type">RxSwift</span>.<span class="hljs-type">AddRef</span>&lt;<span class="hljs-type">Swift</span>.<span class="hljs-type">String</span>&gt;)
+window|onNext =&gt; completed
+window =&gt; onCompleted
+</code></pre>
+<h3 id="groupby">groupBy</h3>
+<p>&#x5C06;&#x6E90; <code>Observable</code> &#x5206;&#x89E3;&#x4E3A;&#x591A;&#x4E2A;&#x5B50; <code>Observable</code>&#xFF0C;&#x5E76;&#x4E14;&#x6BCF;&#x4E2A;&#x5B50; <code>Observable</code> &#x5C06;&#x6E90; <code>Observable</code> &#x4E2D;<code>&#x76F8;&#x4F3C;</code>&#x7684;&#x5143;&#x7D20;&#x53D1;&#x9001;&#x51FA;&#x6765;&#x3002;</p>
+<p><code>groupBy</code> &#x64CD;&#x4F5C;&#x7B26;&#x5C06;&#x6E90; <code>Observable</code> &#x5206;&#x89E3;&#x4E3A;&#x591A;&#x4E2A;&#x5B50; <code>Observable</code>&#xFF0C;&#x7136;&#x540E;&#x5C06;&#x8FD9;&#x4E9B;&#x5B50; <code>Observable</code> &#x53D1;&#x9001;&#x51FA;&#x6765;&#x3002;
+// &#x5B83;&#x4F1A;&#x5C06;&#x5143;&#x7D20;&#x901A;&#x8FC7;&#x67D0;&#x4E2A;&#x952E;&#x8FDB;&#x884C;&#x5206;&#x7EC4;&#xFF0C;&#x7136;&#x540E;&#x5C06;&#x5206;&#x7EC4;&#x540E;&#x7684;&#x5143;&#x7D20;&#x5E8F;&#x5217;&#x4EE5; Observable &#x7684;&#x5F62;&#x6001;&#x53D1;&#x9001;&#x51FA;&#x6765;&#x3002;</p>
+<p>eg:</p>
+<pre><code class="lang-swift"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">groupBy</span><span class="hljs-params">()</span></span> {
+    <span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">ObservableValueType</span> </span>{
+        <span class="hljs-keyword">case</span> integer
+        <span class="hljs-keyword">case</span> string
+        <span class="hljs-keyword">case</span> other
+    }
+    <span class="hljs-keyword">let</span> observable = <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">Any</span>&gt;.of(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-string">&quot;22&quot;</span>, <span class="hljs-string">&quot;23&quot;</span>, <span class="hljs-string">&quot;34&quot;</span>, <span class="hljs-string">&quot;54&quot;</span>, <span class="hljs-string">&quot;12&quot;</span>, <span class="hljs-number">44</span>, <span class="hljs-string">&quot;112&quot;</span>, <span class="hljs-number">65</span>)
+    observable
+        .groupBy(keySelector: { (value) -&gt; <span class="hljs-type">ObservableValueType</span> <span class="hljs-keyword">in</span>
+            <span class="hljs-keyword">if</span> value <span class="hljs-keyword">is</span> <span class="hljs-type">Int</span> {
+                <span class="hljs-keyword">return</span> <span class="hljs-type">ObservableValueType</span>.integer
+            }
+            <span class="hljs-keyword">if</span> value <span class="hljs-keyword">is</span> <span class="hljs-type">String</span> {
+                <span class="hljs-keyword">return</span> <span class="hljs-type">ObservableValueType</span>.string
+            }
+            <span class="hljs-keyword">return</span> <span class="hljs-type">ObservableValueType</span>.other
+        })
+        .subscribe(onNext: { [<span class="hljs-keyword">unowned</span> <span class="hljs-keyword">self</span>] (group) <span class="hljs-keyword">in</span>
+            group
+                .subscribe({ (e) <span class="hljs-keyword">in</span>
+                    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;<span class="hljs-subst">\(group.key)</span>\t=&gt; <span class="hljs-subst">\(e.debugDescription)</span>&quot;</span>)
+                })
+                .disposed(by: <span class="hljs-keyword">self</span>.disposeBag)
+        })
+        .disposed(by: disposeBag)
+}
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-swift">integer    =&gt; next(<span class="hljs-number">1</span>)
+integer    =&gt; next(<span class="hljs-number">2</span>)
+integer    =&gt; next(<span class="hljs-number">3</span>)
+integer    =&gt; next(<span class="hljs-number">4</span>)
+string    =&gt; next(<span class="hljs-number">22</span>)
+string    =&gt; next(<span class="hljs-number">23</span>)
+string    =&gt; next(<span class="hljs-number">34</span>)
+string    =&gt; next(<span class="hljs-number">54</span>)
+string    =&gt; next(<span class="hljs-number">12</span>)
+integer    =&gt; next(<span class="hljs-number">44</span>)
+string    =&gt; next(<span class="hljs-number">112</span>)
+integer    =&gt; next(<span class="hljs-number">65</span>)
+integer    =&gt; completed
+string    =&gt; completed
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Create.html" class="navigation navigation-prev " aria-label="Previous page: 7.02 创建 Observable">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="Filtering.html" class="navigation navigation-next " aria-label="Next page: 7.04 过滤 Observable">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"7.03 变换 Observable","level":"1.8.4","depth":2,"next":{"title":"7.04 过滤 Observable","level":"1.8.5","depth":2,"path":"RxSwiftStudy/Operator/Filtering.md","ref":"./RxSwiftStudy/Operator/Filtering.md","articles":[]},"previous":{"title":"7.02 创建 Observable","level":"1.8.3","depth":2,"path":"RxSwiftStudy/Operator/Create.md","ref":"./RxSwiftStudy/Operator/Create.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","search-plus","expandable-chapters-small","editlink","include-codeblock","include-highlight","github-buttons"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"editlink":{"label":"编辑页面","multilingual":false,"base":"https://github.com/ToBeDefined/RxSwiftExample/edit/master"},"include-highlight":{},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"sans"},"highlight":{},"github-buttons":{"repo":"ToBeDefined/RxSwiftExample","types":["star"],"size":"small"},"expandable-chapters-small":{},"include-codeblock":{"check":false,"edit":false,"fixlang":false,"lang":"","template":"default","theme":"chrome","unindent":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"search-plus":{}},"theme":"theme","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"isPdf":false},"title":"RxSwift Example","language":"zh-hans","gitbook":"*","description":null},"file":{"path":"RxSwiftStudy/Operator/Transforming.md","mtime":"2017-12-28T09:11:22.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-12-28T09:36:07.825Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search-plus/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search-plus/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-editlink/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

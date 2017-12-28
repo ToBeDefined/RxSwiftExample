@@ -1,0 +1,731 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>7.00 准备测试使用的方法 · RxSwift Example</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search-plus/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="Debug.html" />
+    
+    
+    <link rel="prev" href="../7.Operator-操作符.html" />
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"repo":"ToBeDefined/RxSwiftExample","types":["star"],"size":"small"};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../1.Observable-可被监听的序列.html">
+            
+                <a href="../1.Observable-可被监听的序列.html">
+            
+                    
+                    1. Observable - 可被监听的序列
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../2.Observer-观察者.html">
+            
+                <a href="../2.Observer-观察者.html">
+            
+                    
+                    2. Observer - 观察者
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../3.Observable&Observer-既是可被监听的序列也是观察者.html">
+            
+                <a href="../3.Observable&Observer-既是可被监听的序列也是观察者.html">
+            
+                    
+                    3. Observable & Observer 既是可被监听的序列也是观察者
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../4.Disposable-可被清除的资源.html">
+            
+                <a href="../4.Disposable-可被清除的资源.html">
+            
+                    
+                    4. Disposable - 可被清除的资源
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../5.Schedulers-调度器.html">
+            
+                <a href="../5.Schedulers-调度器.html">
+            
+                    
+                    5. Schedulers - 调度器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../6.ErrorHandling-错误处理.html">
+            
+                <a href="../6.ErrorHandling-错误处理.html">
+            
+                    
+                    6. Error Handling - 错误处理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../7.Operator-操作符.html">
+            
+                <a href="../7.Operator-操作符.html">
+            
+                    
+                    7. Operator - 操作符
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.8.1" data-path="Prepare.html">
+            
+                <a href="Prepare.html">
+            
+                    
+                    7.00 准备测试使用的方法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="Debug.html">
+            
+                <a href="Debug.html">
+            
+                    
+                    7.01 Debug Operator
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" data-path="Create.html">
+            
+                <a href="Create.html">
+            
+                    
+                    7.02 创建 Observable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4" data-path="Transforming.html">
+            
+                <a href="Transforming.html">
+            
+                    
+                    7.03 变换 Observable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5" data-path="Filtering.html">
+            
+                <a href="Filtering.html">
+            
+                    
+                    7.04 过滤 Observable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.6" data-path="Combining.html">
+            
+                <a href="Combining.html">
+            
+                    
+                    7.05 联合 Observable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.7" data-path="ErrorHandling.html">
+            
+                <a href="ErrorHandling.html">
+            
+                    
+                    7.06 错误处理操作符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.8" data-path="Conditional_and_Boolean.html">
+            
+                <a href="Conditional_and_Boolean.html">
+            
+                    
+                    7.07 条件和 Bool 操作符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.9" data-path="Mathematical_and_Aggregate.html">
+            
+                <a href="Mathematical_and_Aggregate.html">
+            
+                    
+                    7.08 数学和聚合操作符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.10" data-path="Connectable.html">
+            
+                <a href="Connectable.html">
+            
+                    
+                    7.09 连接 Observable 操作符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.11" data-path="Time.html">
+            
+                <a href="Time.html">
+            
+                    
+                    7.10 Time Operator
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.12" data-path="Scheduler.html">
+            
+                <a href="Scheduler.html">
+            
+                    
+                    7.11 Scheduler Operator
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.13" data-path="Materialize.html">
+            
+                <a href="Materialize.html">
+            
+                    
+                    7.12 Materialize Operator
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.14" data-path="Using.html">
+            
+                <a href="Using.html">
+            
+                    
+                    7.13 Using Operator
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../8.其他相关资料.html">
+            
+                <a href="../8.其他相关资料.html">
+            
+                    
+                    8. 其他相关资料
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >7.00 准备测试使用的方法</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div class="search-plus" id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="&#x51C6;&#x5907;&#x6D4B;&#x8BD5;&#x4F7F;&#x7528;&#x7684;&#x65B9;&#x6CD5;">&#x51C6;&#x5907;&#x6D4B;&#x8BD5;&#x4F7F;&#x7528;&#x7684;&#x65B9;&#x6CD5;</h2>
+<blockquote>
+<p>&#x4E00;&#x4E9B;&#x7ECF;&#x5E38;&#x5728;&#x6D4B;&#x8BD5;&#x4E2D;&#x4F7F;&#x7528;&#x5230;&#x7684;Observable</p>
+</blockquote>
+<h3 id="getfirstobservable---observablestring"><code>getFirstObservable() -&gt; Observable&lt;String&gt;</code></h3>
+<ul>
+<li><p>1s </p>
+<ul>
+<li>observer.onNext(&quot;First -&gt; 1|A&quot;)</li>
+<li>observer.onNext(&quot;First -&gt; 1|B&quot;)</li>
+<li>observer.onNext(&quot;First -&gt; 1|C&quot;)</li>
+</ul>
+</li>
+<li><p>5s </p>
+<ul>
+<li>observer.onNext(&quot;First -&gt; 2|A&quot;)</li>
+<li>observer.onNext(&quot;First -&gt; 2|B&quot;)</li>
+<li>observer.onNext(&quot;First -&gt; 2|C&quot;)</li>
+</ul>
+</li>
+<li><p>9s </p>
+<ul>
+<li>observer.onNext(&quot;First -&gt; 3|A&quot;)</li>
+<li>observer.onNext(&quot;First -&gt; 3|B&quot;)</li>
+<li>observer.onNext(&quot;First -&gt; 3|C&quot;)</li>
+<li>observer.onCompleted()</li>
+</ul>
+</li>
+</ul>
+<pre><code class="lang-swift"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">getFirstObservable</span><span class="hljs-params">()</span></span> -&gt; <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">String</span>&gt; {
+    <span class="hljs-keyword">return</span> <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">String</span>&gt;.create({ (observer) -&gt; <span class="hljs-type">Disposable</span> <span class="hljs-keyword">in</span>
+        <span class="hljs-comment">// section 1</span>
+        delayTime(<span class="hljs-number">1</span>, block: {
+            observer.onNext(<span class="hljs-string">&quot;First -&gt; 1|A&quot;</span>)
+            observer.onNext(<span class="hljs-string">&quot;First -&gt; 1|B&quot;</span>)
+            observer.onNext(<span class="hljs-string">&quot;First -&gt; 1|C&quot;</span>)
+        })
+
+        <span class="hljs-comment">// section 2</span>
+        delayTime(<span class="hljs-number">5</span>, block: {
+            observer.onNext(<span class="hljs-string">&quot;First -&gt; 2|A&quot;</span>)
+            observer.onNext(<span class="hljs-string">&quot;First -&gt; 2|B&quot;</span>)
+            observer.onNext(<span class="hljs-string">&quot;First -&gt; 2|C&quot;</span>)
+        })
+
+        <span class="hljs-comment">// section 3</span>
+        delayTime(<span class="hljs-number">9</span>, block: {
+            observer.onNext(<span class="hljs-string">&quot;First -&gt; 3|A&quot;</span>)
+            observer.onNext(<span class="hljs-string">&quot;First -&gt; 3|B&quot;</span>)
+            observer.onNext(<span class="hljs-string">&quot;First -&gt; 3|C&quot;</span>)
+            observer.onCompleted()
+        })
+        <span class="hljs-keyword">return</span> <span class="hljs-type">Disposables</span>.create()
+    })
+}
+</code></pre>
+<h3 id="getsecondobservable---observablestring"><code>getSecondObservable() -&gt; Observable&lt;String&gt;</code></h3>
+<ul>
+<li><p>0.1s </p>
+<ul>
+<li>observer.onNext(&quot;Second -&gt; 1&quot;)</li>
+</ul>
+</li>
+<li><p>4.1s </p>
+<ul>
+<li>observer.onNext(&quot;Second -&gt; 2&quot;)</li>
+</ul>
+</li>
+<li><p>8.1s </p>
+<ul>
+<li>observer.onNext(&quot;Second -&gt; 3&quot;)</li>
+<li>observer.onCompleted()</li>
+</ul>
+</li>
+</ul>
+<pre><code class="lang-swift"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">getSecondObservable</span><span class="hljs-params">()</span></span> -&gt; <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">String</span>&gt; {
+    <span class="hljs-keyword">return</span> <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">String</span>&gt;.create({ (observer) -&gt; <span class="hljs-type">Disposable</span> <span class="hljs-keyword">in</span>
+        delayTime(<span class="hljs-number">0.1</span>, block: {
+            observer.onNext(<span class="hljs-string">&quot;Second -&gt; 1&quot;</span>)
+
+            delayTime(<span class="hljs-number">4</span>, block: {
+                observer.onNext(<span class="hljs-string">&quot;Second -&gt; 2&quot;</span>)
+            })
+
+            delayTime(<span class="hljs-number">8</span>, block: {
+                observer.onNext(<span class="hljs-string">&quot;Second -&gt; 3&quot;</span>)
+                observer.onCompleted()
+            })
+        })
+        <span class="hljs-keyword">return</span> <span class="hljs-type">Disposables</span>.create()
+    })
+}
+</code></pre>
+<h3 id="getthirdobservable---observablestring"><code>getThirdObservable() -&gt; Observable&lt;String&gt;</code></h3>
+<ul>
+<li>0.1s<ul>
+<li>observer.onNext(&quot;Third -&gt; 1&quot;)</li>
+<li>observer.onNext(&quot;Third -&gt; 2&quot;)</li>
+<li>observer.onNext(&quot;Third -&gt; 3&quot;)</li>
+<li>observer.onCompleted()</li>
+</ul>
+</li>
+</ul>
+<pre><code class="lang-swift"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">getThirdObservable</span><span class="hljs-params">()</span></span> -&gt; <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">String</span>&gt; {
+    <span class="hljs-keyword">return</span> <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">String</span>&gt;.create({ (observer) -&gt; <span class="hljs-type">Disposable</span> <span class="hljs-keyword">in</span>
+        delayTime(<span class="hljs-number">0.1</span>, block: {
+            observer.onNext(<span class="hljs-string">&quot;Third -&gt; 1&quot;</span>)
+            observer.onNext(<span class="hljs-string">&quot;Third -&gt; 2&quot;</span>)
+            observer.onNext(<span class="hljs-string">&quot;Third -&gt; 3&quot;</span>)
+            observer.onCompleted()
+        })
+        <span class="hljs-keyword">return</span> <span class="hljs-type">Disposables</span>.create()
+    })
+}
+</code></pre>
+<h3 id="getfourthobservable---observablestring"><code>getFourthObservable() -&gt; Observable&lt;String&gt;</code></h3>
+<ul>
+<li><p>0s</p>
+<ul>
+<li>print(&quot;&gt; Send onNext(\&quot;0&#xFE0F;&#x20E3;\&quot;)&quot;)</li>
+<li>observer.onNext(&quot;0&#xFE0F;&#x20E3;&quot;)</li>
+</ul>
+</li>
+<li><p>1s</p>
+<ul>
+<li>print(&quot;&gt; Send onNext(\&quot;1&#xFE0F;&#x20E3;\&quot;)&quot;)</li>
+<li>observer.onNext(&quot;1&#xFE0F;&#x20E3;&quot;)</li>
+</ul>
+</li>
+<li><p>2s</p>
+<ul>
+<li>print(&quot;&gt; Send onNext(\&quot;2&#xFE0F;&#x20E3;\&quot;)&quot;)</li>
+<li>observer.onNext(&quot;2&#xFE0F;&#x20E3;&quot;)</li>
+</ul>
+</li>
+</ul>
+<pre><code class="lang-swift"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">getFourthObservable</span><span class="hljs-params">()</span></span> -&gt; <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">String</span>&gt; {
+    <span class="hljs-keyword">let</span> observable = <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">String</span>&gt;.create({ (observer) -&gt; <span class="hljs-type">Disposable</span> <span class="hljs-keyword">in</span>
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;&gt; Send onNext(\&quot;0&#xFE0F;&#x20E3;\&quot;)&quot;</span>)
+        observer.onNext(<span class="hljs-string">&quot;0&#xFE0F;&#x20E3;&quot;</span>)
+
+        delayTime(<span class="hljs-number">1</span>, block: {
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;&gt; Send onNext(\&quot;1&#xFE0F;&#x20E3;\&quot;)&quot;</span>)
+            observer.onNext(<span class="hljs-string">&quot;1&#xFE0F;&#x20E3;&quot;</span>)
+        })
+
+        delayTime(<span class="hljs-number">2</span>, block: {
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;&gt; Send onNext(\&quot;2&#xFE0F;&#x20E3;\&quot;)&quot;</span>)
+            observer.onNext(<span class="hljs-string">&quot;2&#xFE0F;&#x20E3;&quot;</span>)
+        })
+        <span class="hljs-keyword">return</span> <span class="hljs-type">Disposables</span>.create()
+    })
+    <span class="hljs-keyword">return</span> observable
+}
+</code></pre>
+<h3 id="geterrorobservable---observablestring"><code>getErrorObservable() -&gt; Observable&lt;String&gt;</code></h3>
+<ul>
+<li><p>1s</p>
+<ul>
+<li>observer.onNext(&quot;1&#xFE0F;&#x20E3;&quot;)</li>
+</ul>
+</li>
+<li><p>2s</p>
+<ul>
+<li>observer.onNext(&quot;2&#xFE0F;&#x20E3;&quot;)</li>
+</ul>
+</li>
+<li><p>3s</p>
+<ul>
+<li>let err = TError.init(errorCode: 10, errorString: &quot;Test&quot;, errorData: nil)</li>
+<li>observer.onError(err)</li>
+</ul>
+</li>
+</ul>
+<pre><code class="lang-swift"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">getErrorObservable</span><span class="hljs-params">()</span></span> -&gt; <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">String</span>&gt; {
+    <span class="hljs-keyword">return</span> <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">String</span>&gt;.create({ (observer) -&gt; <span class="hljs-type">Disposable</span> <span class="hljs-keyword">in</span>
+        delayTime(<span class="hljs-number">1</span>, block: {
+            observer.onNext(<span class="hljs-string">&quot;1&#xFE0F;&#x20E3;&quot;</span>)
+        })
+        delayTime(<span class="hljs-number">2</span>, block: {
+            observer.onNext(<span class="hljs-string">&quot;2&#xFE0F;&#x20E3;&quot;</span>)
+        })
+        delayTime(<span class="hljs-number">3</span>, block: {
+            <span class="hljs-keyword">let</span> err = <span class="hljs-type">TError</span>.<span class="hljs-keyword">init</span>(errorCode: <span class="hljs-number">10</span>, errorString: <span class="hljs-string">&quot;Test&quot;</span>, errorData: <span class="hljs-literal">nil</span>)
+            observer.onError(err)
+        })
+        <span class="hljs-keyword">return</span> <span class="hljs-type">Disposables</span>.create()
+    })
+}
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../7.Operator-操作符.html" class="navigation navigation-prev " aria-label="Previous page: 7. Operator - 操作符">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="Debug.html" class="navigation navigation-next " aria-label="Next page: 7.01 Debug Operator">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"7.00 准备测试使用的方法","level":"1.8.1","depth":2,"next":{"title":"7.01 Debug Operator","level":"1.8.2","depth":2,"path":"RxSwiftStudy/Operator/Debug.md","ref":"./RxSwiftStudy/Operator/Debug.md","articles":[]},"previous":{"title":"7. Operator - 操作符","level":"1.8","depth":1,"path":"RxSwiftStudy/7.Operator-操作符.md","ref":"./RxSwiftStudy/7.Operator-操作符.md","articles":[{"title":"7.00 准备测试使用的方法","level":"1.8.1","depth":2,"path":"RxSwiftStudy/Operator/Prepare.md","ref":"./RxSwiftStudy/Operator/Prepare.md","articles":[]},{"title":"7.01 Debug Operator","level":"1.8.2","depth":2,"path":"RxSwiftStudy/Operator/Debug.md","ref":"./RxSwiftStudy/Operator/Debug.md","articles":[]},{"title":"7.02 创建 Observable","level":"1.8.3","depth":2,"path":"RxSwiftStudy/Operator/Create.md","ref":"./RxSwiftStudy/Operator/Create.md","articles":[]},{"title":"7.03 变换 Observable","level":"1.8.4","depth":2,"path":"RxSwiftStudy/Operator/Transforming.md","ref":"./RxSwiftStudy/Operator/Transforming.md","articles":[]},{"title":"7.04 过滤 Observable","level":"1.8.5","depth":2,"path":"RxSwiftStudy/Operator/Filtering.md","ref":"./RxSwiftStudy/Operator/Filtering.md","articles":[]},{"title":"7.05 联合 Observable","level":"1.8.6","depth":2,"path":"RxSwiftStudy/Operator/Combining.md","ref":"./RxSwiftStudy/Operator/Combining.md","articles":[]},{"title":"7.06 错误处理操作符","level":"1.8.7","depth":2,"path":"RxSwiftStudy/Operator/ErrorHandling.md","ref":"./RxSwiftStudy/Operator/ErrorHandling.md","articles":[]},{"title":"7.07 条件和 Bool 操作符","level":"1.8.8","depth":2,"path":"RxSwiftStudy/Operator/Conditional_and_Boolean.md","ref":"./RxSwiftStudy/Operator/Conditional_and_Boolean.md","articles":[]},{"title":"7.08 数学和聚合操作符","level":"1.8.9","depth":2,"path":"RxSwiftStudy/Operator/Mathematical_and_Aggregate.md","ref":"./RxSwiftStudy/Operator/Mathematical_and_Aggregate.md","articles":[]},{"title":"7.09 连接 Observable 操作符","level":"1.8.10","depth":2,"path":"RxSwiftStudy/Operator/Connectable.md","ref":"./RxSwiftStudy/Operator/Connectable.md","articles":[]},{"title":"7.10 Time Operator","level":"1.8.11","depth":2,"path":"RxSwiftStudy/Operator/Time.md","ref":"./RxSwiftStudy/Operator/Time.md","articles":[]},{"title":"7.11 Scheduler Operator","level":"1.8.12","depth":2,"path":"RxSwiftStudy/Operator/Scheduler.md","ref":"./RxSwiftStudy/Operator/Scheduler.md","articles":[]},{"title":"7.12 Materialize Operator","level":"1.8.13","depth":2,"path":"RxSwiftStudy/Operator/Materialize.md","ref":"./RxSwiftStudy/Operator/Materialize.md","articles":[]},{"title":"7.13 Using Operator","level":"1.8.14","depth":2,"path":"RxSwiftStudy/Operator/Using.md","ref":"./RxSwiftStudy/Operator/Using.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","search-plus","expandable-chapters-small","editlink","include-codeblock","include-highlight","github-buttons"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"editlink":{"label":"编辑页面","multilingual":false,"base":"https://github.com/ToBeDefined/RxSwiftExample/edit/master"},"include-highlight":{},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"sans"},"highlight":{},"github-buttons":{"repo":"ToBeDefined/RxSwiftExample","types":["star"],"size":"small"},"expandable-chapters-small":{},"include-codeblock":{"check":false,"edit":false,"fixlang":false,"lang":"","template":"default","theme":"chrome","unindent":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"search-plus":{}},"theme":"theme","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"isPdf":false},"title":"RxSwift Example","language":"zh-hans","gitbook":"*","description":null},"file":{"path":"RxSwiftStudy/Operator/Prepare.md","mtime":"2017-12-28T09:11:22.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-12-28T09:36:07.825Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search-plus/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search-plus/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-editlink/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

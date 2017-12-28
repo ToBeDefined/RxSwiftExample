@@ -1,0 +1,612 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>7.08 数学和聚合操作符 · RxSwift Example</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search-plus/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="Connectable.html" />
+    
+    
+    <link rel="prev" href="Conditional_and_Boolean.html" />
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"repo":"ToBeDefined/RxSwiftExample","types":["star"],"size":"small"};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../1.Observable-可被监听的序列.html">
+            
+                <a href="../1.Observable-可被监听的序列.html">
+            
+                    
+                    1. Observable - 可被监听的序列
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../2.Observer-观察者.html">
+            
+                <a href="../2.Observer-观察者.html">
+            
+                    
+                    2. Observer - 观察者
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../3.Observable&Observer-既是可被监听的序列也是观察者.html">
+            
+                <a href="../3.Observable&Observer-既是可被监听的序列也是观察者.html">
+            
+                    
+                    3. Observable & Observer 既是可被监听的序列也是观察者
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../4.Disposable-可被清除的资源.html">
+            
+                <a href="../4.Disposable-可被清除的资源.html">
+            
+                    
+                    4. Disposable - 可被清除的资源
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../5.Schedulers-调度器.html">
+            
+                <a href="../5.Schedulers-调度器.html">
+            
+                    
+                    5. Schedulers - 调度器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../6.ErrorHandling-错误处理.html">
+            
+                <a href="../6.ErrorHandling-错误处理.html">
+            
+                    
+                    6. Error Handling - 错误处理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../7.Operator-操作符.html">
+            
+                <a href="../7.Operator-操作符.html">
+            
+                    
+                    7. Operator - 操作符
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="Prepare.html">
+            
+                <a href="Prepare.html">
+            
+                    
+                    7.00 准备测试使用的方法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="Debug.html">
+            
+                <a href="Debug.html">
+            
+                    
+                    7.01 Debug Operator
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" data-path="Create.html">
+            
+                <a href="Create.html">
+            
+                    
+                    7.02 创建 Observable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4" data-path="Transforming.html">
+            
+                <a href="Transforming.html">
+            
+                    
+                    7.03 变换 Observable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5" data-path="Filtering.html">
+            
+                <a href="Filtering.html">
+            
+                    
+                    7.04 过滤 Observable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.6" data-path="Combining.html">
+            
+                <a href="Combining.html">
+            
+                    
+                    7.05 联合 Observable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.7" data-path="ErrorHandling.html">
+            
+                <a href="ErrorHandling.html">
+            
+                    
+                    7.06 错误处理操作符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.8" data-path="Conditional_and_Boolean.html">
+            
+                <a href="Conditional_and_Boolean.html">
+            
+                    
+                    7.07 条件和 Bool 操作符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.8.9" data-path="Mathematical_and_Aggregate.html">
+            
+                <a href="Mathematical_and_Aggregate.html">
+            
+                    
+                    7.08 数学和聚合操作符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.10" data-path="Connectable.html">
+            
+                <a href="Connectable.html">
+            
+                    
+                    7.09 连接 Observable 操作符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.11" data-path="Time.html">
+            
+                <a href="Time.html">
+            
+                    
+                    7.10 Time Operator
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.12" data-path="Scheduler.html">
+            
+                <a href="Scheduler.html">
+            
+                    
+                    7.11 Scheduler Operator
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.13" data-path="Materialize.html">
+            
+                <a href="Materialize.html">
+            
+                    
+                    7.12 Materialize Operator
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.14" data-path="Using.html">
+            
+                <a href="Using.html">
+            
+                    
+                    7.13 Using Operator
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../8.其他相关资料.html">
+            
+                <a href="../8.其他相关资料.html">
+            
+                    
+                    8. 其他相关资料
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >7.08 数学和聚合操作符</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div class="search-plus" id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="&#x6570;&#x5B66;&#x548C;&#x805A;&#x5408;&#x64CD;&#x4F5C;&#x7B26;---mathematical-and-aggregate-operator">&#x6570;&#x5B66;&#x548C;&#x805A;&#x5408;&#x64CD;&#x4F5C;&#x7B26; - Mathematical and Aggregate Operator</h2>
+<h3 id="concat">concat</h3>
+<p><code>concat</code> &#x64CD;&#x4F5C;&#x7B26;&#x5C06;&#x591A;&#x4E2A; <code>Observables</code> &#x6309;&#x987A;&#x5E8F;&#x4E32;&#x8054;&#x8D77;&#x6765;&#xFF0C;&#x5F53;&#x524D;&#x4E00;&#x4E2A; <code>Observable</code> &#x5143;&#x7D20;&#x53D1;&#x9001;&#x5B8C;&#x6BD5;&#x540E;&#xFF0C;&#x540E;&#x4E00;&#x4E2A; <code>Observable</code> &#x624D;&#x53EF;&#x4EE5;&#x5F00;&#x59CB;&#x53D1;&#x51FA;&#x5143;&#x7D20;&#x3002;</p>
+<p><code>concat</code> &#x5C06;&#x7B49;&#x5F85;&#x524D;&#x4E00;&#x4E2A; <code>Observable</code> &#x4EA7;&#x751F;&#x5B8C;&#x6210;&#x4E8B;&#x4EF6;&#x540E;&#xFF0C;&#x624D;&#x5BF9;&#x540E;&#x4E00;&#x4E2A; <code>Observable</code> &#x8FDB;&#x884C;&#x8BA2;&#x9605;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x540E;&#x4E00;&#x4E2A;&#x662F;<code>&#x70ED; Observable</code> &#xFF0C;&#x5728;&#x5B83;&#x524D;&#x4E00;&#x4E2A; <code>Observable</code> &#x4EA7;&#x751F;&#x5B8C;&#x6210;&#x4E8B;&#x4EF6;&#x524D;&#xFF0C;&#x6240;&#x4EA7;&#x751F;&#x7684;&#x5143;&#x7D20;&#x5C06;&#x4E0D;&#x4F1A;&#x88AB;&#x53D1;&#x9001;&#x51FA;&#x6765;&#x3002;</p>
+<blockquote>
+<p>&#x5173;&#x4E8E; <code>&#x70ED;Observable</code> &#x548C; <code>&#x51B7;Observable</code> &#x53EF;&#x4EE5;&#x53C2;&#x8003;&#x4E0B;&#x9762;&#x7684;&#x6587;&#x6863;</p>
+<p><a href="https://github.com/ReactiveX/RxSwift/blob/master/Documentation/HotAndColdObservables.md" target="_blank">&#x5B98;&#x65B9;&#x6587;&#x6863;</a></p>
+<p><a href="https://medium.com/@DianQK/hot-observable%E5%92%8Ccold-observable-c3ba8d07867b" target="_blank">Hot Observable&#x548C;Cold Observable</a></p>
+</blockquote>
+<p>eg:</p>
+<pre><code class="lang-swift"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">concat</span><span class="hljs-params">()</span></span> {
+    getFirstObservable()
+        .concat(getSecondObservable())
+        .concat(getThirdObservable())
+        .debug(<span class="hljs-string">&quot;concat&quot;</span>)
+        .subscribe()
+        .disposed(by: disposeBag)
+}
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-swift"><span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">14</span>:<span class="hljs-number">56</span>:<span class="hljs-number">25.556</span>: concat -&gt; subscribed
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">14</span>:<span class="hljs-number">56</span>:<span class="hljs-number">26.558</span>: concat -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">1</span>|<span class="hljs-type">A</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">14</span>:<span class="hljs-number">56</span>:<span class="hljs-number">26.558</span>: concat -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">1</span>|<span class="hljs-type">B</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">14</span>:<span class="hljs-number">56</span>:<span class="hljs-number">26.558</span>: concat -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">1</span>|<span class="hljs-type">C</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">14</span>:<span class="hljs-number">56</span>:<span class="hljs-number">30.558</span>: concat -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">2</span>|<span class="hljs-type">A</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">14</span>:<span class="hljs-number">56</span>:<span class="hljs-number">30.558</span>: concat -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">2</span>|<span class="hljs-type">B</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">14</span>:<span class="hljs-number">56</span>:<span class="hljs-number">30.558</span>: concat -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">2</span>|<span class="hljs-type">C</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">14</span>:<span class="hljs-number">56</span>:<span class="hljs-number">34.558</span>: concat -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">3</span>|<span class="hljs-type">A</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">14</span>:<span class="hljs-number">56</span>:<span class="hljs-number">34.558</span>: concat -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">3</span>|<span class="hljs-type">B</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">14</span>:<span class="hljs-number">56</span>:<span class="hljs-number">34.558</span>: concat -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">First</span> -&gt; <span class="hljs-number">3</span>|<span class="hljs-type">C</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">14</span>:<span class="hljs-number">56</span>:<span class="hljs-number">34.659</span>: concat -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">Second</span> -&gt; <span class="hljs-number">1</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">14</span>:<span class="hljs-number">56</span>:<span class="hljs-number">38.660</span>: concat -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">Second</span> -&gt; <span class="hljs-number">2</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">14</span>:<span class="hljs-number">56</span>:<span class="hljs-number">42.659</span>: concat -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">Second</span> -&gt; <span class="hljs-number">3</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">14</span>:<span class="hljs-number">56</span>:<span class="hljs-number">42.764</span>: concat -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">Third</span> -&gt; <span class="hljs-number">1</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">14</span>:<span class="hljs-number">56</span>:<span class="hljs-number">42.764</span>: concat -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">Third</span> -&gt; <span class="hljs-number">2</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">14</span>:<span class="hljs-number">56</span>:<span class="hljs-number">42.764</span>: concat -&gt; <span class="hljs-type">Event</span> next(<span class="hljs-type">Third</span> -&gt; <span class="hljs-number">3</span>)
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">14</span>:<span class="hljs-number">56</span>:<span class="hljs-number">42.764</span>: concat -&gt; <span class="hljs-type">Event</span> completed
+<span class="hljs-number">2017</span>-<span class="hljs-number">12</span>-<span class="hljs-number">27</span> <span class="hljs-number">14</span>:<span class="hljs-number">56</span>:<span class="hljs-number">42.764</span>: concat -&gt; isDisposed
+</code></pre>
+<h3 id="reduce">reduce</h3>
+<p>&#x6301;&#x7EED;&#x7684;&#x5C06; <code>Observable</code> &#x7684;&#x6BCF;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x5E94;&#x7528;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#xFF0C;&#x7136;&#x540E;&#x53D1;&#x51FA;&#x6700;&#x7EC8;&#x7ED3;&#x679C;&#x3002;</p>
+<p><code>reduce</code> &#x64CD;&#x4F5C;&#x7B26;&#x5C06;&#x5BF9;&#x7B2C;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x5E94;&#x7528;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#x3002;&#x7136;&#x540E;&#xFF0C;&#x5C06;&#x7ED3;&#x679C;&#x4F5C;&#x4E3A;&#x53C2;&#x6570;&#x586B;&#x5165;&#x5230;&#x7B2C;&#x4E8C;&#x4E2A;&#x5143;&#x7D20;&#x7684;&#x5E94;&#x7528;&#x51FD;&#x6570;&#x4E2D;&#x3002;&#x4EE5;&#x6B64;&#x7C7B;&#x63A8;&#xFF0C;&#x76F4;&#x5230;&#x904D;&#x5386;&#x5B8C;&#x5168;&#x90E8;&#x7684;&#x5143;&#x7D20;&#x540E;&#x53D1;&#x51FA;&#x6700;&#x7EC8;&#x7ED3;&#x679C;&#x3002;
+&#x8FD9;&#x79CD;&#x64CD;&#x4F5C;&#x7B26;&#x5728;&#x5176;&#x4ED6;&#x5730;&#x65B9;&#x6709;&#x65F6;&#x5019;&#x88AB;&#x79F0;&#x4F5C;&#x662F; <code>accumulator</code>&#xFF0C;<code>aggregate</code>&#xFF0C;<code>compress</code>&#xFF0C;<code>fold</code> &#x6216;&#x8005; <code>inject</code>&#x3002;</p>
+<blockquote>
+<p>&#x4E0E; <code>scan</code> &#x7C7B;&#x4F3C;&#xFF0C;<code>reduce</code> &#x53D1;&#x9001;&#x6700;&#x7EC8;&#x7ED3;&#x679C;&#xFF0C;<code>scan</code> &#x53D1;&#x9001;&#x6BCF;&#x4E2A;&#x6B65;&#x9AA4;</p>
+</blockquote>
+<p>eg:</p>
+<pre><code class="lang-swift"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">reduce</span><span class="hljs-params">()</span></span> {
+    <span class="hljs-keyword">let</span> observable = <span class="hljs-type">Observable</span>.of(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>)
+    <span class="hljs-comment">// reduce(_ seed:accumulator:)</span>
+    <span class="hljs-comment">// seed: &#x57FA;&#x6570;&#xFF0C;accumulator: &#x8FD0;&#x7B97;&#x65B9;&#x6CD5;</span>
+    <span class="hljs-comment">// </span>
+    <span class="hljs-comment">// reduce(_ seed:accumulator:mapResult:)</span>
+    <span class="hljs-comment">// seed: &#x57FA;&#x6570;&#xFF0C;accumulator: &#x8FD0;&#x7B97;&#x65B9;&#x6CD5;&#xFF0C;mapResult: &#x8F6C;&#x6362;&#x8FD4;&#x56DE;&#x503C;</span>
+    observable
+        .<span class="hljs-built_in">reduce</span>(<span class="hljs-number">10</span>, accumulator: {(a, b) -&gt; <span class="hljs-type">Int</span> <span class="hljs-keyword">in</span>
+            <span class="hljs-keyword">return</span> a*b
+        }, mapResult: { (value) -&gt; <span class="hljs-type">String</span> <span class="hljs-keyword">in</span>
+            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;In the end, value is <span class="hljs-subst">\(value)</span>&quot;</span>
+        })
+        .subscribe({ (e) <span class="hljs-keyword">in</span>
+            <span class="hljs-built_in">print</span>(e)
+        })
+        .disposed(by: disposeBag)
+}
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-swift">next(<span class="hljs-type">In</span> the end, value <span class="hljs-keyword">is</span> <span class="hljs-number">7200</span>)
+completed
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Conditional_and_Boolean.html" class="navigation navigation-prev " aria-label="Previous page: 7.07 条件和 Bool 操作符">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="Connectable.html" class="navigation navigation-next " aria-label="Next page: 7.09 连接 Observable 操作符">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"7.08 数学和聚合操作符","level":"1.8.9","depth":2,"next":{"title":"7.09 连接 Observable 操作符","level":"1.8.10","depth":2,"path":"RxSwiftStudy/Operator/Connectable.md","ref":"./RxSwiftStudy/Operator/Connectable.md","articles":[]},"previous":{"title":"7.07 条件和 Bool 操作符","level":"1.8.8","depth":2,"path":"RxSwiftStudy/Operator/Conditional_and_Boolean.md","ref":"./RxSwiftStudy/Operator/Conditional_and_Boolean.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","search-plus","expandable-chapters-small","editlink","include-codeblock","include-highlight","github-buttons"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"editlink":{"label":"编辑页面","multilingual":false,"base":"https://github.com/ToBeDefined/RxSwiftExample/edit/master"},"include-highlight":{},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"white","family":"sans"},"highlight":{},"github-buttons":{"repo":"ToBeDefined/RxSwiftExample","types":["star"],"size":"small"},"expandable-chapters-small":{},"include-codeblock":{"check":false,"edit":false,"fixlang":false,"lang":"","template":"default","theme":"chrome","unindent":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"search-plus":{}},"theme":"theme","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"isPdf":false},"title":"RxSwift Example","language":"zh-hans","gitbook":"*","description":null},"file":{"path":"RxSwiftStudy/Operator/Mathematical_and_Aggregate.md","mtime":"2017-12-28T09:11:22.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-12-28T09:36:07.825Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search-plus/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search-plus/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-editlink/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
