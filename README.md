@@ -3,7 +3,7 @@
 
 主要是RxSwift的一些操作符的示例
 
-> 部分内容摘自[官方文档](http://reactivex.io/documentation/operators.html)以及翻译的[中文文档](https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/decision_tree.html)
+> 部分内容摘自[官方文档](http://reactivex.io/documentation)以及翻译的[中文文档](https://beeth0ven.github.io/RxSwift-Chinese-Documentation/)
 
 ## 相关地址
 
