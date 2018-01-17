@@ -134,7 +134,7 @@ func throttle() {
     let subject = BehaviorSubject<Int>.init(value: 0)
     subject
         .asObserver()
-        // 1秒内第一个和最后一个发出的元素
+        // 2秒内第一个和最后一个发出的元素
         .throttle(2, latest: true, scheduler: MainScheduler.instance)
         .subscribe({ (e) in
             print(e)
