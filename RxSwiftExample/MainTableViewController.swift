@@ -19,30 +19,7 @@ class MainTableViewController: TTableViewController {
         tableView.delegate = nil
         tableView.dataSource = nil
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        // MARK: 第一种
-        //let items = Observable<[SectionModel<String, UIViewController.Type>]>.just([
-        //    SectionModel.init(model: "0", items: [
-        //        ObservableViewController.self,
-        //        ObserverViewController.self,
-        //        Observer_ObservableViewController.self,
-        //        DisposableViewController.self,
-        //        SchedulersViewController.self,
-        //        ErrorHandlingViewController.self
-        //        ])
-        //    ])
-        //let dataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, UIViewController.Type>>
-        //    .init(configureCell: { [unowned self] (_, tableView, indexPath, type) -> UITableViewCell in
-        //        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        //        cell.textLabel?.text = self.getDescriptionString(with: type)
-        //        return cell
-        //    })
-        //
-        //items
-        //    .asDriver(onErrorJustReturn: [])
-        //    .drive(tableView.rx.items(dataSource: dataSource))
-        //    .disposed(by: disposeBag)
         
-        // MARK: 第二种
         data.value = [ObservableViewController.self,
                       ObserverViewController.self,
                       Observer_ObservableViewController.self,
